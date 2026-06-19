@@ -31,6 +31,8 @@ export class AdminComponent {
   cargando     = signal(false);
   errorMsg     = signal('');
   invitados    = signal<InvitadoAdmin[]>([]);
+  busqueda     = signal('');
+  filtro       = signal<'todos' | 'asisten' | 'no-asisten'>('todos');
 
   readonly excelUrl = `${this.API}/invitados/export?key=${this.CLAVE}`;
 
@@ -40,17 +42,31 @@ export class AdminComponent {
     this.asistentes().reduce((sum, i) => sum + 1 + (i.acompanantes?.length ?? 0), 0)
   );
 
+  readonly invitadosFiltrados = computed(() => {
+    const texto = this.busqueda().toLowerCase().trim();
+    const f     = this.filtro();
+
+    return this.invitados().filter(i => {
+      const coincideTexto = !texto ||
+        i.nombre.toLowerCase().includes(texto) ||
+        i.acompanantes?.some(a => a.nombre.toLowerCase().includes(texto));
+      const coincideFiltro =
+        f === 'todos' ? true :
+        f === 'asisten' ? i.asiste :
+        !i.asiste;
+      return coincideTexto && coincideFiltro;
+    });
+  });
+
+  readonly asistentesVisibles  = computed(() => this.invitadosFiltrados().filter(i => i.asiste));
+  readonly noAsistenVisibles   = computed(() => this.invitadosFiltrados().filter(i => !i.asiste));
+
   async entrar() {
-    if (this.clave() !== this.CLAVE) {
-      this.errorMsg.set('Clave incorrecta');
-      return;
-    }
+    if (this.clave() !== this.CLAVE) { this.errorMsg.set('Clave incorrecta'); return; }
     this.cargando.set(true);
     this.errorMsg.set('');
     try {
-      const lista = await firstValueFrom(
-        this.http.get<InvitadoAdmin[]>(`${this.API}/invitados`)
-      );
+      const lista = await firstValueFrom(this.http.get<InvitadoAdmin[]>(`${this.API}/invitados`));
       this.invitados.set(lista);
       this.autenticado.set(true);
     } catch {
@@ -60,7 +76,5 @@ export class AdminComponent {
     }
   }
 
-  onKeyEnter(e: KeyboardEvent) {
-    if (e.key === 'Enter') this.entrar();
-  }
+  onKeyEnter(e: KeyboardEvent) { if (e.key === 'Enter') this.entrar(); }
 }

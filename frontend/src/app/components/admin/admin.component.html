@@ -47,45 +47,80 @@
       </div>
     </div>
 
-    <!-- Lista -->
+    <!-- Búsqueda + filtros -->
+    <div class="admin-search-bar">
+      <div class="admin-search-wrap">
+        <svg class="search-icon" viewBox="0 0 20 20" fill="none">
+          <circle cx="8.5" cy="8.5" r="5.5" stroke="#999" stroke-width="1.5"/>
+          <path d="M13 13l3.5 3.5" stroke="#999" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <input
+          class="admin-search"
+          type="search"
+          placeholder="Buscar por nombre..."
+          [value]="busqueda()"
+          (input)="busqueda.set($any($event.target).value)"
+        />
+        @if (busqueda()) {
+          <button class="search-clear" (click)="busqueda.set('')">✕</button>
+        }
+      </div>
+
+      <!-- Chips de filtro -->
+      <div class="admin-chips">
+        <button class="chip" [class.chip--active]="filtro() === 'todos'"
+          (click)="filtro.set('todos')">Todos</button>
+        <button class="chip chip--green" [class.chip--active]="filtro() === 'asisten'"
+          (click)="filtro.set('asisten')">✅ Asisten</button>
+        <button class="chip chip--red" [class.chip--active]="filtro() === 'no-asisten'"
+          (click)="filtro.set('no-asisten')">❌ No asisten</button>
+      </div>
+    </div>
+
+    <!-- Lista filtrada -->
     <div class="admin-list">
 
-      @if (asistentes().length) {
+      @if (!invitadosFiltrados().length) {
+        <p class="admin-empty">
+          {{ busqueda() ? 'No se encontró "' + busqueda() + '"' : 'Aún no hay respuestas.' }}
+        </p>
+      }
+
+      @if (asistentesVisibles().length && filtro() !== 'no-asisten') {
         <p class="admin-section-title">✅ Confirman asistencia</p>
-        @for (inv of asistentes(); track inv.id) {
+        @for (inv of asistentesVisibles(); track inv.id) {
           <div class="guest-card guest-card--green">
             <div class="guest-name">{{ inv.nombre }}</div>
             @if (inv.acompanantes?.length) {
               <div class="guest-acomp">
-                + {{ inv.acompanantes.length }} acompañante{{ inv.acompanantes.length > 1 ? 's' : '' }}
+                + {{ inv.acompanantes.length }} acompañante{{ inv.acompanantes.length > 1 ? 's' : '' }}:
+                {{ inv.acompanantes.map(a => a.nombre).join(', ') }}
               </div>
             }
-            @if (inv.alergias) {
-              <div class="guest-alergias">⚠️ {{ inv.alergias }}</div>
-            }
+            <div class="guest-tags">
+              @if (inv.necesitaBus) { <span class="tag">🚌 Bus</span> }
+              @if (inv.necesitaAlojamiento) { <span class="tag">🏨 Alojamiento</span> }
+              @if (inv.alergias) { <span class="tag tag--warn">⚠️ {{ inv.alergias }}</span> }
+            </div>
           </div>
         }
       }
 
-      @if (noAsisten().length) {
-        <p class="admin-section-title" style="margin-top:20px">❌ No pueden asistir</p>
-        @for (inv of noAsisten(); track inv.id) {
+      @if (noAsistenVisibles().length && filtro() !== 'asisten') {
+        <p class="admin-section-title" [style.margin-top]="asistentesVisibles().length ? '20px' : '0'">
+          ❌ No pueden asistir
+        </p>
+        @for (inv of noAsistenVisibles(); track inv.id) {
           <div class="guest-card guest-card--red">
             <div class="guest-name">{{ inv.nombre }}</div>
           </div>
         }
       }
-
-      @if (!invitados().length) {
-        <p class="admin-empty">Aún no hay respuestas registradas.</p>
-      }
     </div>
 
-    <!-- Botón Excel -->
+    <!-- Botón Excel fijo abajo -->
     <div class="admin-footer">
-      <a class="admin-excel-btn" [href]="excelUrl">
-        📥 Descargar Excel
-      </a>
+      <a class="admin-excel-btn" [href]="excelUrl">📥 Descargar Excel</a>
     </div>
   }
 
