@@ -48,9 +48,10 @@ public class ResendEmailService(
     {
         var apiKey = config["Resend:ApiKey"]
             ?? throw new InvalidOperationException("Falta Resend:ApiKey en la configuración.");
-        var from = config["Resend:From"]
-            ?? throw new InvalidOperationException("Falta Resend:From en la configuración.");
+        // onboarding@resend.dev es el dominio de prueba de Resend (ya verificado, sin configuración extra)
+        const string from = "Boda Maria y David <onboarding@resend.dev>";
 
+        logger.LogInformation("Enviando email via Resend a {To}", to);
         var payload = new
         {
             from,

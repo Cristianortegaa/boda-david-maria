@@ -25,7 +25,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // ── Servicios propios ─────────────────────────────────────────────────────────
-builder.Services.AddScoped<IEmailService, GmailEmailService>();
+builder.Services.AddHttpClient();  // necesario para ResendEmailService
+builder.Services.AddScoped<IEmailService, ResendEmailService>();
 builder.Services.AddScoped<IExcelExportService, ExcelExportService>();
 
 // ── Controllers + OpenAPI ─────────────────────────────────────────────────────
