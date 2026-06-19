@@ -1,0 +1,54 @@
+<!-- frontend/src/app/components/alojamiento-info/alojamiento-info.component.html -->
+<div class="al-page">
+  <header class="al-header">
+    <a routerLink="/" class="back-link">← Volver</a>
+    <h1>Alojamiento</h1>
+  </header>
+
+  <!-- Coming soon illustration -->
+  <div class="al-soon">
+    <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg"
+         fill="none" stroke="#ccc" stroke-linecap="round">
+      <!-- House outline -->
+      <rect x="50" y="65" width="100" height="60" rx="4" stroke-width="2"/>
+      <path d="M40 70 L100 30 L160 70" stroke-width="2"/>
+      <!-- Door -->
+      <rect x="82" y="95" width="36" height="30" rx="3" stroke-width="2"/>
+      <!-- Windows -->
+      <rect x="58" y="80" width="22" height="18" rx="2" stroke-width="2"/>
+      <rect x="120" y="80" width="22" height="18" rx="2" stroke-width="2"/>
+      <!-- Lock -->
+      <circle cx="100" cy="85" r="12" stroke-width="2"/>
+      <path d="M93 85 Q93 78 100 78 Q107 78 107 85" stroke-width="2"/>
+      <rect x="94" y="83" width="12" height="10" rx="2" stroke-width="2"/>
+    </svg>
+    <p>Información disponible próximamente</p>
+    <span>Estamos cerrando los detalles de alojamiento.<br>¡Pronto tendréis toda la info!</span>
+  </div>
+
+  <div class="al-preview">
+    <h2>Lo que sabemos hasta ahora</h2>
+    <div class="al-item">
+      <span class="al-emoji">🏨</span>
+      <div>
+        <strong>Hotel en el recinto</strong>
+        <p>Habitaciones con precio especial para invitados. Desayuno incluido.</p>
+      </div>
+    </div>
+    <div class="al-item">
+      <span class="al-emoji">🚌</span>
+      <div>
+        <strong>Transporte incluido</strong>
+        <p>Bus de vuelta para los que se queden a dormir en la ciudad.</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="al-nota">
+    Podréis indicar vuestras preferencias de alojamiento en el formulario de confirmación.
+  </p>
+
+  <a routerLink="/formulario" class="btn btn--green" style="margin:20px 20px 0; display:block">
+    Confirmar asistencia
+  </a>
+</div>

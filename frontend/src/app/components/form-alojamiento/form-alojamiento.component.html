@@ -1,0 +1,65 @@
+<!-- frontend/src/app/components/form-alojamiento/form-alojamiento.component.html -->
+<div class="fa-page">
+
+  <!-- ── Header ─────────────────────────────────────────── -->
+  <header class="fa-header">
+    <div class="fa-header-titles">
+      <span class="fa-title">Alojamiento</span>
+      <span class="fa-paso">Paso 3 de 3</span>
+    </div>
+    <button class="fa-close-btn" (click)="cerrar()" aria-label="Cerrar">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M1 1L13 13M13 1L1 13" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- ── Contenido ──────────────────────────────────────── -->
+  <div class="fa-content">
+
+    <!-- Pregunta 1: ¿Gestionar alojamiento? -->
+    <div class="fa-field">
+      <span class="fa-label">¿Quieres que te ayudemos a gestionar el alojamiento? (Para los de Madrid)</span>
+      <div class="fa-toggles">
+        <button class="fa-toggle" [class.fa-toggle--active]="gestionaAlojamiento() === 'si'"
+                (click)="gestionaAlojamiento.set('si')">Sí</button>
+        <button class="fa-toggle" [class.fa-toggle--active]="gestionaAlojamiento() === 'no'"
+                (click)="gestionaAlojamiento.set('no')">No</button>
+      </div>
+      @if (quiereGestion()) {
+        <p class="fa-note">
+          *Nosotros nos encargamos de cuadraros a todos y después os daremos todos los detalles (precio, horas, grupos...)
+        </p>
+      }
+    </div>
+
+    <!-- Pregunta 2: ¿Cuántos días? — solo si Sí -->
+    @if (quiereGestion()) {
+      <div class="fa-field">
+        <span class="fa-label">¿Cuántos días quieres que gestionemos?</span>
+        <div class="fa-toggles">
+          <button class="fa-toggle fa-toggle--wide" [class.fa-toggle--active]="diasAlojamiento() === 'viernes-sabado'"
+                  (click)="diasAlojamiento.set('viernes-sabado')">Viernes y sábado</button>
+          <button class="fa-toggle fa-toggle--narrow" [class.fa-toggle--active]="diasAlojamiento() === 'sabado'"
+                  (click)="diasAlojamiento.set('sabado')">Sábado</button>
+        </div>
+      </div>
+    }
+
+    <!-- Separador -->
+    <hr class="fa-separator">
+
+    <!-- Nota WhatsApp -->
+    <p class="fa-whatsapp-note">
+      Si tienes alguna duda, no dudes en preguntarnos por WhatsApp
+    </p>
+
+  </div>
+
+  <!-- ── Botones abajo ───────────────────────────────────── -->
+  <div class="fa-footer">
+    <button class="fa-btn fa-btn--outline" (click)="anterior()">Volver al paso anterior</button>
+    <button class="fa-btn fa-btn--black"   (click)="confirmar()">¡Confirmar!</button>
+  </div>
+
+</div>

@@ -1,0 +1,55 @@
+<!-- frontend/src/app/components/form-transporte/form-transporte.component.html -->
+<div class="ft-page">
+
+  <!-- ── Header ─────────────────────────────────────────── -->
+  <header class="ft-header">
+    <!-- Título + paso -->
+    <div class="ft-header-titles">
+      <span class="ft-title">Transporte</span>
+      <span class="ft-paso">Paso 2 de 3</span>
+    </div>
+    <!-- Botón cerrar (X) -->
+    <button class="ft-close-btn" (click)="cerrar()" aria-label="Cerrar">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M1 1L13 13M13 1L1 13" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- ── Contenido ──────────────────────────────────────── -->
+  <div class="ft-content">
+
+    <!-- IDA -->
+    <div class="ft-field">
+      <span class="ft-label">¿Cómo iréis de Almorox al Cigarral (Toledo)?</span>
+      <div class="ft-toggles">
+        <button class="ft-toggle" [class.ft-toggle--active]="ida() === 'autobus'"
+                (click)="ida.set('autobus')">Autobús</button>
+        <button class="ft-toggle" [class.ft-toggle--active]="ida() === 'coche'"
+                (click)="ida.set('coche')">Coche personal</button>
+      </div>
+    </div>
+
+    <!-- VUELTA -->
+    <div class="ft-field">
+      <span class="ft-label">¿Cómo volvéis a Almorox?</span>
+      <div class="ft-toggles">
+        <button class="ft-toggle" [class.ft-toggle--active]="vuelta() === 'autobus'"
+                (click)="vuelta.set('autobus')">Autobús</button>
+        <button class="ft-toggle" [class.ft-toggle--active]="vuelta() === 'coche'"
+                (click)="vuelta.set('coche')">Coche personal</button>
+      </div>
+      <p class="ft-note">
+        *La vuelta es directa a Almorox. Si al acabar te irás a casa, marca "coche personal"
+      </p>
+    </div>
+
+  </div>
+
+  <!-- ── Botones abajo ───────────────────────────────────── -->
+  <div class="ft-footer">
+    <button class="ft-btn ft-btn--outline" (click)="anterior()">Volver al paso anterior</button>
+    <button class="ft-btn ft-btn--black"   (click)="continuar()">Continuar</button>
+  </div>
+
+</div>

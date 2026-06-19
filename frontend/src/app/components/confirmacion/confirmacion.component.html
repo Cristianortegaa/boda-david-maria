@@ -1,0 +1,49 @@
+<!-- frontend/src/app/components/confirmacion/confirmacion.component.html -->
+<div class="conf-page">
+
+  <!-- ── Cuerpo centrado verticalmente ─────────────────── -->
+  <div class="conf-body">
+
+    <!-- Foto + título boda -->
+    <div class="conf-top">
+      <div class="conf-boda-label">
+        <span class="conf-boda-de">Boda de</span>
+        <span class="conf-boda-nombres">María y David</span>
+      </div>
+      <img src="/confirmacion-foto.png" class="conf-foto" alt="María y David">
+    </div>
+
+    <!-- Texto + tarjeta resumen -->
+    <div class="conf-middle">
+      <p class="conf-titulo">¡Ya está todo listo!</p>
+      <p class="conf-subtitulo">
+        Conseguiremos que sea inolvidable.<br>
+        ¡Gracias por formar parte de esto tan bonito!
+      </p>
+
+      <!-- Tarjeta resumen -->
+      <div class="conf-card">
+        <p class="conf-card-nombre">{{ state().nombre || 'Tu nombre' }}</p>
+        <p class="conf-card-detalle">
+          Acompañantes: {{ resumenAcompanantes() }}<br>
+          {{ resumenTransporte() }}<br>
+          Alojamiento: {{ resumenAlojamiento() }}
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Sección banco ──────────────────────────────────── -->
+  <div class="conf-bank">
+    <p class="conf-bank-label">Si quieres ayudarnos en esta aventura:</p>
+    <div class="conf-bank-row">
+      <span class="conf-bank-iban">ES29 1583 0001 1190 8967 3376</span>
+      <button class="conf-bank-copy" (click)="copyIban()">Copiar</button>
+    </div>
+  </div>
+
+  <!-- ── Botón volver al inicio ─────────────────────────── -->
+  <button class="conf-btn" (click)="irAInicio()">Volver al inicio</button>
+
+</div>

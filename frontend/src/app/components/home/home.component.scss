@@ -1,0 +1,532 @@
+// frontend/src/app/components/home/home.component.scss
+
+.home {
+  max-width: 430px;
+  margin: 0 auto;
+  background: #FDFBFA;
+  min-height: 100vh;
+}
+
+// ── Header ──────────────────────────────────────────
+.home-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 24px;
+  height: 85px;
+  background: #FDFBFA;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-title {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.header-pre {
+  font-family: 'Inspiration', cursive;
+  font-size: 14px;
+  font-weight: 400;
+  color: #000;
+}
+
+.header-names {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 20px;
+  font-weight: 400;
+  color: #000;
+  line-height: 24px;
+}
+
+.burger-btn {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #6A6B4B;
+  border: none;
+  border-radius: 50%;
+  width: 53px;
+  height: 53px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  span {
+    display: block;
+    height: 0;
+    border-top: 2px solid #fff;
+    &:nth-child(1) { width: 18px; }
+    &:nth-child(2) { width: 12px; }
+    &:nth-child(3) { width: 18px; }
+  }
+}
+
+// ── Burger fullscreen ────────────────────────────────
+.burger-screen {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  padding-top: 24px;
+  max-width: 430px;
+  margin: 0 auto;
+}
+
+.burger-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  height: 53px;
+}
+
+.burger-spacer {
+  width: 40px;
+  height: 40px;
+}
+
+.burger-close-btn {
+  width: 53px;
+  height: 53px;
+  background: #E5E3E6;
+  border: none;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.burger-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 0 24px;
+  margin-top: 46px;
+}
+
+.burger-nav-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 32px;
+  height: 35px;
+
+  &--active { gap: 16px; }
+}
+
+.burger-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #6A6B4B;
+  flex-shrink: 0;
+}
+
+.burger-link {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 35px;
+  color: #000;
+  text-decoration: none;
+
+  &--active { color: #6A6B4B; }
+
+  // links directos en nav-item (sin link-row) deben empujar la flecha al extremo
+  .burger-nav-item > & { flex: 1; }
+}
+
+.burger-link-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.burger-badge {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 14px;
+  font-weight: 400;
+  color: #000;
+  background: #F3D8C5;
+  border-radius: 8px;
+  padding: 8px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.burger-arrow {
+  flex-shrink: 0;
+}
+
+.burger-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 23px;
+  width: 100%;
+  padding: 0;
+  position: absolute;
+  bottom: 83px;
+  left: 0;
+  right: 0;
+}
+
+.burger-footer-line {
+  width: 105px;
+  height: 0;
+  border-top: 1px solid #E1E1E1;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.burger-footer-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  flex: 1;
+}
+
+.burger-footer-pre {
+  font-family: 'Inspiration', cursive;
+  font-size: 14px;
+  color: #000;
+  text-align: center;
+  line-height: 18px;
+}
+
+.burger-footer-names {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 20px;
+  color: #000;
+  text-align: center;
+  line-height: 24px;
+}
+
+.burger-date {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Gochi Hand', cursive;
+  font-size: 30px;
+  font-weight: 400;
+  color: #979797;
+  text-align: center;
+  white-space: nowrap;
+  line-height: 35px;
+}
+
+// ── Hero video ───────────────────────────────────────
+.hero-video {
+  width: 100%;
+  height: 287px;
+  overflow: hidden;
+}
+
+.couple-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+// ── Contenido principal ──────────────────────────────
+.home-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 24px;
+  gap: 50px;
+}
+
+// ── Fecha + botones ──────────────────────────────────
+.date-section {
+  width: 100%;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.hero-date-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  &::before, &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #000;
+  }
+}
+
+.hero-date {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 30px;
+  font-weight: 400;
+  color: #000;
+  white-space: nowrap;
+  line-height: 35px;
+}
+
+.hero-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+// ── Section divider ──────────────────────────────────
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background: #F3D8C5;
+  height: 44px;
+  width: 100%;
+  padding: 0 16px;
+
+  span {
+    font-family: 'Gochi Hand', cursive;
+    font-size: 20px;
+    font-weight: 400;
+    color: #000;
+    line-height: 1;
+  }
+
+  svg { flex-shrink: 0; display: block; }
+}
+
+// ── Programa ─────────────────────────────────────────
+.programa {
+  width: 100%;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+}
+
+.prog-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+.prog-img {
+  flex-shrink: 0;
+  display: block;
+  height: 143px;
+  width: auto;
+  object-fit: contain;
+
+  &--tall { height: 157px; }
+}
+
+.prog-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+
+  &.prog-r {
+    align-items: flex-end;
+    .prog-title { text-align: right; }
+  }
+
+  &.prog-l {
+    align-items: flex-start;
+    .prog-title { text-align: left; }
+  }
+}
+
+.prog-time {
+  font-family: 'Great Vibes', cursive;
+  font-size: 14px;
+  font-weight: 400;
+  color: #000;
+  background: #F3D8C5;
+  padding: 2px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  line-height: 18px;
+}
+
+.prog-title {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 20px;
+  font-weight: 400;
+  color: #000;
+  line-height: 24px;
+}
+
+.prog-loc {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Grape Nuts', cursive;
+  font-size: 14px;
+  color: #000;
+  line-height: 17px;
+  svg { flex-shrink: 0; }
+}
+
+.prog-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+// ── Línea separadora ─────────────────────────────────
+.home-line {
+  width: 100%;
+  height: 1px;
+  background: #000;
+  flex-shrink: 0;
+}
+
+// ── Créditos ─────────────────────────────────────────
+.credits {
+  width: 100%;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 27px;
+}
+
+.credits-row {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  width: 100%;
+}
+
+.credits-person {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.credits-avatars {
+  position: relative;
+  width: 87px;
+  height: 52px;
+}
+
+.cred-avatar {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  top: 0;
+
+  &--back  { left: 0; }
+  &--front { left: 35px; box-shadow: -5px 4px 4px rgba(0,0,0,.25); }
+  &--flip  { transform: scaleX(-1); }
+}
+
+.credits-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+}
+
+.credits-name {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 20px;
+  font-weight: 400;
+  color: #000;
+  text-align: center;
+  line-height: 24px;
+}
+
+.credits-role {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 14px;
+  font-weight: 400;
+  color: #000;
+  text-align: center;
+  line-height: 17px;
+}
+
+.credits-footer {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 20px;
+  font-weight: 400;
+  color: #000;
+  text-align: center;
+  line-height: 24px;
+}
+
+// ── Cuenta bancaria ──────────────────────────────────
+.bank-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 10px;
+  gap: 24px;
+  background: #F3D8C5;
+}
+
+.bank-title {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 16px;
+  font-weight: 400;
+  color: #000;
+  text-align: center;
+  line-height: 19px;
+}
+
+.bank-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+}
+
+.bank-iban {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 20px;
+  font-weight: 400;
+  color: #000;
+  line-height: 24px;
+}
+
+.bank-copy {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 18px;
+  font-weight: 400;
+  color: #000;
+  text-decoration: underline;
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 21px;
+}
+
+// ── Animaciones ───────────────────────────────────────────
+// El host de home hace fadeSlideUp al entrar
+// Cards y botones con hover lift

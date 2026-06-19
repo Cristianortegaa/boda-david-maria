@@ -1,0 +1,47 @@
+<!-- frontend/src/app/components/form-alojamiento-fuera/form-alojamiento-fuera.component.html -->
+<div class="faf-page">
+
+  <!-- ── Header ─────────────────────────────────────────── -->
+  <header class="faf-header">
+    <div class="faf-header-titles">
+      <span class="faf-title">Alojamiento</span>
+      <span class="faf-paso">Paso 3 de 3</span>
+    </div>
+    <button class="faf-close-btn" (click)="cerrar()" aria-label="Cerrar">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M1 1L13 13M13 1L1 13" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- ── Contenido ──────────────────────────────────────── -->
+  <div class="faf-content">
+
+    <!-- Pregunta: ¿Fuera de Almorox? -->
+    <div class="faf-field">
+      <span class="faf-label">Si eres de fuera de Almorox ¿Te ayudamos a gestionar el alojamiento?</span>
+      <div class="faf-toggles">
+        <button class="faf-toggle" [class.faf-toggle--active]="alojamientoFuera() === 'si'"
+                (click)="alojamientoFuera.set('si')">Sí</button>
+        <button class="faf-toggle" [class.faf-toggle--active]="alojamientoFuera() === 'no'"
+                (click)="alojamientoFuera.set('no')">No</button>
+      </div>
+    </div>
+
+    <!-- Separador -->
+    <hr class="faf-separator">
+
+    <!-- Nota WhatsApp -->
+    <p class="faf-whatsapp-note">
+      Si tienes alguna duda, no dudes en preguntarnos por WhatsApp
+    </p>
+
+  </div>
+
+  <!-- ── Botones abajo ───────────────────────────────────── -->
+  <div class="faf-footer">
+    <button class="faf-btn faf-btn--outline" (click)="anterior()">Volver al paso anterior</button>
+    <button class="faf-btn faf-btn--black"   (click)="confirmar()">¡Confirmar!</button>
+  </div>
+
+</div>

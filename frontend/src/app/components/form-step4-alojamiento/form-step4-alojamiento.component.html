@@ -1,0 +1,25 @@
+<!-- frontend/src/app/components/form-step4-alojamiento/form-step4-alojamiento.component.html -->
+<div class="step4">
+  <h2>Alojamiento</h2>
+  <p class="paso-label">Paso 3 de 4</p>
+
+  <p class="pregunta">
+    ¿Necesitas alojamiento para la noche de la boda?
+  </p>
+
+  <p class="info-extra">
+    Tenemos habitaciones reservadas en el hotel del recinto a un precio especial para los invitados.
+  </p>
+
+  <div class="toggle-group" style="margin: 20px 0">
+    <button class="toggle" [class.active]="sel() === true" (click)="sel.set(true)">Sí</button>
+    <button class="toggle" [class.active]="sel() === false" (click)="sel.set(false)">No</button>
+  </div>
+
+  @if (errMsg()) { <p class="err" style="margin-bottom:10px">{{ errMsg() }}</p> }
+
+  <div class="nav-row">
+    <button class="btn btn--outline" (click)="svc.anteriorPaso()">Volver al paso anterior</button>
+    <button class="btn btn--green" (click)="continuar()">Continuar</button>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<!-- frontend/src/app/components/desscode/desscode.component.html -->
+<div class="dc-page">
+
+  <!-- ── Header ─────────────────────────────────────────── -->
+  <header class="dc-header">
+    <button class="dc-back-btn" (click)="irAInicio()" aria-label="Volver">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M12 8H4M7 4L3 8l4 4" stroke="#000" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <span class="dc-title">Cómo ir vestidos</span>
+  </header>
+
+  <!-- ── Hero image (cartoon David, 256×202) ────────────── -->
+  <div class="dc-hero">
+    <img src="/vestido-hero.png" class="dc-hero-img" alt="">
+  </div>
+
+  <!-- ── Contenido principal ───────────────────────────── -->
+  <div class="dc-content">
+
+    <div class="dc-inner">
+      <p class="dc-desc">
+        Con lo que te pongas, seguro que vas increíble. María se va a llevar los ojos de todos.
+        Para que te sirva de referencia, David irá con lo mejor de Primark:
+      </p>
+
+      <img src="/vestido-david.png" class="dc-david-img" alt="David">
+    </div>
+
+    <!-- ── Banco ──────────────────────────────────────── -->
+    <div class="dc-bank">
+      <span class="dc-bank-text">Si quieres ayudarnos en esta aventura:</span>
+      <div class="dc-bank-row">
+        <span class="dc-iban">ES29 1583 0001 1190 8967 3376</span>
+        <button class="dc-copy" (click)="copyIban()">Copiar</button>
+      </div>
+    </div>
+
+  </div>
+
+</div>

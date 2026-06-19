@@ -1,0 +1,51 @@
+<!-- frontend/src/app/components/no-asiste/no-asiste.component.html -->
+<div class="na-page">
+
+  <!-- ── Header ─────────────────────────────────────────── -->
+  <header class="na-header">
+    <button class="na-back-btn" (click)="irAInicio()" aria-label="Volver">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M12 8H4M7 4L3 8l4 4" stroke="#000" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- ── Contenido centrado verticalmente ───────────────── -->
+  <div class="na-center">
+
+    <!-- Imagen (256×202) -->
+    <div class="na-img-wrap">
+      <img src="/no-asiste.png" class="na-img" alt="">
+    </div>
+
+    <!-- Texto + input -->
+    <div class="na-body">
+      <div class="na-texts">
+        <p class="na-title">Nooooo.....</p>
+        <p class="na-desc">
+          Nos duele mucho que no puedas acompañarnos... ¡pero te seguimos
+          queriendo muchísimo! Estamos seguros de que pronto nos veremos.
+        </p>
+      </div>
+
+      <!-- Input nombre -->
+      <input
+        class="na-input"
+        type="text"
+        placeholder="Tu nombre y acompañante*"
+        [value]="nombre()"
+        (input)="nombre.set($any($event.target).value)"
+      />
+    </div>
+
+  </div>
+
+  <!-- ── Botón confirmar (fijo abajo) ───────────────────── -->
+  <div class="na-footer">
+    <button class="na-confirm-btn" (click)="confirmar()">
+      Confirmar que no puedes asistir
+    </button>
+  </div>
+
+</div>

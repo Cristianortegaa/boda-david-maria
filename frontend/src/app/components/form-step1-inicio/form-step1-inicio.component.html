@@ -1,0 +1,74 @@
+<!-- frontend/src/app/components/form-step1-inicio/form-step1-inicio.component.html -->
+<div class="step1">
+
+  <!-- Couple illustration -->
+  <div class="step1-ilust">
+    <svg viewBox="0 0 240 200" xmlns="http://www.w3.org/2000/svg"
+         fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Woman -->
+      <circle cx="80" cy="38" r="20" stroke-width="2"/>
+      <path d="M60 36 Q60 22 80 20 Q100 22 100 36 Q104 65 100 76" stroke-width="2" fill="none"/>
+      <path d="M60 36 Q56 65 60 76" stroke-width="2" fill="none"/>
+      <circle cx="74" cy="38" r="1.5" fill="#1a1a1a" stroke="none"/>
+      <circle cx="86" cy="38" r="1.5" fill="#1a1a1a" stroke="none"/>
+      <path d="M75 46 Q80 50 85 46" stroke-width="1.5"/>
+      <!-- Woman body/dress -->
+      <path d="M60 76 Q55 100 50 130 Q48 148 52 168" stroke-width="2"/>
+      <path d="M100 76 Q105 100 110 130 Q112 148 108 168" stroke-width="2"/>
+      <path d="M52 168 Q80 175 108 168" stroke-width="1.8"/>
+      <!-- Dress flare -->
+      <path d="M50 125 Q38 138 36 155 Q52 150 62 146" stroke-width="1.5"/>
+      <path d="M110 125 Q122 138 124 155 Q108 150 98 146" stroke-width="1.5"/>
+      <!-- Arm reaching right -->
+      <path d="M60 90 Q72 100 92 108" stroke-width="2"/>
+      <!-- Flowers -->
+      <circle cx="94" cy="110" r="4" stroke-width="1.5"/>
+      <circle cx="100" cy="106" r="3.5" stroke-width="1.5"/>
+      <circle cx="99" cy="114" r="3.5" stroke-width="1.5"/>
+
+      <!-- Man -->
+      <circle cx="165" cy="34" r="18" stroke-width="2"/>
+      <path d="M147 30 Q147 18 165 16 Q183 18 183 30" stroke-width="2" fill="#1a1a1a" stroke="#1a1a1a"/>
+      <circle cx="159" cy="34" r="1.5" fill="#1a1a1a" stroke="none"/>
+      <circle cx="171" cy="34" r="1.5" fill="#1a1a1a" stroke="none"/>
+      <path d="M160 42 Q165 46 170 42" stroke-width="1.5"/>
+      <!-- Suit -->
+      <path d="M147 70 L138 95 L134 168" stroke-width="2"/>
+      <path d="M183 70 L192 95 L196 168" stroke-width="2"/>
+      <path d="M134 168 L196 168" stroke-width="2"/>
+      <path d="M147 70 L158 86 L165 73 L172 86 L183 70" stroke-width="2"/>
+      <path d="M165 73 L163 88 L165 98 L167 88 Z" stroke-width="1.5" fill="#1a1a1a" stroke="#1a1a1a"/>
+      <!-- Arm reaching left -->
+      <path d="M183 84 Q168 96 140 104" stroke-width="2"/>
+      <!-- Hands joined -->
+      <path d="M92 108 Q116 116 140 104" stroke-width="2"/>
+      <!-- Legs -->
+      <path d="M152 168 L148 198" stroke-width="2.2"/>
+      <path d="M178 168 L182 198" stroke-width="2.2"/>
+      <path d="M62 168 L60 198" stroke-width="2.2"/>
+      <path d="M98 168 L100 198" stroke-width="2.2"/>
+    </svg>
+  </div>
+
+  <h2>¿Asistirás a nuestra boda?</h2>
+
+  <div class="toggle-group" style="margin-bottom:20px">
+    <button class="toggle" [class.active]="asiste() === true" (click)="asiste.set(true)">Sí</button>
+    <button class="toggle" [class.active]="asiste() === false" (click)="asiste.set(false)">No</button>
+  </div>
+
+  <button class="acomp-link" type="button" (click)="toggleAcomp()">
+    {{ mostrarAcomp() ? '— Ocultar acompañante' : '+ Añadir acompañante' }}
+  </button>
+
+  @if (mostrarAcomp()) {
+    <div class="acomp-mini field" style="margin-top:12px">
+      <label>Nombre del acompañante</label>
+      <input type="text" [(ngModel)]="nombreAcomp" placeholder="Nombre y apellidos" />
+    </div>
+  }
+
+  @if (errMsg()) { <p class="err" style="margin:8px 0">{{ errMsg() }}</p> }
+
+  <button class="btn btn--green" style="margin-top:16px" (click)="continuar()">Continuar</button>
+</div>

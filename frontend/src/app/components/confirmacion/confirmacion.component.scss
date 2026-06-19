@@ -1,0 +1,239 @@
+// frontend/src/app/components/confirmacion/confirmacion.component.scss
+
+.conf-page {
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: #FDFBFA;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+// ── Cuerpo (foto + textos) ────────────────────────────────
+// flex:1 para que empuje banco y botón al fondo
+.conf-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  width: 100%;
+  padding: 40px 0 24px;
+}
+
+// ── Top: etiqueta boda + foto ─────────────────────────────
+// Figma: Frame 1000008296, 256×244
+.conf-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 256px;
+}
+
+// Etiqueta "Boda de / María y David"
+// Figma: Frame 1000008223, gap:0, 116×42
+.conf-boda-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 116px;
+}
+
+// "Boda de" — Inspiration 14px
+.conf-boda-de {
+  font-family: 'Inspiration', cursive;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  color: #000;
+}
+
+// "María y David" — Gochi Hand 20px
+.conf-boda-nombres {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+  color: #000;
+}
+
+// Foto: 256×202, espejada horizontalmente
+.conf-foto {
+  width: 256px;
+  height: 202px;
+  object-fit: cover;
+  transform: scaleX(-1); // Figma: matrix(-1,0,0,1,0,0)
+}
+
+// ── Middle: textos + tarjeta ──────────────────────────────
+// Figma: Frame 1000008246, padding:0 24px, gap:24, 393×279
+.conf-middle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 24px;
+  gap: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+// "¡Ya está todo listo!" — Gochi Hand 30px
+.conf-titulo {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 35px;
+  text-align: center;
+  color: #000;
+  margin: 0;
+}
+
+// Subtítulo — Gochi Hand 16px
+.conf-subtitulo {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  text-align: center;
+  color: #000;
+  margin: 0;
+}
+
+// Tarjeta resumen — Figma: #F5F5F5, border-radius:24px, 299×158
+.conf-card {
+  background: #F5F5F5;
+  border-radius: 24px;
+  padding: 24px 0;
+  width: min(299px, calc(100% - 48px));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+// Nombre — Gochi Hand 20px
+.conf-card-nombre {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+  color: #000;
+  margin: 0;
+  width: 100%;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+// Detalle — Gochi Hand 16px
+.conf-card-detalle {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  text-align: center;
+  color: #000;
+  margin: 0;
+  width: 100%;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+// ── Sección banco ─────────────────────────────────────────
+// Figma: Frame 1000008226, background:#F3D8C5, padding:18px 10px, gap:24
+.conf-bank {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 10px;
+  gap: 24px;
+  width: 100%;
+  background: #F3D8C5;
+  box-sizing: border-box;
+}
+
+// "Si quieres ayudarnos..." — Gochi Hand 16px
+.conf-bank-label {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  text-align: center;
+  color: #000;
+  margin: 0;
+}
+
+.conf-bank-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+// IBAN — Gochi Hand, fluid para no overflow en pantallas pequeñas
+.conf-bank-iban {
+  font-family: 'Gochi Hand', cursive;
+  font-size: clamp(13px, 4.5vw, 20px);
+  word-break: break-all;
+  text-align: center;
+  font-weight: 400;
+  line-height: 24px;
+  color: #000;
+}
+
+// "Copiar" — Gochi Hand 18px, underline
+.conf-bank-copy {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21px;
+  text-decoration: underline;
+  color: #000;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+// ── Animaciones cascade (móvil) ──────────────────────────
+.conf-page   { animation: fadeIn 0.25s ease both; }
+
+.conf-top    { animation: fadeSlideUp 0.45s cubic-bezier(0.16,1,0.3,1) 0.05s both; }
+.conf-foto   { animation: bounceIn 0.55s cubic-bezier(0.34,1.56,0.64,1) 0.08s both; }
+.conf-middle { animation: fadeSlideUp 0.45s cubic-bezier(0.16,1,0.3,1) 0.18s both; }
+.conf-card   { animation: scaleIn 0.4s cubic-bezier(0.16,1,0.3,1) 0.28s both; }
+.conf-bank   { animation: fadeSlideUp 0.4s cubic-bezier(0.16,1,0.3,1) 0.35s both; }
+
+// Botón "Volver al inicio" — Figma: 345×53, #6A6B4B, border-radius:100px
+.conf-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 40px;
+  gap: 8px;
+  width: min(345px, calc(100% - 48px));
+  height: 53px;
+  margin: 24px auto 40px;
+  background: #6A6B4B;
+  border-radius: 100px;
+  border: none;
+  font-family: 'Gochi Hand', cursive;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21px;
+  color: #FFFFFF;
+  cursor: pointer;
+  white-space: nowrap;
+
+  animation: scaleIn 0.4s cubic-bezier(0.34,1.56,0.64,1) 0.42s both;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  will-change: transform;
+  transition: transform 0.12s cubic-bezier(0.34,1.56,0.64,1), opacity 0.15s;
+  &:active { transform: scale(.95); opacity: .88; }
+}

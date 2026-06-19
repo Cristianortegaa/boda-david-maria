@@ -1,0 +1,485 @@
+﻿/* Form 6 */
+
+position: relative;
+width: 393px;
+height: 852px;
+left: 7995px;
+top: 965px;
+
+background: #FDFBFA;
+
+
+/* Vector 808 */
+
+position: absolute;
+width: 13.29px;
+height: 0.8px;
+left: 169.41px;
+top: 1333.92px;
+
+border: 2px solid #FEFDFD;
+
+
+/* Frame 1000008276 */
+
+/* Disposición automática */
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0px;
+gap: 40px;
+
+position: absolute;
+width: 393px;
+height: 706px;
+left: calc(50% - 393px/2);
+top: calc(50% - 706px/2 - 40.5px);
+
+
+
+/* Frame 1000008296 */
+
+/* Disposición automática */
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0px;
+
+width: 256.04px;
+height: 244px;
+
+
+/* Auto layout interior */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 1000008223 */
+
+/* Disposición automática */
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0px;
+
+width: 116px;
+height: 42px;
+
+
+/* Auto layout interior */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Boda de */
+
+width: 116px;
+height: 18px;
+
+font-family: 'Inspiration';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 18px;
+/* idéntica a la altura del cuadro */
+text-align: center;
+
+color: #000000;
+
+
+/* Auto layout interior */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* María y David */
+
+width: 116px;
+height: 24px;
+
+font-family: 'Gochi Hand';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 24px;
+/* idéntica a la altura del cuadro */
+text-align: center;
+
+color: #000000;
+
+
+/* Auto layout interior */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Group 47477 */
+
+width: 256.04px;
+height: 202px;
+
+
+/* Auto layout interior */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* image 622 */
+
+position: absolute;
+width: 256.04px;
+height: 202px;
+left: 0px;
+top: 42px;
+
+background: url(image.png);
+transform: matrix(-1, 0, 0, 1, 0, 0);
+
+
+/* Vector 811 */
+
+position: absolute;
+width: 2.86px;
+height: 1.24px;
+left: 88.48px;
+top: 71.55px;
+
+border: 1px solid #000000;
+
+
+/* Frame 1000008246 */
+
+/* Disposición automática */
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0px 24px;
+gap: 24px;
+
+width: 393px;
+height: 279px;
+
+
+/* Auto layout interior */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 1000008267 */
+
+/* Disposición automática */
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0px;
+gap: 24px;
+
+width: 345px;
+height: 279px;
+
+
+/* Auto layout interior */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* ¡Ya está todo listo! */
+
+width: 345px;
+height: 35px;
+
+font-family: 'Gochi Hand';
+font-style: normal;
+font-weight: 400;
+font-size: 30px;
+line-height: 35px;
+text-align: center;
+
+color: #000000;
+
+
+/* Auto layout interior */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Conseguiremos que sea inolvidable. ¡Gracias por formar parte de esto tan bonito! */
+
+width: 345px;
+height: 38px;
+
+font-family: 'Gochi Hand';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+text-align: center;
+
+color: #000000;
+
+
+/* Auto layout interior */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 1000008284 */
+
+/* Disposición automática */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 24px 0px;
+gap: 10px;
+
+width: 299px;
+height: 158px;
+
+background: #F5F5F5;
+border-radius: 24px;
+
+/* Auto layout interior */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* Nombre Apellido */
+
+width: 299px;
+height: 24px;
+
+font-family: 'Gochi Hand';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 24px;
+/* idéntica a la altura del cuadro */
+text-align: center;
+
+color: #000000;
+
+
+/* Auto layout interior */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Acompañantes: Nombre Ida: Autobús Vuelta: Autobús Alojamiento: Sí */
+
+width: 299px;
+height: 76px;
+
+font-family: 'Gochi Hand';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+text-align: center;
+
+color: #000000;
+
+
+/* Auto layout interior */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 1000008226 */
+
+/* Disposición automática */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 18px 10px;
+gap: 24px;
+
+width: 393px;
+height: 103px;
+
+background: #F3D8C5;
+
+/* Auto layout interior */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* Si quieres ayudarnos en esta aventura: */
+
+width: 373px;
+height: 19px;
+
+font-family: 'Gochi Hand';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+/* idéntica a la altura del cuadro */
+text-align: center;
+
+color: #000000;
+
+
+/* Auto layout interior */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 1000008266 */
+
+/* Disposición automática */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: flex-start;
+padding: 0px;
+gap: 24px;
+
+width: 341px;
+height: 24px;
+
+
+/* Auto layout interior */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* ES29 1583 0001 1190 8967 3376 */
+
+width: 268px;
+height: 24px;
+
+font-family: 'Gochi Hand';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 24px;
+/* idéntica a la altura del cuadro */
+
+color: #000000;
+
+
+/* Auto layout interior */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Copiar */
+
+width: 49px;
+height: 21px;
+
+font-family: 'Gochi Hand';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 21px;
+text-decoration-line: underline;
+
+color: #000000;
+
+
+/* Auto layout interior */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Button */
+
+/* Disposición automática */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 16px 40px;
+gap: 8px;
+
+position: absolute;
+width: 345px;
+height: 53px;
+left: calc(50% - 345px/2);
+top: 759px;
+
+background: #6A6B4B;
+border-radius: 100px;
+
+
+/* Icon/slash-circle-02
+
+slash, cancel, stop, no, entry, circle
+*/
+
+display: none;
+width: 20px;
+height: 20px;
+
+border-radius: 0px;
+
+/* Auto layout interior */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Volver al inicio */
+
+width: 106px;
+height: 21px;
+
+font-family: 'Gochi Hand';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 21px;
+
+color: #FFFFFF;
+
+
+/* Auto layout interior */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Icon/slash-circle-02
+
+slash, cancel, stop, no, entry, circle
+*/
+
+display: none;
+width: 20px;
+height: 20px;
+
+border-radius: 0px;
+
+/* Auto layout interior */
+flex: none;
+order: 2;
+flex-grow: 0;

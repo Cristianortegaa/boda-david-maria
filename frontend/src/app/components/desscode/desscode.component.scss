@@ -1,0 +1,160 @@
+// frontend/src/app/components/desscode/desscode.component.scss
+
+.dc-page {
+  position: relative;
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: #FDFBFA;
+  display: flex;
+  flex-direction: column;
+}
+
+// ── Header (idéntico al de regalos) ──────────────────────
+.dc-header {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 24px;
+  gap: 16px;
+  height: 53px;
+  margin-top: 24px;
+  flex-shrink: 0;
+}
+
+.dc-back-btn {
+  width: 53px;
+  height: 53px;
+  background: #E5E3E6;
+  border: none;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.dc-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Gochi Hand', cursive;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 35px;
+  color: #000;
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+// ── Hero image (top:113 → 36px de margen tras header) ────
+.dc-hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 36px;
+  flex-shrink: 0;
+}
+
+.dc-hero-img {
+  width: 256px;
+  height: 202px;
+  object-fit: contain;
+  display: block;
+}
+
+// ── Contenido ─────────────────────────────────────────────
+.dc-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-top: 36px;
+}
+
+.dc-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 24px;
+  gap: 24px;
+  flex: 1;
+}
+
+.dc-desc {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  text-align: center;
+  color: #000;
+  margin: 0;
+  align-self: stretch;
+}
+
+// Foto de David (bg removed, 155×241)
+.dc-david-img {
+  width: 155px;
+  height: 241px;
+  object-fit: contain;
+  display: block;
+}
+
+// ── Banco (#F3D8C5) ───────────────────────────────────────
+.dc-bank {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 10px;
+  gap: 24px;
+  width: 100%;
+  background: #F3D8C5;
+  box-sizing: border-box;
+  margin-top: 24px;
+}
+
+.dc-bank-text {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  text-align: center;
+  color: #000;
+  align-self: stretch;
+}
+
+.dc-bank-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.dc-iban {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #000;
+}
+
+.dc-copy {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21px;
+  text-decoration: underline;
+  color: #000;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+// ── Animaciones ───────────────────────────────────────────
+.dc-page    { animation: fadeSlideUp 0.45s cubic-bezier(0.16,1,0.3,1) both; }
+.dc-hero-img { animation: scaleIn 0.5s cubic-bezier(0.16,1,0.3,1) 0.1s both; }

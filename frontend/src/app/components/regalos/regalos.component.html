@@ -1,0 +1,157 @@
+<!-- frontend/src/app/components/regalos/regalos.component.html -->
+
+<!-- ── BANCO (compartido) ────────────────────────────── -->
+<ng-template #bancoTpl>
+  <p class="reg-disclaimer">
+    El voto solo sirve para jugar, si queréis ayudarnos podéis enviar
+    el dinerito a este nímero de cuenta:
+  </p>
+  <div class="reg-bank">
+    <div class="reg-bank-row">
+      <span class="reg-iban">ES29 1583 0001 1190 8967 3376</span>
+      <button class="reg-copy" (click)="copyIban()">Copiar</button>
+    </div>
+  </div>
+</ng-template>
+
+<!-- ══════════════════════════════════════════════════════
+     VISTA ÚNICA — votos en tiempo real + selección
+     ══════════════════════════════════════════════════════ -->
+<div class="regalos">
+
+  <!-- Header -->
+  <header class="reg-header">
+    <button class="reg-back-btn" (click)="irAInicio()" aria-label="Volver">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M12 8H4M7 4L3 8l4 4" stroke="#000" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <span class="reg-title">Lista de regalos</span>
+  </header>
+
+  <!-- Hero image -->
+  <div class="reg-hero">
+    <img src="/regalos.png" class="reg-hero-img" alt="">
+  </div>
+
+  <div class="reg-content">
+    <div class="reg-padded">
+
+      <p class="reg-desc">
+        Para que sea más divertido, hemos creado esta lista de regalos para
+        que tu "sobre" vaya destinado al que tu quieras.
+      </p>
+
+      <div class="reg-chooser">
+        <span class="reg-chooser-label">Elige uno o varios:</span>
+
+        <div class="reg-list">
+          @for (op of opciones(); track op; let first = $first; let last = $last) {
+            <div class="reg-item"
+                 [class.reg-item--first]="first"
+                 [class.reg-item--last]="last"
+                 [class.reg-item--selectable]="!votado()"
+                 (click)="!votado() && toggle(op)">
+
+              <!-- Checkbox -->
+              <span class="reg-checkbox"
+                    [class.reg-checkbox--checked]="isSelected(op) && !votado()"
+                    [class.reg-checkbox--voted]="isSelected(op) && votado()">
+                @if (isSelected(op)) {
+                  <svg width="12" height="9" viewBox="0 0 12 9" fill="none">
+                    <path d="M1 4.5L4.5 8L11 1"
+                          [attr.stroke]="votado() ? '#000' : '#6A6B4B'"
+                          stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                }
+              </span>
+
+              <!-- Nombre + barra de progreso -->
+              <div class="reg-item-result">
+                <span class="reg-item-name"
+                      [class.reg-item-name--small]="resultados().length > 0 && selecciones().length > 0">{{ op }}</span>
+                @if (resultados().length > 0 && selecciones().length > 0) {
+                  <div class="reg-progress">
+                    <div class="reg-progress-fill"
+                         [style.width.%]="getPorcentaje(op)"></div>
+                  </div>
+                }
+              </div>
+
+              <!-- Badge con nº de votos (solo si hay datos) -->
+              @if (resultados().length > 0 && selecciones().length > 0) {
+                <span class="reg-vote-badge">{{ getVotos(op) }}</span>
+              }
+
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Botón votar -->
+      @if (!votado()) {
+        @if (selecciones().length) {
+          <button class="reg-votar-btn" (click)="abrirConfirmacion()">Votar</button>
+        }
+        @if (errMsg()) {
+          <p class="reg-err">{{ errMsg() }}</p>
+        }
+      } @else {
+        <button class="reg-votar-btn" disabled>Votar</button>
+      }
+
+    </div>
+
+    <ng-container *ngTemplateOutlet="bancoTpl"/>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     REGALOS 3 — Bottom sheet de confirmación
+     ══════════════════════════════════════════════════════ -->
+@if (confirmando()) {
+  <div class="bs-overlay" (click)="cancelar()">
+    <div class="bs-sheet" (click)="$event.stopPropagation()">
+
+      <!-- Title -->
+      <div class="bs-title-row">
+        <span class="bs-gracias">¡Gracias!</span>
+      </div>
+
+      <!-- Confirmación + input -->
+      <div class="bs-body">
+
+        <!-- Chips de selección -->
+        <div class="bs-confirm">
+          <span class="bs-label">Vas a votar por:</span>
+          <div class="bs-chips">
+            @for (op of selecciones(); track op) {
+              <span class="bs-chip">{{ op }}</span>
+            }
+          </div>
+        </div>
+
+        <!-- Input nombre -->
+        <input
+          class="bs-input"
+          type="text"
+          placeholder="Tu nombre"
+          [value]="nombre()"
+          (input)="nombre.set($any($event.target).value)"
+        />
+
+      </div>
+
+      <!-- Acciones -->
+      <div class="bs-actions">
+        <button class="bs-enviar" (click)="enviarVoto()" [disabled]="enviando()">
+          {{ enviando() ? 'Enviando…' : 'Enviar voto' }}
+        </button>
+        <button class="bs-cancelar" (click)="cancelar()">Cancelar</button>
+      </div>
+
+    </div>
+  </div>
+}

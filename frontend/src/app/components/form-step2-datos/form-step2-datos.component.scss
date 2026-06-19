@@ -1,0 +1,41 @@
+// frontend/src/app/components/form-step2-datos/form-step2-datos.component.scss
+h2 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+.paso-label { font-size: 12px; color: var(--text-muted); margin-bottom: 18px; }
+
+.question-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  .q-label { font-size: 14px; font-weight: 600; color: var(--text); }
+}
+
+.acomp-area { margin-top: 14px; }
+
+.acomp-chip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--beige);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  button {
+    background: none; border: none; color: var(--text-muted); font-size: 13px;
+    &:hover { color: #c00; }
+  }
+}
+
+.add-link {
+  background: none; border: none;
+  color: var(--green); font-size: 13px; font-weight: 600;
+  cursor: pointer; margin-top: 8px;
+  &:hover { text-decoration: underline; }
+}
+
+.nav-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 22px;
+}

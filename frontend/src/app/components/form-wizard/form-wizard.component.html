@@ -1,0 +1,99 @@
+<!-- frontend/src/app/components/form-wizard/form-wizard.component.html -->
+<div class="fw-page">
+
+  <!-- ── Header ─────────────────────────────────────────── -->
+  <header class="fw-header">
+    <button class="fw-back-btn" (click)="irAtras()" aria-label="Volver">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M12 8H4M7 4L3 8l4 4" stroke="#000" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- ── Formulario (top:118) ────────────────────────────── -->
+  <div class="fw-content">
+
+    <!-- Tu nombre -->
+    <div class="fw-field">
+      <label class="fw-label">Tu nombre</label>
+      <input class="fw-input"
+             type="text"
+             placeholder="Nombre"
+             [value]="nombre()"
+             (input)="nombre.set($any($event.target).value)"/>
+    </div>
+
+    <!-- Acompañantes -->
+    <div class="fw-field">
+      <label class="fw-label">Acompañantes</label>
+      <input class="fw-input"
+             type="text"
+             placeholder="Nombre"
+             [value]="acompanante()"
+             (input)="acompanante.set($any($event.target).value)"/>
+    </div>
+
+    <!-- ¿Cuántos niños vienen contigo? -->
+    <div class="fw-field fw-field--kids">
+      <span class="fw-label">¿Cuantos niños vienen contigo?</span>
+      <div class="fw-spinners">
+
+        <!-- 3 - 14 años -->
+        <div class="fw-spinner-group">
+          <div class="fw-spinner">
+            <button class="fw-spin-btn fw-spin-btn--minus" (click)="cambiar314(-1)">
+              <svg width="14" height="2" viewBox="0 0 14 2" fill="none">
+                <path d="M1 1H13" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+            <span class="fw-spin-num">{{ ninos314() }}</span>
+            <button class="fw-spin-btn fw-spin-btn--plus" (click)="cambiar314(1)">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M7 1V13M1 7H13" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+          <span class="fw-spin-label">3 - 14 años</span>
+        </div>
+
+        <!-- 15 - 18 años -->
+        <div class="fw-spinner-group">
+          <div class="fw-spinner">
+            <button class="fw-spin-btn fw-spin-btn--minus" (click)="cambiar1518(-1)">
+              <svg width="14" height="2" viewBox="0 0 14 2" fill="none">
+                <path d="M1 1H13" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+            <span class="fw-spin-num">{{ ninos1518() }}</span>
+            <button class="fw-spin-btn fw-spin-btn--plus" (click)="cambiar1518(1)">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M7 1V13M1 7H13" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+          <span class="fw-spin-label">15 - 18 años</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ¿Alergias o menú especial? -->
+    <div class="fw-field">
+      <label class="fw-label">¿Alergias o menú especial?</label>
+      <textarea class="fw-textarea"
+                placeholder="Añade si alguno de vosotros necesita menú vegetariano o menú especial por alguna alergia o intolerancia"
+                [value]="alergias()"
+                (input)="alergias.set($any($event.target).value)"></textarea>
+    </div>
+
+  </div>
+
+  <!-- ── Botón Continuar (fijo abajo, negro) ─────────────── -->
+  <div class="fw-footer">
+    <button class="fw-continuar-btn" (click)="continuar()" [disabled]="enviando()">
+      {{ enviando() ? 'Enviando…' : 'Continuar' }}
+    </button>
+  </div>
+
+</div>

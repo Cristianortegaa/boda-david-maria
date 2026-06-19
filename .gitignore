@@ -1,0 +1,22 @@
+# .NET
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+*.user
+.vs/
+
+# Secrets — NO subir a GitHub
+BodaAPI/appsettings.Production.json
+
+# Node / Angular
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/cache/
+npm-debug.log
+yarn-error.log
+
+# OS
+.DS_Store
+Thumbs.db

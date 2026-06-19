@@ -1,0 +1,45 @@
+// frontend/src/app/components/form-step5-alojamiento-detalle/form-step5-alojamiento-detalle.component.scss
+h2 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+.paso-label { font-size: 12px; color: var(--text-muted); margin-bottom: 18px; }
+.pregunta { font-size: 14px; font-weight: 600; color: var(--text); }
+
+.hab-options { display: flex; flex-direction: column; gap: 10px; }
+
+.hab-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  background: var(--white);
+  transition: border-color .2s, background .2s;
+
+  &.selected {
+    border-color: var(--green);
+    background: #f0f2ec;
+  }
+
+  .hab-radio {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    position: relative;
+  }
+  &.selected .hab-radio {
+    border-color: var(--green);
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+  }
+}
+
+.nav-row { display: flex; flex-direction: column; gap: 10px; margin-top: 22px; }

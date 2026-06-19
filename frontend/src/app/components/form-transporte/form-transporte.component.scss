@@ -1,0 +1,198 @@
+// frontend/src/app/components/form-transporte/form-transporte.component.scss
+
+.ft-page {
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: #FDFBFA;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+// ── Header ────────────────────────────────────────────────
+// Figma: top:24, height:54.5, padding:0 24px, gap:16
+// Left: títulos (flex-grow:1) | Right: X button (53×53)
+.ft-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 24px;
+  gap: 16px;
+  height: 54px;
+  margin-top: 24px;
+  flex-shrink: 0;
+}
+
+.ft-header-titles {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 1;
+  gap: 0;
+}
+
+// "Transporte" — Gochi Hand 30px
+.ft-title {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 35px;
+  color: #000;
+}
+
+// "Paso 2 de 3" — Gochi Hand 16px
+.ft-paso {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  color: #000;
+}
+
+// Botón X (cerrar)
+.ft-close-btn {
+  width: 53px;
+  height: 53px;
+  background: #E5E3E6;
+  border: none;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+// ── Contenido (top:118 → margin-top:40) ──────────────────
+.ft-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 24px;
+  gap: 32px;
+  margin-top: 40px;
+  flex: 1;
+  padding-bottom: 130px;
+}
+
+// Campo
+.ft-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+  width: 100%;
+}
+
+// Label — Gochi Hand 18px
+.ft-label {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21px;
+  color: #000;
+}
+
+// Fila de toggles
+.ft-toggles {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 7px;
+}
+
+// Toggle pill — Gochi Hand 18px, border #6A6B4B
+.ft-toggle {
+  box-sizing: border-box;
+  height: 45px;
+  padding: 12px 16px;
+  border: 1px solid #6A6B4B;
+  border-radius: 8px;
+  font-family: 'Gochi Hand', cursive;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21px;
+  background: transparent;
+  color: #000;
+  cursor: pointer;
+  white-space: nowrap;
+
+  // Seleccionado: fondo verde, texto #FDFBFA
+  &--active {
+    background: #6A6B4B;
+    color: #FDFBFA;
+  }
+}
+
+// Nota gris
+.ft-note {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21px;
+  color: #989898;
+  margin: 0;
+  width: 100%;
+}
+
+// ── Botones (top:698, gap:8) ──────────────────────────────
+.ft-footer {
+  position: absolute;
+  bottom: 40px;
+  left: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ft-btn {
+  width: 100%;
+  height: 53px;
+  border-radius: 100px;
+  font-family: 'Gochi Hand', cursive;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21px;
+  padding: 16px 40px;
+  cursor: pointer;
+  box-sizing: border-box;
+
+  // "Volver al paso anterior" — blanco con borde negro
+  &--outline {
+    background: #fff;
+    border: 2px solid #000;
+    color: #000;
+  }
+
+  // "Continuar" — negro
+  &--black {
+    background: #000;
+    border: none;
+    color: #fff;
+  }
+}
+
+// ── Animación entrada (móvil) ─────────────────────────────
+.ft-page { animation: fadeSlideUp 0.38s cubic-bezier(0.16,1,0.3,1) both; }
+
+// Press feedback en botones
+.ft-btn {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  will-change: transform;
+  transition: transform 0.12s cubic-bezier(0.34,1.56,0.64,1), opacity 0.15s;
+  &:active { transform: scale(.95); opacity: .88; }
+}
+
+// Toggle: transición de color + press
+.ft-toggle {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease,
+              transform 0.12s cubic-bezier(0.34,1.56,0.64,1);
+  &:active  { transform: scale(.93); }
+  &--active { /* color ya aplicado en la regla base */ }
+}

@@ -1,0 +1,133 @@
+// frontend/src/app/components/_shared-step.scss
+// Estilos compartidos por todos los pasos del wizard
+
+h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #2c2c2c;
+  margin-bottom: 0.25rem;
+}
+
+.subtitulo {
+  font-size: 0.82rem;
+  color: #999;
+  margin-bottom: 1.5rem;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+
+  label {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #444;
+  }
+
+  .opcional { font-weight: 400; color: #aaa; }
+
+  input, textarea, select {
+    padding: 0.7rem 0.9rem;
+    border: 1.5px solid #d5d0c8;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    background: #fff;
+    outline: none;
+    transition: border-color 0.2s;
+    &:focus { border-color: #4a5240; }
+  }
+}
+
+.error {
+  color: #c0392b;
+  font-size: 0.85rem;
+  margin: -0.5rem 0 0.75rem;
+}
+
+.nav-btns {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.btn {
+  flex: 1;
+  padding: 0.85rem 1rem;
+  border-radius: 100px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.1s, opacity 0.2s;
+  &:active { transform: scale(0.98); }
+
+  &-primary {
+    background: #4a5240;
+    color: #fff;
+    &:hover { opacity: 0.9; }
+    &:disabled { background: #bbb; cursor: not-allowed; }
+  }
+
+  &-outline {
+    background: transparent;
+    border: 1.5px solid #ccc;
+    color: #555;
+    &:hover { border-color: #4a5240; color: #4a5240; }
+  }
+
+  &-ghost {
+    background: transparent;
+    color: #888;
+    &:hover { color: #333; }
+  }
+}
+
+// Opción seleccionable tipo "tarjeta"
+.opcion-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1rem;
+  border: 2px solid #e0ddd5;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-bottom: 0.6rem;
+  transition: border-color 0.2s, background 0.2s;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #333;
+  background: #fff;
+
+  &.selected {
+    border-color: #4a5240;
+    background: #f0ede6;
+    color: #4a5240;
+  }
+
+  .radio-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: border-color 0.2s;
+
+    &::after {
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: transparent;
+    }
+  }
+
+  &.selected .radio-dot {
+    border-color: #4a5240;
+    &::after { background: #4a5240; }
+  }
+}

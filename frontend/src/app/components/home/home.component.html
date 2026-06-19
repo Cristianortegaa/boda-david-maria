@@ -1,0 +1,232 @@
+<!-- frontend/src/app/components/home/home.component.html -->
+
+<!-- ── BURGER MENU FULLSCREEN ──────────────────────── -->
+@if (menuOpen()) {
+<div class="burger-screen">
+
+  <!-- Header -->
+  <div class="burger-header">
+    <div class="burger-spacer"></div>
+    <button class="burger-close-btn" (click)="menuOpen.set(false)" aria-label="Cerrar">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M6 6l12 12M18 6L6 18" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Nav links -->
+  <nav class="burger-nav">
+
+    <!-- Activo: Cómo será nuestro día -->
+    <div class="burger-nav-item burger-nav-item--active">
+      <span class="burger-dot"></span>
+      <a routerLink="/" (click)="menuOpen.set(false)" class="burger-link burger-link--active">Cómo será nuestro día</a>
+    </div>
+
+    <!-- Lista de regalos + badge + flecha -->
+    <div class="burger-nav-item">
+      <div class="burger-link-row">
+        <a routerLink="/regalos" (click)="menuOpen.set(false)" class="burger-link">Lista de regalos</a>
+        <span class="burger-badge">Mini juego</span>
+      </div>
+      <svg class="burger-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M4 8h8M9 4l4 4-4 4" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- Cómo ir vestido + flecha -->
+    <div class="burger-nav-item">
+      <a routerLink="/desscode" (click)="menuOpen.set(false)" class="burger-link">Cómo ir vestido</a>
+      <svg class="burger-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M4 8h8M9 4l4 4-4 4" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+  </nav>
+
+  <!-- Footer con líneas y título -->
+  <div class="burger-footer">
+    <div class="burger-footer-line"></div>
+    <div class="burger-footer-title">
+      <span class="burger-footer-pre">Boda de</span>
+      <span class="burger-footer-names">María y David</span>
+    </div>
+    <div class="burger-footer-line"></div>
+  </div>
+
+  <!-- Fecha -->
+  <div class="burger-date">1 de mayo · 2027</div>
+
+</div>
+}
+
+<div class="home">
+
+  <!-- ── HEADER ───────────────────────────────────── -->
+  <header class="home-header">
+    <div class="header-title">
+      <span class="header-pre">Boda de</span>
+      <span class="header-names">María y David</span>
+    </div>
+    <button class="burger-btn" (click)="menuOpen.set(true)" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- ── HERO VIDEO ────────────────────────────────── -->
+  <div class="hero-video">
+    <video class="couple-video" src="pareja.mp4" autoplay loop muted playsinline></video>
+  </div>
+
+  <!-- ── CONTENIDO PRINCIPAL ──────────────────────── -->
+  <div class="home-content">
+
+    <!-- Fecha + botones -->
+    <div class="date-section">
+      <div class="hero-date-wrap">
+        <span class="hero-date">1 de mayo · 2027</span>
+      </div>
+      <div class="hero-cta">
+        <a routerLink="/si-asiste" class="btn btn--green btn--full">Confirmar asistencia</a>
+        <a routerLink="/no-asiste" class="btn btn--outline btn--full">No puedo ir</a>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="section-divider">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 1.5v7" stroke="#000" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M3 8.5l4 4 4-4" stroke="#000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>¿Cómo será nuestro día?</span>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 1.5v7" stroke="#000" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M3 8.5l4 4 4-4" stroke="#000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- ── PROGRAMA ──────────────────────────────────── -->
+    <section class="programa">
+
+      <!-- 1: imagen izq, texto der -->
+      <div class="prog-item">
+        <img src="prog-1.png" class="prog-img" alt="Iglesia">
+        <div class="prog-info prog-r">
+          <span class="prog-time">a las 12:00</span>
+          <span class="prog-title">Iglesia de Almorox</span>
+          <span class="prog-loc">
+            C. Real, 15 Almorox
+            <svg width="12" height="12" viewBox="0 0 10 12" fill="none">
+              <path d="M5 0C2.24 0 0 2.24 0 5c0 3.75 5 7 5 7s5-3.25 5-7c0-2.76-2.24-5-5-5Zm0 6.5A1.5 1.5 0 1 1 5 3.5a1.5 1.5 0 0 1 0 3Z" fill="#000"/>
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <!-- 2: texto izq, imagen der -->
+      <div class="prog-item">
+        <div class="prog-info prog-l">
+          <span class="prog-time">a las 14:00</span>
+          <span class="prog-title">Sale el bus al Cigarral</span>
+          <span class="prog-loc">
+            <svg width="12" height="12" viewBox="0 0 10 12" fill="none">
+              <path d="M5 0C2.24 0 0 2.24 0 5c0 3.75 5 7 5 7s5-3.25 5-7c0-2.76-2.24-5-5-5Zm0 6.5A1.5 1.5 0 1 1 5 3.5a1.5 1.5 0 0 1 0 3Z" fill="#000"/>
+            </svg>
+            Cigarral del Ángel
+          </span>
+        </div>
+        <img src="prog-2.png" class="prog-img" alt="Bus">
+      </div>
+
+      <!-- 3: imagen izq, texto der -->
+      <div class="prog-item">
+        <img src="prog-3.png" class="prog-img prog-img--tall" alt="Banquete">
+        <div class="prog-info prog-r">
+          <span class="prog-time">a las 15:00</span>
+          <span class="prog-title">Empezamos con el ñam ñam</span>
+          <span class="prog-loc">
+            Cigarral del Ángel
+            <svg width="12" height="12" viewBox="0 0 10 12" fill="none">
+              <path d="M5 0C2.24 0 0 2.24 0 5c0 3.75 5 7 5 7s5-3.25 5-7c0-2.76-2.24-5-5-5Zm0 6.5A1.5 1.5 0 1 1 5 3.5a1.5 1.5 0 0 1 0 3Z" fill="#000"/>
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <!-- 4: texto izq, imagen der -->
+      <div class="prog-item">
+        <div class="prog-info prog-l">
+          <span class="prog-time">a las 19:00</span>
+          <span class="prog-title">¡Saca los pasos prohibidos!</span>
+        </div>
+        <img src="prog-4.png" class="prog-img" alt="Baile">
+      </div>
+
+      <!-- 5: imagen izq, texto der -->
+      <div class="prog-item">
+        <img src="prog-5.png" class="prog-img" alt="Bus vuelta">
+        <div class="prog-info prog-r">
+          <span class="prog-time">a las 22:00</span>
+          <span class="prog-title">Bus de vuelta al pueblo...</span>
+        </div>
+      </div>
+
+      <!-- 6: texto izq, imagen der -->
+      <div class="prog-item">
+        <div class="prog-info prog-l">
+          <span class="prog-time">¡Hasta que salga el sol!</span>
+          <span class="prog-title">Seguimos los fuertes</span>
+        </div>
+        <img src="prog-6.png" class="prog-img" alt="Fiesta">
+      </div>
+
+      <!-- CTAs finales -->
+      <div class="prog-cta">
+        <a routerLink="/si-asiste" class="btn btn--green btn--full">Confirmar asistencia</a>
+        <a routerLink="/no-asiste" class="btn btn--outline btn--full">No puedo ir</a>
+      </div>
+
+    </section>
+
+    <!-- Línea separadora -->
+    <div class="home-line"></div>
+
+    <!-- ── CRÉDITOS ──────────────────────────────────── -->
+    <div class="credits">
+      <div class="credits-row">
+        <div class="credits-person">
+          <div class="credits-avatars">
+            <img src="avatar-david-photo.png"   class="cred-avatar cred-avatar--back" alt="David foto">
+            <img src="avatar-david-cartoon.png" class="cred-avatar cred-avatar--front cred-avatar--flip" alt="David">
+          </div>
+          <div class="credits-text">
+            <span class="credits-name">David</span>
+            <span class="credits-role">Interpretado por David</span>
+          </div>
+        </div>
+        <div class="credits-person">
+          <div class="credits-avatars">
+            <img src="avatar-maria-photo.png"   class="cred-avatar cred-avatar--back" alt="María foto">
+            <img src="avatar-maria-cartoon.png" class="cred-avatar cred-avatar--front" alt="María">
+          </div>
+          <div class="credits-text">
+            <span class="credits-name">María</span>
+            <span class="credits-role">Interpretada por María</span>
+          </div>
+        </div>
+      </div>
+      <span class="credits-footer">Os esperamos!!</span>
+    </div>
+
+    <!-- ── CUENTA BANCARIA ───────────────────────────── -->
+    <div class="bank-section">
+      <p class="bank-title">Si quieres ayudarnos en esta aventura:</p>
+      <div class="bank-row">
+        <span class="bank-iban">ES29 1583 0001 1190 8967 3376</span>
+        <button class="bank-copy" (click)="copyIban()">Copiar</button>
+      </div>
+    </div>
+
+  </div><!-- /home-content -->
+
+</div>

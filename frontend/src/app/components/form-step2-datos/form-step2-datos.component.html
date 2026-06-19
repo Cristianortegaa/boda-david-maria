@@ -1,0 +1,47 @@
+<!-- frontend/src/app/components/form-step2-datos/form-step2-datos.component.html -->
+<div class="step2">
+
+  <h2>Datos personales</h2>
+  <p class="paso-label">Paso 1 de 4</p>
+
+  <div class="field">
+    <label>Tu nombre</label>
+    <input type="text" [(ngModel)]="nombre" placeholder="Nombre y apellidos" />
+  </div>
+
+  <div class="field" style="margin-top:14px">
+    <label>Alergias <span class="opt">(opcional)</span></label>
+    <input type="text" [(ngModel)]="alergias" placeholder="Gluten, lactosa…" />
+  </div>
+
+  <div class="question-row" style="margin-top:18px">
+    <span class="q-label">¿Vienes con más invitados?</span>
+    <div class="toggle-group">
+      <button class="toggle" [class.active]="tieneAcomp() === true" (click)="tieneAcomp.set(true)">Sí</button>
+      <button class="toggle" [class.active]="tieneAcomp() === false" (click)="tieneAcomp.set(false)">No</button>
+    </div>
+  </div>
+
+  @if (tieneAcomp() === true) {
+    <div class="acomp-area">
+      @for (a of acompanantes; track $index) {
+        <div class="acomp-chip">
+          <span>{{ a.nombre }}</span>
+          <button (click)="svc.eliminarAcompanante($index)">✕</button>
+        </div>
+      }
+      <div class="field" style="margin-top:10px">
+        <label>Nombre del acompañante</label>
+        <input type="text" [(ngModel)]="nuevoNombre" placeholder="Nombre y apellidos" />
+      </div>
+      <button class="add-link" (click)="agregarAcomp()">+ Añadir acompañante</button>
+    </div>
+  }
+
+  @if (errMsg()) { <p class="err" style="margin:10px 0 0">{{ errMsg() }}</p> }
+
+  <div class="nav-row">
+    <button class="btn btn--outline" (click)="svc.anteriorPaso()">Volver al paso anterior</button>
+    <button class="btn btn--green" (click)="continuar()">Continuar</button>
+  </div>
+</div>

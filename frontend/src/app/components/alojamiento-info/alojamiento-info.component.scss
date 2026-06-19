@@ -1,0 +1,62 @@
+// frontend/src/app/components/alojamiento-info/alojamiento-info.component.scss
+.al-page {
+  max-width: 430px;
+  margin: 0 auto;
+  background: var(--beige);
+  min-height: 100vh;
+  padding-bottom: 40px;
+}
+
+.al-header {
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid var(--beige-dark);
+  display: flex; align-items: center; gap: 12px;
+  .back-link { font-size: 13px; color: var(--text-muted); }
+  h1 { font-size: 17px; font-weight: 700; }
+}
+
+.al-soon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28px 22px 22px;
+  border-bottom: 1px solid var(--beige-dark);
+
+  svg { width: 180px; height: auto; margin-bottom: 14px; }
+
+  p {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    text-align: center;
+  }
+  span {
+    font-size: 13px;
+    color: #aaa;
+    text-align: center;
+    line-height: 1.6;
+  }
+}
+
+.al-preview {
+  padding: 22px 22px 0;
+  h2 { font-size: 16px; font-weight: 700; margin-bottom: 14px; }
+}
+
+.al-item {
+  display: flex; gap: 14px; align-items: flex-start;
+  background: var(--card-bg);
+  border-radius: 12px; padding: 14px 16px; margin-bottom: 10px;
+  .al-emoji { font-size: 22px; flex-shrink: 0; }
+  strong { font-size: 14px; font-weight: 700; display: block; margin-bottom: 2px; }
+  p { font-size: 13px; color: var(--text-muted); margin: 0; }
+}
+
+.al-nota {
+  font-size: 13px;
+  color: var(--text-muted);
+  padding: 14px 22px 0;
+  line-height: 1.6;
+  font-style: italic;
+}

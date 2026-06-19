@@ -1,0 +1,29 @@
+// frontend/src/app/components/form-step1-inicio/form-step1-inicio.component.scss
+.step1 {
+  display: flex;
+  flex-direction: column;
+}
+.step1-ilust {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+  svg { width: 100%; max-width: 240px; height: auto; }
+}
+h2 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 16px;
+  line-height: 1.35;
+}
+.acomp-link {
+  background: none;
+  border: none;
+  font-size: 13px;
+  color: var(--green);
+  font-weight: 600;
+  text-align: left;
+  padding: 0;
+  cursor: pointer;
+  &:hover { text-decoration: underline; }
+}

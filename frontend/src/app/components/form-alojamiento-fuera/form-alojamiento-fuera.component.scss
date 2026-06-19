@@ -1,0 +1,193 @@
+// frontend/src/app/components/form-alojamiento-fuera/form-alojamiento-fuera.component.scss
+
+.faf-page {
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: #FDFBFA;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+// ── Header ────────────────────────────────────────────────
+.faf-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 24px;
+  gap: 16px;
+  height: 54px;
+  margin-top: 24px;
+  flex-shrink: 0;
+}
+
+.faf-header-titles {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  gap: 0;
+}
+
+.faf-title {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 35px;
+  color: #000;
+  text-align: center;
+}
+
+.faf-paso {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  color: #000;
+  text-align: center;
+}
+
+.faf-close-btn {
+  width: 53px;
+  height: 53px;
+  background: #E5E3E6;
+  border: none;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+// ── Contenido ────────────────────────────────────────────
+.faf-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 24px;
+  gap: 32px;
+  margin-top: 40px;
+  flex: 1;
+  padding-bottom: 130px;
+}
+
+.faf-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+  width: 100%;
+}
+
+.faf-label {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21px;
+  color: #000;
+}
+
+.faf-toggles {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 7px;
+}
+
+.faf-toggle {
+  box-sizing: border-box;
+  height: 45px;
+  padding: 12px 16px;
+  width: 100px;
+  border: 1px solid #6A6B4B;
+  border-radius: 8px;
+  font-family: 'Gochi Hand', cursive;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21px;
+  background: transparent;
+  color: #000;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &--active {
+    background: #6A6B4B;
+    color: #FDFBFA;
+  }
+}
+
+.faf-separator {
+  width: 100%;
+  border: none;
+  border-top: 1px solid #E1E1E1;
+  margin: 0;
+}
+
+.faf-whatsapp-note {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21px;
+  color: #989898;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
+
+// ── Botones ───────────────────────────────────────────────
+.faf-footer {
+  position: absolute;
+  bottom: 40px;
+  left: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.faf-btn {
+  width: 100%;
+  height: 53px;
+  border-radius: 100px;
+  font-family: 'Gochi Hand', cursive;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21px;
+  padding: 16px 40px;
+  cursor: pointer;
+  box-sizing: border-box;
+
+  &--outline {
+    background: #fff;
+    border: 2px solid #000;
+    color: #000;
+  }
+
+  &--black {
+    background: #000;
+    border: none;
+    color: #fff;
+  }
+}
+
+// ── Animación entrada (móvil) ─────────────────────────────
+.faf-page { animation: fadeSlideUp 0.38s cubic-bezier(0.16,1,0.3,1) both; }
+
+.faf-btn {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  will-change: transform;
+  transition: transform 0.12s cubic-bezier(0.34,1.56,0.64,1), opacity 0.15s;
+  &:active { transform: scale(.95); opacity: .88; }
+}
+
+.faf-toggle {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease,
+              transform 0.12s cubic-bezier(0.34,1.56,0.64,1);
+  &:active { transform: scale(.93); }
+}

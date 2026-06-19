@@ -1,0 +1,31 @@
+<!-- frontend/src/app/components/form-step5-alojamiento-detalle/form-step5-alojamiento-detalle.component.html -->
+<div class="step5">
+  <h2>Alojamiento</h2>
+  <p class="paso-label">Paso 3 de 4</p>
+
+  <p class="pregunta">¿Cuántas habitaciones necesitáis?</p>
+
+  <div class="field" style="margin: 16px 0">
+    <label>Número de habitaciones</label>
+    <input type="number" min="1" max="10" [(ngModel)]="numHab" placeholder="1" />
+  </div>
+
+  <p class="pregunta" style="margin-top:16px">¿Qué tipo de habitación prefieres?</p>
+
+  <div class="hab-options" style="margin-top:12px">
+    @for (op of opciones; track op.valor) {
+      <div class="hab-option" [class.selected]="tipoHab() === op.valor"
+           (click)="tipoHab.set(op.valor)">
+        <span class="hab-radio"></span>
+        <span>{{ op.label }}</span>
+      </div>
+    }
+  </div>
+
+  @if (errMsg()) { <p class="err" style="margin:10px 0 0">{{ errMsg() }}</p> }
+
+  <div class="nav-row">
+    <button class="btn btn--outline" (click)="svc.anteriorPaso()">Volver al paso anterior</button>
+    <button class="btn btn--green" (click)="continuar()">Continuar</button>
+  </div>
+</div>

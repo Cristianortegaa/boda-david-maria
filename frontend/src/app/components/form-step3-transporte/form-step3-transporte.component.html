@@ -1,0 +1,25 @@
+<!-- frontend/src/app/components/form-step3-transporte/form-step3-transporte.component.html -->
+<div class="step3">
+  <h2>Transporte</h2>
+  <p class="paso-label">Paso 2 de 4</p>
+
+  <p class="pregunta">
+    ¿Quieres coger el autobús que organizamos para llevaros desde la ciudad hasta la finca?
+  </p>
+
+  <p class="info-extra">
+    <em>Añadiremos más información según se acerque la fecha</em>
+  </p>
+
+  <div class="toggle-group" style="margin: 20px 0">
+    <button class="toggle" [class.active]="sel() === true" (click)="sel.set(true)">Sí</button>
+    <button class="toggle" [class.active]="sel() === false" (click)="sel.set(false)">No</button>
+  </div>
+
+  @if (errMsg()) { <p class="err" style="margin-bottom:10px">{{ errMsg() }}</p> }
+
+  <div class="nav-row">
+    <button class="btn btn--outline" (click)="svc.anteriorPaso()">Volver al paso anterior</button>
+    <button class="btn btn--green" (click)="continuar()">Continuar</button>
+  </div>
+</div>

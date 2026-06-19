@@ -1,0 +1,36 @@
+// frontend/src/app/components/form-step6-confirmacion/form-step6-confirmacion.component.scss
+h2 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+.paso-label { font-size: 12px; color: var(--text-muted); margin-bottom: 18px; }
+
+.exito {
+  text-align: center;
+  .exito-ilust { svg { width: 100%; max-width: 200px; } margin-bottom: 12px; }
+  h2 { font-size: 22px; font-family: var(--font-script); margin-bottom: 8px; }
+  p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+}
+
+.resumen {
+  background: var(--beige);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.r-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 14px;
+  &--col { flex-direction: column; gap: 4px; }
+}
+.r-k { font-weight: 600; color: #555; min-width: 110px; }
+.r-v { color: var(--text); text-align: right; }
+.r-acomp {
+  font-size: 13px;
+  color: var(--text-muted);
+  padding-left: 12px;
+  &::before { content: '• '; }
+}
+
+.nav-row { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
