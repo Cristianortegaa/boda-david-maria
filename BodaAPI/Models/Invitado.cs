@@ -20,6 +20,8 @@ public class Invitado
     [MaxLength(100)]
     public string? TipoAlojamiento { get; set; }  // "hotel", "casa_rural", etc.
 
+    public bool Asiste { get; set; } = true;
+
     public DateTime FechaRegistro { get; set; } = DateTime.UtcNow;
 
     public ICollection<Acompanante> Acompanantes { get; set; } = new List<Acompanante>();

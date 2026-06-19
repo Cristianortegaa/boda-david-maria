@@ -46,5 +46,9 @@ export const routes: Routes = [
     path: 'alojamiento-info',
     loadComponent: () => import('./components/alojamiento-info/alojamiento-info.component').then(m => m.AlojamientoInfoComponent)
   },
+  {
+    path: 'admin',
+    loadComponent: () => import('./components/admin/admin.component').then(m => m.AdminComponent)
+  },
   { path: '**', redirectTo: '' }
 ];

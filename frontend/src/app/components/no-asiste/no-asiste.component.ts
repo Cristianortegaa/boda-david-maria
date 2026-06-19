@@ -1,6 +1,7 @@
 // frontend/src/app/components/no-asiste/no-asiste.component.ts
 import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { InvitadoService } from '../../services/invitado.service';
 
 @Component({
   selector: 'app-no-asiste',
@@ -11,12 +12,20 @@ import { Router } from '@angular/router';
 })
 export class NoAsisteComponent {
   private router = inject(Router);
-  nombre = signal('');
+  private svc    = inject(InvitadoService);
+
+  nombre   = signal('');
+  enviando = signal(false);
 
   irAInicio() { this.router.navigate(['/']); }
 
-  confirmar() {
-    // TODO: enviar al backend si se necesita registrar ausencias
+  async confirmar() {
+    if (!this.nombre().trim()) return;
+    this.enviando.set(true);
+    try {
+      await this.svc.noAsiste(this.nombre().trim());
+    } catch { /* silencioso */ }
+    finally { this.enviando.set(false); }
     this.router.navigate(['/']);
   }
 }

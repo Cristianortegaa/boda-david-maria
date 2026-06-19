@@ -1,0 +1,92 @@
+<!-- frontend/src/app/components/admin/admin.component.html -->
+<div class="admin-page">
+
+  @if (!autenticado()) {
+    <!-- ── LOGIN ── -->
+    <div class="admin-login">
+      <div class="admin-logo">
+        <p class="admin-boda-de">Boda de</p>
+        <p class="admin-boda-nombres">María y David</p>
+      </div>
+      <h2 class="admin-title">Panel de invitados</h2>
+      <input
+        class="admin-input"
+        type="password"
+        placeholder="Clave de acceso"
+        [value]="clave()"
+        (input)="clave.set($any($event.target).value)"
+        (keydown)="onKeyEnter($event)"
+      />
+      <button class="admin-btn" (click)="entrar()" [disabled]="cargando()">
+        {{ cargando() ? 'Cargando…' : 'Entrar' }}
+      </button>
+      @if (errorMsg()) {
+        <p class="admin-error">{{ errorMsg() }}</p>
+      }
+    </div>
+
+  } @else {
+    <!-- ── PANEL ── -->
+    <div class="admin-header">
+      <p class="admin-header-title">Panel de invitados</p>
+    </div>
+
+    <!-- Stats -->
+    <div class="admin-stats">
+      <div class="stat stat--green">
+        <span class="stat-num">{{ asistentes().length }}</span>
+        <span class="stat-lbl">Confirman</span>
+      </div>
+      <div class="stat stat--red">
+        <span class="stat-num">{{ noAsisten().length }}</span>
+        <span class="stat-lbl">No asisten</span>
+      </div>
+      <div class="stat stat--gray">
+        <span class="stat-num">{{ totalPersonas() }}</span>
+        <span class="stat-lbl">Personas</span>
+      </div>
+    </div>
+
+    <!-- Lista -->
+    <div class="admin-list">
+
+      @if (asistentes().length) {
+        <p class="admin-section-title">✅ Confirman asistencia</p>
+        @for (inv of asistentes(); track inv.id) {
+          <div class="guest-card guest-card--green">
+            <div class="guest-name">{{ inv.nombre }}</div>
+            @if (inv.acompanantes?.length) {
+              <div class="guest-acomp">
+                + {{ inv.acompanantes.length }} acompañante{{ inv.acompanantes.length > 1 ? 's' : '' }}
+              </div>
+            }
+            @if (inv.alergias) {
+              <div class="guest-alergias">⚠️ {{ inv.alergias }}</div>
+            }
+          </div>
+        }
+      }
+
+      @if (noAsisten().length) {
+        <p class="admin-section-title" style="margin-top:20px">❌ No pueden asistir</p>
+        @for (inv of noAsisten(); track inv.id) {
+          <div class="guest-card guest-card--red">
+            <div class="guest-name">{{ inv.nombre }}</div>
+          </div>
+        }
+      }
+
+      @if (!invitados().length) {
+        <p class="admin-empty">Aún no hay respuestas registradas.</p>
+      }
+    </div>
+
+    <!-- Botón Excel -->
+    <div class="admin-footer">
+      <a class="admin-excel-btn" [href]="excelUrl">
+        📥 Descargar Excel
+      </a>
+    </div>
+  }
+
+</div>

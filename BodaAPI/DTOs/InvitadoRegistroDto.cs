@@ -34,6 +34,13 @@ public class AcompananteDto
     public string? Alergias { get; set; }
 }
 
+// DTO para registrar que alguien NO asiste: POST /api/invitados/no-asiste
+public class NoAsisteDto
+{
+    [Required, MaxLength(200)]
+    public string Nombre { get; set; } = string.Empty;
+}
+
 // DTO para votar regalo: POST /api/regalos/votar
 public class VotoRegaloDto
 {

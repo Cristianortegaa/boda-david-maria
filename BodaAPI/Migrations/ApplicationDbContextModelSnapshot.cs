@@ -65,6 +65,10 @@ namespace BodaAPI.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("character varying(500)");
 
+                    b.Property<bool>("Asiste")
+                        .HasDefaultValue(true)
+                        .HasColumnType("boolean");
+
                     b.Property<DateTime>("FechaRegistro")
                         .HasColumnType("timestamp with time zone");
 

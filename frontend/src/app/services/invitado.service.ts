@@ -105,6 +105,13 @@ export class InvitadoService {
     );
   }
 
+  // ── Registrar no asistencia ───────────────────────────────────────────────
+  noAsiste(nombre: string) {
+    return firstValueFrom(
+      this.http.post(`${this.API}/invitados/no-asiste`, { nombre })
+    );
+  }
+
   // ── Votar regalo ──────────────────────────────────────────────────────────
   votarRegalo(opciones: string[], nombreInvitado: string = '') {
     return firstValueFrom(

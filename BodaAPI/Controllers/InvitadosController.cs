@@ -55,6 +55,27 @@ public class InvitadosController(
         return CreatedAtAction(nameof(GetById), new { id = invitado.Id }, new { invitado.Id });
     }
 
+    // POST api/invitados/no-asiste
+    [HttpPost("no-asiste")]
+    public async Task<IActionResult> NoAsiste([FromBody] NoAsisteDto dto)
+    {
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+
+        var invitado = new Invitado
+        {
+            Nombre       = dto.Nombre.Trim(),
+            Asiste       = false,
+            NecesitaBus  = false,
+            NecesitaAlojamiento = false
+        };
+
+        db.Invitados.Add(invitado);
+        await db.SaveChangesAsync();
+
+        logger.LogInformation("No asistirá: {Nombre} (Id={Id})", invitado.Nombre, invitado.Id);
+        return Ok(new { invitado.Id });
+    }
+
     // GET api/invitados/{id}
     [HttpGet("{id:int}")]
     public async Task<IActionResult> GetById(int id)
