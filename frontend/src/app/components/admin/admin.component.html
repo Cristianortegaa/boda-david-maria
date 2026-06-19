@@ -92,7 +92,11 @@
           <div class="guest-card guest-card--green">
             <div class="guest-card-top">
               <div class="guest-name">{{ inv.nombre }}</div>
-              <button class="delete-btn" (click)="eliminar(inv.id, inv.nombre)" title="Eliminar">🗑️</button>
+              <button class="delete-btn" (click)="eliminar(inv.id, inv.nombre)" title="Eliminar">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/>
+                </svg>
+              </button>
             </div>
             @if (inv.acompanantes?.length) {
               <div class="guest-acomp">
@@ -117,7 +121,11 @@
           <div class="guest-card guest-card--red">
             <div class="guest-card-top">
               <div class="guest-name">{{ inv.nombre }}</div>
-              <button class="delete-btn" (click)="eliminar(inv.id, inv.nombre)" title="Eliminar">🗑️</button>
+              <button class="delete-btn" (click)="eliminar(inv.id, inv.nombre)" title="Eliminar">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/>
+                </svg>
+              </button>
             </div>
           </div>
         }

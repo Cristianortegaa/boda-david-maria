@@ -229,11 +229,13 @@
 .delete-btn {
   background: none;
   border: none;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
-  padding: 4px;
-  opacity: 0.5;
-  &:hover { opacity: 1; }
+  padding: 6px 8px;
+  color: #c0392b;
+  border-radius: 8px;
+  opacity: 0.7;
+  &:hover { opacity: 1; background: #fdecea; }
 }
 .guest-acomp {
   font-size: 13px;
