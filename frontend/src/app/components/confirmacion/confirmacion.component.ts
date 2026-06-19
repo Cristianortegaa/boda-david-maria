@@ -1,5 +1,5 @@
 // frontend/src/app/components/confirmacion/confirmacion.component.ts
-import { Component, inject, computed } from '@angular/core';
+import { Component, inject, computed, signal, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { InvitadoService } from '../../services/invitado.service';
 
@@ -10,11 +10,14 @@ import { InvitadoService } from '../../services/invitado.service';
   templateUrl: './confirmacion.component.html',
   styleUrl: './confirmacion.component.scss'
 })
-export class ConfirmacionComponent {
+export class ConfirmacionComponent implements OnInit {
   private router = inject(Router);
   readonly svc   = inject(InvitadoService);
 
   readonly state = computed(() => this.svc.formState());
+
+  enviando = signal(false);
+  error    = signal('');
 
   readonly resumenTransporte = computed(() => {
     const s = this.svc.formState();
@@ -32,6 +35,20 @@ export class ConfirmacionComponent {
   readonly resumenAlojamiento = computed(() => {
     return this.svc.formState().necesitaAlojamiento ? 'Sí' : 'No';
   });
+
+  async ngOnInit(): Promise<void> {
+    // Si no hay nombre (p.ej. el usuario abrió esta URL directamente), no enviar
+    if (!this.svc.formState().nombre) return;
+
+    this.enviando.set(true);
+    try {
+      await this.svc.submitForm();
+    } catch {
+      this.error.set('No se pudo guardar tu confirmación. Vuelve atrás e inténtalo de nuevo.');
+    } finally {
+      this.enviando.set(false);
+    }
+  }
 
   copyIban() {
     navigator.clipboard.writeText('ES29 1583 0001 1190 8967 3376').catch(() => {});

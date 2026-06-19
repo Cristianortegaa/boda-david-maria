@@ -15,6 +15,11 @@
 
     <!-- Texto + tarjeta resumen -->
     <div class="conf-middle">
+      @if (error()) {
+        <p style="color:#c00;background:#fff0f0;border:1px solid #faa;border-radius:8px;padding:12px;margin-bottom:12px;font-size:14px">
+          ⚠️ {{ error() }}
+        </p>
+      }
       <p class="conf-titulo">¡Ya está todo listo!</p>
       <p class="conf-subtitulo">
         Conseguiremos que sea inolvidable.<br>
