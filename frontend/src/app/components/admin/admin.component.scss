@@ -214,10 +214,26 @@
   background: #fdf2f2;
 }
 
+.guest-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .guest-name {
   font-size: 16px;
   font-weight: bold;
   color: #222;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px;
+  opacity: 0.5;
+  &:hover { opacity: 1; }
 }
 .guest-acomp {
   font-size: 13px;

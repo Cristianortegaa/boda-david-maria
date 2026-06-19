@@ -90,7 +90,10 @@
         <p class="admin-section-title">✅ Confirman asistencia</p>
         @for (inv of asistentesVisibles(); track inv.id) {
           <div class="guest-card guest-card--green">
-            <div class="guest-name">{{ inv.nombre }}</div>
+            <div class="guest-card-top">
+              <div class="guest-name">{{ inv.nombre }}</div>
+              <button class="delete-btn" (click)="eliminar(inv.id, inv.nombre)" title="Eliminar">🗑️</button>
+            </div>
             @if (inv.acompanantes?.length) {
               <div class="guest-acomp">
                 + {{ inv.acompanantes.length }} acompañante{{ inv.acompanantes.length > 1 ? 's' : '' }}:
@@ -112,7 +115,10 @@
         </p>
         @for (inv of noAsistenVisibles(); track inv.id) {
           <div class="guest-card guest-card--red">
-            <div class="guest-name">{{ inv.nombre }}</div>
+            <div class="guest-card-top">
+              <div class="guest-name">{{ inv.nombre }}</div>
+              <button class="delete-btn" (click)="eliminar(inv.id, inv.nombre)" title="Eliminar">🗑️</button>
+            </div>
           </div>
         }
       }

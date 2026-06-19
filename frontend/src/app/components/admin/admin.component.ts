@@ -77,4 +77,16 @@ export class AdminComponent {
   }
 
   onKeyEnter(e: KeyboardEvent) { if (e.key === 'Enter') this.entrar(); }
+
+  async eliminar(id: number, nombre: string) {
+    if (!confirm(`¿Eliminar a ${nombre}?`)) return;
+    try {
+      await firstValueFrom(
+        this.http.delete(`${this.API}/invitados/${id}?key=${this.CLAVE}`)
+      );
+      this.invitados.update(lista => lista.filter(i => i.id !== id));
+    } catch {
+      alert('Error al eliminar. Inténtalo de nuevo.');
+    }
+  }
 }

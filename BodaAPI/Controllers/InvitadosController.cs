@@ -90,6 +90,23 @@ public class InvitadosController(
         return inv is null ? NotFound() : Ok(inv);
     }
 
+    // DELETE api/invitados/{id}?key=SECRET
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult> Eliminar(int id, [FromQuery] string key)
+    {
+        var expectedKey = config["ExcelExport:AdminKey"];
+        if (string.IsNullOrWhiteSpace(key) || key != expectedKey)
+            return Unauthorized(new { error = "Clave incorrecta." });
+
+        var inv = await db.Invitados.FindAsync(id);
+        if (inv is null) return NotFound();
+
+        db.Invitados.Remove(inv);
+        await db.SaveChangesAsync();
+        logger.LogInformation("Invitado eliminado: {Nombre} (Id={Id})", inv.Nombre, id);
+        return Ok(new { eliminado = true });
+    }
+
     // GET api/invitados  (uso interno / admin)
     [HttpGet]
     public async Task<IActionResult> GetAll()
