@@ -44,6 +44,12 @@ using (var scope = app.Services.CreateScope())
     if (app.Environment.IsDevelopment())
         EnsureDatabase(builder.Configuration.GetConnectionString("DefaultConnection")!);
     await db.Database.MigrateAsync();   // crea tablas si no existen (idempotente)
+
+    // Añadir columna Asiste si no existe (idempotente, por si la migración no se detectó)
+    await db.Database.ExecuteSqlRawAsync(@"
+        ALTER TABLE ""Invitados""
+        ADD COLUMN IF NOT EXISTS ""Asiste"" boolean NOT NULL DEFAULT true;
+    ");
 }
 
 // ── Pipeline ──────────────────────────────────────────────────────────────────

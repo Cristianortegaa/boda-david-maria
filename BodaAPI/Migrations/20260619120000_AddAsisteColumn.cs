@@ -1,9 +1,14 @@
+using BodaAPI.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace BodaAPI.Migrations
 {
+    [DbContext(typeof(ApplicationDbContext))]
+    [Migration("20260619120000_AddAsisteColumn")]
     /// <inheritdoc />
     public partial class AddAsisteColumn : Migration
     {
