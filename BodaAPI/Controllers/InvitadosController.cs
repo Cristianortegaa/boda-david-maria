@@ -73,6 +73,9 @@ public class InvitadosController(
         await db.SaveChangesAsync();
 
         logger.LogInformation("No asistirá: {Nombre} (Id={Id})", invitado.Nombre, invitado.Id);
+
+        await emailService.EnviarConfirmacionInvitadoAsync($"❌ {invitado.Nombre} no puede asistir", "");
+
         return Ok(new { invitado.Id });
     }
 
