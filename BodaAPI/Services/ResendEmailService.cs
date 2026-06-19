@@ -17,37 +17,25 @@ public class ResendEmailService(
         var adminEmail = config["Resend:AdminEmail"]
             ?? throw new InvalidOperationException("Falta Resend:AdminEmail en la configuración.");
 
-        var html = $"""
-            <!DOCTYPE html>
-            <html lang="es">
-            <head><meta charset="UTF-8"><style>
-              body {{ font-family: Georgia, serif; background: #FDFBFA; margin: 0; padding: 0; }}
-              .wrap {{ max-width: 520px; margin: 40px auto; background: #fff;
-                       border-radius: 16px; overflow: hidden;
-                       box-shadow: 0 2px 12px rgba(0,0,0,.08); }}
-              .header {{ background: #6A6B4B; padding: 28px 32px; text-align: center; }}
-              .header h1 {{ color: #fff; margin: 0; font-size: 22px; font-weight: normal; letter-spacing: .5px; }}
-              .body {{ padding: 32px; color: #333; line-height: 1.6; }}
-              .name {{ font-size: 26px; color: #6A6B4B; font-weight: bold; margin: 0 0 8px; }}
-              .pill {{ display: inline-block; background: #F3D8C5; color: #6A6B4B;
-                       border-radius: 100px; padding: 4px 14px; font-size: 13px; margin: 2px 0; }}
-              .footer {{ background: #F5F5F5; padding: 16px 32px; font-size: 12px;
-                          color: #999; text-align: center; }}
-            </style></head>
-            <body>
-              <div class="wrap">
-                <div class="header">
-                  <h1>💌 Boda de María y David</h1>
-                </div>
-                <div class="body">
-                  <p>¡Nueva confirmación de asistencia!</p>
-                  <p class="name">{nombreInvitado}</p>
-                  <p>Ha completado el formulario y quedará registrado/a en vuestra lista de invitados.</p>
-                </div>
-                <div class="footer">Este correo fue generado automáticamente por la app de la boda.</div>
-              </div>
-            </body></html>
-            """;
+        var html = "<!DOCTYPE html><html lang='es'><head><meta charset='UTF-8'>" +
+            "<style>" +
+            "body{font-family:Georgia,serif;background:#FDFBFA;margin:0;padding:0}" +
+            ".wrap{max-width:520px;margin:40px auto;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.08)}" +
+            ".hdr{background:#6A6B4B;padding:28px 32px;text-align:center}" +
+            ".hdr h1{color:#fff;margin:0;font-size:22px;font-weight:normal}" +
+            ".bdy{padding:32px;color:#333;line-height:1.6}" +
+            ".name{font-size:26px;color:#6A6B4B;font-weight:bold;margin:0 0 8px}" +
+            ".ftr{background:#F5F5F5;padding:16px 32px;font-size:12px;color:#999;text-align:center}" +
+            "</style></head><body>" +
+            "<div class='wrap'>" +
+            "<div class='hdr'><h1>Boda de Maria y David</h1></div>" +
+            "<div class='bdy'>" +
+            "<p>Nueva confirmacion de asistencia:</p>" +
+            $"<p class='name'>{nombreInvitado}</p>" +
+            "<p>Ha completado el formulario y quedara registrado/a en vuestra lista de invitados.</p>" +
+            "</div>" +
+            "<div class='ftr'>Correo generado automaticamente por la app de la boda.</div>" +
+            "</div></body></html>";
 
         await SendAsync(adminEmail, $"✅ {nombreInvitado} ha confirmado su asistencia", html);
     }
