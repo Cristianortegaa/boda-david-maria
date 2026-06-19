@@ -30,14 +30,16 @@ public class GmailEmailService(
 
     private async Task EnviarAsync(string asunto, string html)
     {
-        var gmailUser = config["Gmail:User"]
-            ?? throw new InvalidOperationException("Falta Gmail:User");
-        var appPassword = config["Gmail:AppPassword"]
-            ?? throw new InvalidOperationException("Falta Gmail:AppPassword");
-        var adminEmail = config["Gmail:AdminEmail"] ?? gmailUser;
-
         try
         {
+            var gmailUser = config["Gmail:User"]
+                ?? throw new InvalidOperationException("Falta Gmail:User en variables de entorno");
+            var appPassword = config["Gmail:AppPassword"]
+                ?? throw new InvalidOperationException("Falta Gmail:AppPassword en variables de entorno");
+            var adminEmail = config["Gmail:AdminEmail"] ?? gmailUser;
+
+            logger.LogInformation("Intentando enviar email a {AdminEmail} desde {GmailUser}", adminEmail, gmailUser);
+
             var mensaje = new MimeMessage();
             mensaje.From.Add(new MailboxAddress("Boda Maria y David", gmailUser));
             mensaje.To.Add(new MailboxAddress("", adminEmail));
@@ -50,11 +52,11 @@ public class GmailEmailService(
             await smtp.SendAsync(mensaje);
             await smtp.DisconnectAsync(true);
 
-            logger.LogInformation("Email enviado a {AdminEmail}: {Asunto}", adminEmail, asunto);
+            logger.LogInformation("✅ Email enviado a {AdminEmail}: {Asunto}", adminEmail, asunto);
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Error al enviar email via Gmail");
+            logger.LogError(ex, "❌ Error al enviar email via Gmail: {Mensaje}", ex.Message);
         }
     }
 }

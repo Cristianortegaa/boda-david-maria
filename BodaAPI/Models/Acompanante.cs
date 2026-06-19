@@ -1,5 +1,6 @@
 // BodaAPI/Models/Acompanante.cs
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace BodaAPI.Models;
 
@@ -24,5 +25,6 @@ public class Acompanante
 
     // FK
     public int InvitadoId { get; set; }
+    [JsonIgnore]
     public Invitado Invitado { get; set; } = null!;
 }
