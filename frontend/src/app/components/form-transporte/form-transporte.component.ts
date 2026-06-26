@@ -1,5 +1,5 @@
 // frontend/src/app/components/form-transporte/form-transporte.component.ts
-import { Component, inject, signal, OnInit } from '@angular/core';
+import { Component, inject, signal, OnInit, effect } from '@angular/core';
 import { Router } from '@angular/router';
 import { InvitadoService } from '../../services/invitado.service';
 
@@ -17,19 +17,22 @@ export class FormTransporteComponent implements OnInit {
   ida    = signal<'autobus' | 'coche'>('autobus');
   vuelta = signal<'autobus' | 'coche'>('autobus');
 
+  constructor() {
+    effect(() => {
+      this.svc.actualizarDatos({
+        idaTransporte:    this.ida(),
+        vueltaTransporte: this.vuelta(),
+      });
+    });
+  }
+
   ngOnInit() {
     const s = this.svc.formState();
     if (s.idaTransporte)    this.ida.set(s.idaTransporte);
     if (s.vueltaTransporte) this.vuelta.set(s.vueltaTransporte);
   }
 
-  cerrar()   { this.router.navigate(['/']); }
-  anterior() { this.router.navigate(['/formulario']); }
-  continuar() {
-    this.svc.actualizarDatos({
-      idaTransporte:    this.ida(),
-      vueltaTransporte: this.vuelta(),
-    });
-    this.router.navigate(['/formulario-alojamiento']);
-  }
+  cerrar()    { this.router.navigate(['/']); }
+  anterior()  { this.router.navigate(['/formulario']); }
+  continuar() { this.router.navigate(['/formulario-alojamiento']); }
 }

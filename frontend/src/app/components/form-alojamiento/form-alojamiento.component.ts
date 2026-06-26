@@ -1,5 +1,5 @@
 // frontend/src/app/components/form-alojamiento/form-alojamiento.component.ts
-import { Component, inject, signal, computed, OnInit } from '@angular/core';
+import { Component, inject, signal, computed, OnInit, effect } from '@angular/core';
 import { Router } from '@angular/router';
 import { InvitadoService } from '../../services/invitado.service';
 
@@ -12,12 +12,18 @@ import { InvitadoService } from '../../services/invitado.service';
 })
 export class FormAlojamientoComponent implements OnInit {
   private router = inject(Router);
-  private svc     = inject(InvitadoService);
+  private svc    = inject(InvitadoService);
 
   gestionaAlojamiento = signal<'si' | 'no'>('si');
-  diasAlojamiento     = signal<'viernes-sabado' | 'sabado'>('viernes-sabado');
+  quiereGestion       = computed(() => this.gestionaAlojamiento() === 'si');
 
-  quiereGestion = computed(() => this.gestionaAlojamiento() === 'si');
+  constructor() {
+    effect(() => {
+      this.svc.actualizarDatos({
+        necesitaAlojamiento: this.quiereGestion(),
+      });
+    });
+  }
 
   ngOnInit() {
     const s = this.svc.formState();
@@ -26,13 +32,7 @@ export class FormAlojamientoComponent implements OnInit {
     }
   }
 
-  cerrar()   { this.router.navigate(['/']); }
-  anterior() { this.router.navigate(['/formulario-transporte']); }
-
-  confirmar() {
-    this.svc.actualizarDatos({
-      necesitaAlojamiento: this.quiereGestion(),
-    });
-    this.router.navigate(['/confirmacion']);
-  }
+  cerrar()    { this.router.navigate(['/']); }
+  anterior()  { this.router.navigate(['/formulario-transporte']); }
+  confirmar() { this.router.navigate(['/confirmacion']); }
 }
