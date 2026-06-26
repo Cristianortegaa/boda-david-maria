@@ -38,9 +38,7 @@ export class ConfirmacionComponent implements OnInit {
   });
 
   async ngOnInit(): Promise<void> {
-    // Si no hay nombre (p.ej. el usuario abrió esta URL directamente), no enviar
     if (!this.svc.formState().nombre) return;
-
     this.enviando.set(true);
     try {
       await this.svc.submitForm();
@@ -51,12 +49,30 @@ export class ConfirmacionComponent implements OnInit {
     }
   }
 
-  copyIban() {
-    navigator.clipboard.writeText('ES29 1583 0001 1190 8967 3376').then(() => {
-      this.ibanCopiado.set(true);
-      setTimeout(() => this.ibanCopiado.set(false), 2000);
-    }).catch(() => {});
+  async copyIban() {
+    await copiarAlPortapapeles('ES29 1583 0001 1190 8967 3376');
+    this.ibanCopiado.set(true);
+    setTimeout(() => this.ibanCopiado.set(false), 2000);
   }
 
   irAInicio() { this.router.navigate(['/']); }
+}
+
+/** Copia texto al portapapeles con fallback para móviles */
+async function copiarAlPortapapeles(texto: string): Promise<void> {
+  try {
+    await navigator.clipboard.writeText(texto);
+    return;
+  } catch { /* continúa con el fallback */ }
+
+  const el = document.createElement('textarea');
+  el.value = texto;
+  el.setAttribute('readonly', '');
+  el.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;font-size:16px;';
+  document.body.appendChild(el);
+  el.focus();
+  el.select();
+  el.setSelectionRange(0, texto.length);
+  try { document.execCommand('copy'); } catch { /* ignorar */ }
+  document.body.removeChild(el);
 }

@@ -22,10 +22,29 @@ export class HomeComponent implements AfterViewInit {
     v.play().catch(() => {});
   }
 
-  copyIban() {
-    navigator.clipboard.writeText('ES29 1583 0001 1190 8967 3376').then(() => {
-      this.ibanCopiado.set(true);
-      setTimeout(() => this.ibanCopiado.set(false), 2000);
-    }).catch(() => {});
+  async copyIban() {
+    await copiarAlPortapapeles('ES29 1583 0001 1190 8967 3376');
+    this.ibanCopiado.set(true);
+    setTimeout(() => this.ibanCopiado.set(false), 2000);
   }
+}
+
+/** Copia texto al portapapeles con fallback para móviles */
+async function copiarAlPortapapeles(texto: string): Promise<void> {
+  try {
+    await navigator.clipboard.writeText(texto);
+    return;
+  } catch { /* continúa con el fallback */ }
+
+  // Fallback: textarea temporal + execCommand
+  const el = document.createElement('textarea');
+  el.value = texto;
+  el.setAttribute('readonly', '');
+  el.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;font-size:16px;';
+  document.body.appendChild(el);
+  el.focus();
+  el.select();
+  el.setSelectionRange(0, texto.length); // iOS Safari
+  try { document.execCommand('copy'); } catch { /* ignorar */ }
+  document.body.removeChild(el);
 }
