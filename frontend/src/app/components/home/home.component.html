@@ -223,7 +223,12 @@
       <p class="bank-title">Si quieres ayudarnos en esta aventura:</p>
       <div class="bank-row">
         <span class="bank-iban">ES29 1583 0001 1190 8967 3376</span>
-        <button class="bank-copy" (click)="copyIban()">{{ ibanCopiado() ? '✓ Copiado' : 'Copiar' }}</button>
+        <div class="bank-copy-wrap">
+        <button class="bank-copy" (click)="copyIban()">Copiar</button>
+        @if (ibanCopiado()) {
+          <span class="bank-tooltip">copiado en el portapapeles</span>
+        }
+      </div>
       </div>
     </div>
 

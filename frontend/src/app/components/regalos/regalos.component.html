@@ -9,7 +9,12 @@
   <div class="reg-bank">
     <div class="reg-bank-row">
       <span class="reg-iban">ES29 1583 0001 1190 8967 3376</span>
-      <button class="reg-copy" (click)="copyIban()">{{ ibanCopiado() ? '✓ Copiado' : 'Copiar' }}</button>
+      <div class="reg-copy-wrap">
+        <button class="reg-copy" (click)="copyIban()">Copiar</button>
+        @if (ibanCopiado()) {
+          <span class="reg-copy-tooltip">copiado en el portapapeles</span>
+        }
+      </div>
     </div>
   </div>
 </ng-template>
