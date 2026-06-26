@@ -1,5 +1,5 @@
 // frontend/src/app/components/form-alojamiento/form-alojamiento.component.ts
-import { Component, inject, signal, computed } from '@angular/core';
+import { Component, inject, signal, computed, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { InvitadoService } from '../../services/invitado.service';
 
@@ -10,7 +10,7 @@ import { InvitadoService } from '../../services/invitado.service';
   templateUrl: './form-alojamiento.component.html',
   styleUrl: './form-alojamiento.component.scss'
 })
-export class FormAlojamientoComponent {
+export class FormAlojamientoComponent implements OnInit {
   private router = inject(Router);
   private svc     = inject(InvitadoService);
 
@@ -19,6 +19,13 @@ export class FormAlojamientoComponent {
 
   quiereGestion = computed(() => this.gestionaAlojamiento() === 'si');
 
+  ngOnInit() {
+    const s = this.svc.formState();
+    if (s.necesitaAlojamiento !== null) {
+      this.gestionaAlojamiento.set(s.necesitaAlojamiento ? 'si' : 'no');
+    }
+  }
+
   cerrar()   { this.router.navigate(['/']); }
   anterior() { this.router.navigate(['/formulario-transporte']); }
 
@@ -26,10 +33,6 @@ export class FormAlojamientoComponent {
     this.svc.actualizarDatos({
       necesitaAlojamiento: this.quiereGestion(),
     });
-    if (this.quiereGestion()) {
-      this.router.navigate(['/formulario-alojamiento-fuera']);
-    } else {
-      this.router.navigate(['/confirmacion']);
-    }
+    this.router.navigate(['/confirmacion']);
   }
 }

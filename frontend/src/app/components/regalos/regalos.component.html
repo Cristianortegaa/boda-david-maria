@@ -1,15 +1,15 @@
 <!-- frontend/src/app/components/regalos/regalos.component.html -->
 
-<!-- ── BANCO (compartido) ────────────────────────────── -->
+<!-- ── BANCO (compartido) ────────────────────────── -->
 <ng-template #bancoTpl>
   <p class="reg-disclaimer">
     El voto solo sirve para jugar, si queréis ayudarnos podéis enviar
-    el dinerito a este nímero de cuenta:
+    el dinerito a este número de cuenta:
   </p>
   <div class="reg-bank">
     <div class="reg-bank-row">
       <span class="reg-iban">ES29 1583 0001 1190 8967 3376</span>
-      <button class="reg-copy" (click)="copyIban()">Copiar</button>
+      <button class="reg-copy" (click)="copyIban()">{{ ibanCopiado() ? '✓ Copiado' : 'Copiar' }}</button>
     </div>
   </div>
 </ng-template>
@@ -71,8 +71,8 @@
               <!-- Nombre + barra de progreso -->
               <div class="reg-item-result">
                 <span class="reg-item-name"
-                      [class.reg-item-name--small]="resultados().length > 0 && selecciones().length > 0">{{ op }}</span>
-                @if (resultados().length > 0 && selecciones().length > 0) {
+                      [class.reg-item-name--small]="votado()">{{ op }}</span>
+                @if (votado()) {
                   <div class="reg-progress">
                     <div class="reg-progress-fill"
                          [style.width.%]="getPorcentaje(op)"></div>
@@ -80,8 +80,8 @@
                 }
               </div>
 
-              <!-- Badge con nº de votos (solo si hay datos) -->
-              @if (resultados().length > 0 && selecciones().length > 0) {
+              <!-- Badge con nº de votos (solo tras votar) -->
+              @if (votado()) {
                 <span class="reg-vote-badge">{{ getVotos(op) }}</span>
               }
 
@@ -154,4 +154,9 @@
 
     </div>
   </div>
+}
+
+<!-- ── Toast de éxito ─────────────────────────────────── -->
+@if (votoExitoso()) {
+  <div class="reg-toast">¡Tu voto se ha enviado correctamente! 🎉</div>
 }

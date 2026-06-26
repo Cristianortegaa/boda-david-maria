@@ -19,10 +19,12 @@ export class RegalosComponent implements OnInit {
   selecciones  = signal<string[]>([]);
   resultados   = signal<{opcion: string, votos: number}[]>([]);
   nombre       = signal('');
-  confirmando  = signal(false);   // muestra el bottom sheet
+  confirmando  = signal(false);
   enviando     = signal(false);
   votado       = signal(false);
+  votoExitoso  = signal(false);
   errMsg       = signal('');
+  ibanCopiado  = signal(false);
 
   maxVotos = computed(() => Math.max(...this.resultados().map(r => r.votos), 1));
 
@@ -40,10 +42,9 @@ export class RegalosComponent implements OnInit {
       error: ()  => this.opciones.set(fallback)
     });
 
-    // Carga votos actuales en tiempo real al abrir la página
     this.svc.getResultadosRegalos()
       .then(res => this.resultados.set(res))
-      .catch(() => {}); // backend offline → sin barras, no pasa nada
+      .catch(() => {});
   }
 
   toggle(op: string) {
@@ -63,7 +64,6 @@ export class RegalosComponent implements OnInit {
     return max ? (this.getVotos(op) / max) * 100 : 0;
   }
 
-  // Abre el bottom sheet de confirmación
   abrirConfirmacion() {
     if (!this.selecciones().length) return;
     this.errMsg.set('');
@@ -72,15 +72,12 @@ export class RegalosComponent implements OnInit {
 
   cancelar() { this.confirmando.set(false); }
 
-  // Envía el voto real al backend y muestra resultados
   async enviarVoto() {
     this.enviando.set(true);
     this.errMsg.set('');
 
-    // Enviar al backend (ignorar errores para no bloquear la UX)
     try { await this.svc.votarRegalo(this.selecciones(), this.nombre()); } catch { /* ignorar */ }
 
-    // Obtener resultados reales o usar mock
     try {
       const res = await this.svc.getResultadosRegalos();
       this.resultados.set(res);
@@ -96,11 +93,18 @@ export class RegalosComponent implements OnInit {
 
     this.enviando.set(false);
     this.confirmando.set(false);
-    this.router.navigate(['/']);
+    this.votado.set(true);
+
+    // Mostrar toast de éxito
+    this.votoExitoso.set(true);
+    setTimeout(() => this.votoExitoso.set(false), 3000);
   }
 
   copyIban() {
-    navigator.clipboard.writeText('ES29 1583 0001 1190 8967 3376');
+    navigator.clipboard.writeText('ES29 1583 0001 1190 8967 3376').then(() => {
+      this.ibanCopiado.set(true);
+      setTimeout(() => this.ibanCopiado.set(false), 2000);
+    }).catch(() => {});
   }
 
   irAInicio() { this.router.navigate(['/']); }

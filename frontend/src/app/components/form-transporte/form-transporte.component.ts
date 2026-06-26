@@ -1,5 +1,5 @@
 // frontend/src/app/components/form-transporte/form-transporte.component.ts
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { InvitadoService } from '../../services/invitado.service';
 
@@ -10,12 +10,18 @@ import { InvitadoService } from '../../services/invitado.service';
   templateUrl: './form-transporte.component.html',
   styleUrl: './form-transporte.component.scss'
 })
-export class FormTransporteComponent {
+export class FormTransporteComponent implements OnInit {
   private router = inject(Router);
   private svc    = inject(InvitadoService);
 
   ida    = signal<'autobus' | 'coche'>('autobus');
   vuelta = signal<'autobus' | 'coche'>('autobus');
+
+  ngOnInit() {
+    const s = this.svc.formState();
+    if (s.idaTransporte)    this.ida.set(s.idaTransporte);
+    if (s.vueltaTransporte) this.vuelta.set(s.vueltaTransporte);
+  }
 
   cerrar()   { this.router.navigate(['/']); }
   anterior() { this.router.navigate(['/formulario']); }

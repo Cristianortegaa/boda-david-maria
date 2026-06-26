@@ -75,7 +75,7 @@
 
   <!-- ── HERO VIDEO ────────────────────────────────── -->
   <div class="hero-video">
-    <video class="couple-video" src="pareja.mp4" autoplay loop muted playsinline></video>
+    <video #videoEl class="couple-video" src="pareja.mp4" autoplay loop muted playsinline></video>
   </div>
 
   <!-- ── CONTENIDO PRINCIPAL ──────────────────────── -->
@@ -223,7 +223,7 @@
       <p class="bank-title">Si quieres ayudarnos en esta aventura:</p>
       <div class="bank-row">
         <span class="bank-iban">ES29 1583 0001 1190 8967 3376</span>
-        <button class="bank-copy" (click)="copyIban()">Copiar</button>
+        <button class="bank-copy" (click)="copyIban()">{{ ibanCopiado() ? '✓ Copiado' : 'Copiar' }}</button>
       </div>
     </div>
 

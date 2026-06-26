@@ -44,7 +44,7 @@
     <p class="conf-bank-label">Si quieres ayudarnos en esta aventura:</p>
     <div class="conf-bank-row">
       <span class="conf-bank-iban">ES29 1583 0001 1190 8967 3376</span>
-      <button class="conf-bank-copy" (click)="copyIban()">Copiar</button>
+      <button class="conf-bank-copy" (click)="copyIban()">{{ ibanCopiado() ? '✓ Copiado' : 'Copiar' }}</button>
     </div>
   </div>
 

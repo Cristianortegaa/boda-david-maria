@@ -42,9 +42,11 @@
         <!-- 3 - 14 años -->
         <div class="fw-spinner-group">
           <div class="fw-spinner">
-            <button class="fw-spin-btn fw-spin-btn--minus" (click)="cambiar314(-1)">
+            <button class="fw-spin-btn fw-spin-btn--minus"
+                    [class.fw-spin-btn--green]="ninos314() > 0"
+                    (click)="cambiar314(-1)">
               <svg width="14" height="2" viewBox="0 0 14 2" fill="none">
-                <path d="M1 1H13" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+                <path class="fw-minus-path" d="M1 1H13" stroke="#000" stroke-width="2" stroke-linecap="round"/>
               </svg>
             </button>
             <span class="fw-spin-num">{{ ninos314() }}</span>
@@ -60,9 +62,11 @@
         <!-- 15 - 18 años -->
         <div class="fw-spinner-group">
           <div class="fw-spinner">
-            <button class="fw-spin-btn fw-spin-btn--minus" (click)="cambiar1518(-1)">
+            <button class="fw-spin-btn fw-spin-btn--minus"
+                    [class.fw-spin-btn--green]="ninos1518() > 0"
+                    (click)="cambiar1518(-1)">
               <svg width="14" height="2" viewBox="0 0 14 2" fill="none">
-                <path d="M1 1H13" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+                <path class="fw-minus-path" d="M1 1H13" stroke="#000" stroke-width="2" stroke-linecap="round"/>
               </svg>
             </button>
             <span class="fw-spin-num">{{ ninos1518() }}</span>

@@ -16,8 +16,9 @@ export class ConfirmacionComponent implements OnInit {
 
   readonly state = computed(() => this.svc.formState());
 
-  enviando = signal(false);
-  error    = signal('');
+  enviando    = signal(false);
+  error       = signal('');
+  ibanCopiado = signal(false);
 
   readonly resumenTransporte = computed(() => {
     const s = this.svc.formState();
@@ -51,7 +52,10 @@ export class ConfirmacionComponent implements OnInit {
   }
 
   copyIban() {
-    navigator.clipboard.writeText('ES29 1583 0001 1190 8967 3376').catch(() => {});
+    navigator.clipboard.writeText('ES29 1583 0001 1190 8967 3376').then(() => {
+      this.ibanCopiado.set(true);
+      setTimeout(() => this.ibanCopiado.set(false), 2000);
+    }).catch(() => {});
   }
 
   irAInicio() { this.router.navigate(['/']); }
