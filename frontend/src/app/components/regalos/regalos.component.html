@@ -9,18 +9,7 @@
   <div class="reg-bank">
     <div class="reg-bank-row">
       <span class="reg-iban">ES29 1583 0001 1190 8967 3376</span>
-      <div class="reg-copy-wrap">
-        <button class="reg-copy" (click)="copyIban()">Copiar</button>
-        @if (ibanCopiado()) {
-          <div class="reg-copy-tooltip">
-            <svg width="15" height="12" viewBox="0 0 15 12" fill="none">
-              <path d="M1.5 6L5.5 10L13.5 1.5" stroke="#6A6B4B" stroke-width="2.5"
-                    stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            copiado en el portapapeles
-          </div>
-        }
-      </div>
+      <button class="reg-copy" (click)="copyIban()">Copiar</button>
     </div>
   </div>
 </ng-template>
@@ -167,7 +156,16 @@
   </div>
 }
 
-<!-- ── Toast de éxito ─────────────────────────────────── -->
+<!-- ── Toasts fixed (nunca se cortan en móvil) ─────────── -->
 @if (votoExitoso()) {
-  <div class="reg-toast">¡Tu voto se ha enviado correctamente! 🎉</div>
+  <div class="iban-toast">¡Tu voto se ha enviado correctamente! 🎉</div>
+}
+@if (ibanCopiado()) {
+  <div class="iban-toast">
+    <svg width="16" height="13" viewBox="0 0 16 13" fill="none">
+      <path d="M1.5 6.5L6 11L14.5 1.5" stroke="#6A6B4B" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    copiado en el portapapeles
+  </div>
 }

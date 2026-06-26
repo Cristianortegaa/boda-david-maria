@@ -44,18 +44,7 @@
     <p class="conf-bank-label">Si quieres ayudarnos en esta aventura:</p>
     <div class="conf-bank-row">
       <span class="conf-bank-iban">ES29 1583 0001 1190 8967 3376</span>
-      <div class="conf-bank-copy-wrap">
-        <button class="conf-bank-copy" (click)="copyIban()">Copiar</button>
-        @if (ibanCopiado()) {
-          <div class="conf-bank-tooltip">
-            <svg width="15" height="12" viewBox="0 0 15 12" fill="none">
-              <path d="M1.5 6L5.5 10L13.5 1.5" stroke="#6A6B4B" stroke-width="2.5"
-                    stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            copiado en el portapapeles
-          </div>
-        }
-      </div>
+      <button class="conf-bank-copy" (click)="copyIban()">Copiar</button>
     </div>
   </div>
 
@@ -63,3 +52,13 @@
   <button class="conf-btn" (click)="irAInicio()">Volver al inicio</button>
 
 </div>
+
+@if (ibanCopiado()) {
+  <div class="iban-toast">
+    <svg width="16" height="13" viewBox="0 0 16 13" fill="none">
+      <path d="M1.5 6.5L6 11L14.5 1.5" stroke="#6A6B4B" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    copiado en el portapapeles
+  </div>
+}
