@@ -15,6 +15,7 @@ export class FormAlojamientoComponent implements OnInit {
   private svc    = inject(InvitadoService);
 
   gestionaAlojamiento = signal<'si' | 'no'>('si');
+  diasAlojamiento     = signal<'viernes-sabado' | 'sabado'>('viernes-sabado');
   quiereGestion       = computed(() => this.gestionaAlojamiento() === 'si');
 
   constructor() {
