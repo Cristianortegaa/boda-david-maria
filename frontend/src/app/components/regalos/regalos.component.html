@@ -12,7 +12,13 @@
       <div class="reg-copy-wrap">
         <button class="reg-copy" (click)="copyIban()">Copiar</button>
         @if (ibanCopiado()) {
-          <span class="reg-copy-tooltip">copiado en el portapapeles</span>
+          <div class="reg-copy-tooltip">
+            <svg width="15" height="12" viewBox="0 0 15 12" fill="none">
+              <path d="M1.5 6L5.5 10L13.5 1.5" stroke="#6A6B4B" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            copiado en el portapapeles
+          </div>
         }
       </div>
     </div>
