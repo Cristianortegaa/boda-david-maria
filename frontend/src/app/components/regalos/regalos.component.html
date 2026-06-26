@@ -72,7 +72,7 @@
               <div class="reg-item-result">
                 <span class="reg-item-name"
                       [class.reg-item-name--small]="votado()">{{ op }}</span>
-                @if (votado()) {
+                @if (selecciones().length > 0) {
                   <div class="reg-progress">
                     <div class="reg-progress-fill"
                          [style.width.%]="getPorcentaje(op)"></div>
@@ -80,8 +80,8 @@
                 }
               </div>
 
-              <!-- Badge con nº de votos (solo tras votar) -->
-              @if (votado()) {
+              <!-- Badge con nº de votos (al seleccionar o tras votar) -->
+              @if (selecciones().length > 0) {
                 <span class="reg-vote-badge">{{ getVotos(op) }}</span>
               }
 
