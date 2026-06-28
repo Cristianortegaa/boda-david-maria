@@ -16,6 +16,7 @@ export class NoAsisteComponent {
 
   nombre   = signal('');
   enviando = signal(false);
+  enviado  = signal(false);
 
   irAInicio() { this.router.navigate(['/']); }
 
@@ -26,6 +27,6 @@ export class NoAsisteComponent {
       await this.svc.noAsiste(this.nombre().trim());
     } catch { /* silencioso */ }
     finally { this.enviando.set(false); }
-    this.router.navigate(['/']);
+    this.enviado.set(true);  // dead-end: no navegar, mostrar pantalla final
   }
 }

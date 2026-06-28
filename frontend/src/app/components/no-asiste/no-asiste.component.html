@@ -1,4 +1,25 @@
 <!-- frontend/src/app/components/no-asiste/no-asiste.component.html -->
+
+<!-- ══════════════════════════════════════════
+     PANTALLA FINAL — dead end tras confirmar
+     ══════════════════════════════════════════ -->
+@if (enviado()) {
+  <div class="na-success">
+    <div class="na-success-brand">
+      <span class="na-success-boda-de">Boda de</span>
+      <span class="na-success-nombres">María y David</span>
+    </div>
+    <div class="na-success-img-wrap">
+      <img src="/no-asiste.png" class="na-success-img" alt="">
+    </div>
+    <p class="na-success-text">¡Nos vemos en otra ocasión, lo sentimos!</p>
+  </div>
+}
+
+<!-- ══════════════════════════════════════════
+     FORMULARIO — antes de confirmar
+     ══════════════════════════════════════════ -->
+@if (!enviado()) {
 <div class="na-page">
 
   <!-- ── Header ─────────────────────────────────────────── -->
@@ -49,3 +70,4 @@
   </div>
 
 </div>
+} <!-- /if (!enviado()) -->
