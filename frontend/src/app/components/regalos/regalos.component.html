@@ -1,6 +1,6 @@
 <!-- frontend/src/app/components/regalos/regalos.component.html -->
 
-<!-- ── BANCO (compartido) ────────────────────────── -->
+<!-- ── BANCO (comentado temporalmente, descomentar cuando quieran activarlo) ──
 <ng-template #bancoTpl>
   <p class="reg-disclaimer">
     El voto solo sirve para jugar, si queréis ayudarnos podéis enviar
@@ -13,6 +13,7 @@
     </div>
   </div>
 </ng-template>
+──>
 
 <!-- ══════════════════════════════════════════════════════
      VISTA ÚNICA — votos en tiempo real + selección
@@ -104,7 +105,7 @@
 
     </div>
 
-    <ng-container *ngTemplateOutlet="bancoTpl"/>
+    <!-- <ng-container *ngTemplateOutlet="bancoTpl"/> -->
   </div>
 </div>
 
