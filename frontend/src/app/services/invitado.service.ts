@@ -97,6 +97,14 @@ export class InvitadoService {
     this.pasoActual.set(1);
   }
 
+  // ── Despertar el servidor ─────────────────────────────────────────────────
+  // En el plan gratuito de Render la API se duerme sin visitas y tarda en
+  // arrancar. Se le avisa al entrar en la web para que, cuando el invitado
+  // termine el formulario, ya esté despierta.
+  despertarServidor(): void {
+    this.http.get(`${this.API}/regalos/opciones`).subscribe({ error: () => {} });
+  }
+
   // ── Envío final al backend ────────────────────────────────────────────────
   async submitForm(): Promise<{ id: number }> {
     const s = this.formState();

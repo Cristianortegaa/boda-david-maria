@@ -1,6 +1,6 @@
 // frontend/src/app/components/admin/admin.component.ts
 import { Component, inject, signal, computed } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
@@ -29,7 +29,6 @@ interface InvitadoAdmin {
 export class AdminComponent {
   private http = inject(HttpClient);
   private readonly API = environment.apiUrl;
-  private readonly CLAVE = 'boda2026secreto';
 
   clave        = signal('');
   autenticado  = signal(false);
@@ -39,7 +38,8 @@ export class AdminComponent {
   busqueda     = signal('');
   filtro       = signal<'todos' | 'asisten' | 'no-asisten'>('todos');
 
-  readonly excelUrl = `${this.API}/invitados/export?key=${this.CLAVE}`;
+  // La clave no está en el código: la comprueba el servidor con la que escribe el admin
+  readonly excelUrl = computed(() => `${this.API}/invitados/export?key=${encodeURIComponent(this.clave())}`);
 
   readonly asistentes  = computed(() => this.invitados().filter(i => i.asiste));
   readonly noAsisten   = computed(() => this.invitados().filter(i => !i.asiste));
@@ -67,15 +67,18 @@ export class AdminComponent {
   readonly noAsistenVisibles   = computed(() => this.invitadosFiltrados().filter(i => !i.asiste));
 
   async entrar() {
-    if (this.clave() !== this.CLAVE) { this.errorMsg.set('Clave incorrecta'); return; }
+    if (!this.clave().trim()) { this.errorMsg.set('Escribe la clave'); return; }
     this.cargando.set(true);
     this.errorMsg.set('');
     try {
-      const lista = await firstValueFrom(this.http.get<InvitadoAdmin[]>(`${this.API}/invitados`));
+      const lista = await firstValueFrom(this.http.get<InvitadoAdmin[]>(
+        `${this.API}/invitados`, { params: { key: this.clave() } }));
       this.invitados.set(lista);
       this.autenticado.set(true);
-    } catch {
-      this.errorMsg.set('Error al cargar los invitados');
+    } catch (e) {
+      this.errorMsg.set(e instanceof HttpErrorResponse && e.status === 401
+        ? 'Clave incorrecta'
+        : 'No se puede conectar con el servidor. Inténtalo más tarde.');
     } finally {
       this.cargando.set(false);
     }
@@ -87,7 +90,7 @@ export class AdminComponent {
     if (!confirm(`¿Eliminar a ${nombre}?`)) return;
     try {
       await firstValueFrom(
-        this.http.delete(`${this.API}/invitados/${id}?key=${this.CLAVE}`)
+        this.http.delete(`${this.API}/invitados/${id}`, { params: { key: this.clave() } })
       );
       this.invitados.update(lista => lista.filter(i => i.id !== id));
     } catch {

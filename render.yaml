@@ -1,0 +1,29 @@
+# Blueprint de Render para la API de la boda (BodaAPI).
+# Va en su propio workspace de Render: las 750 h gratis al mes son por workspace
+# y así no compite con otros servicios gratuitos.
+# Los valores con `sync: false` son secretos: Render los pide al crear el
+# servicio y no se guardan en el repo.
+services:
+  - type: web
+    name: boda-david-maria-api
+    runtime: docker
+    plan: free
+    region: frankfurt            # junto a la base de datos de Neon (eu-central-1)
+    rootDir: BodaAPI
+    dockerfilePath: ./Dockerfile
+    branch: main
+    autoDeploy: true
+    healthCheckPath: /api/regalos/opciones
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: AllowedOrigins__0
+        value: https://boda-david-maria.vercel.app
+      - key: ConnectionStrings__DefaultConnection   # Neon (Host=...;Database=neondb;...)
+        sync: false
+      - key: ExcelExport__AdminKey                  # clave del panel de admin
+        sync: false
+      - key: Resend__ApiKey
+        sync: false
+      - key: Resend__AdminEmail
+        sync: false
