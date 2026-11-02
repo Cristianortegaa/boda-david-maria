@@ -2,11 +2,12 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { InvitadoService } from '../../services/invitado.service';
+import { EncajarDirective } from '../encajar.directive';
 
 @Component({
   selector: 'app-no-asiste',
   standalone: true,
-  imports: [],
+  imports: [EncajarDirective],
   templateUrl: './no-asiste.component.html',
   styleUrl: './no-asiste.component.scss'
 })

@@ -5,13 +5,10 @@
 $abajo: segun-alto(20px, 40px);
 
 .fw-page {
-  max-width: 430px;
-  margin: 0 auto;
-  min-height: var(--alto);
+  @include pantalla-fija;
   background: #FDFBFA;
   display: flex;
   flex-direction: column;
-  position: relative;
 }
 
 // ── Header ────────────────────────────────────────────────

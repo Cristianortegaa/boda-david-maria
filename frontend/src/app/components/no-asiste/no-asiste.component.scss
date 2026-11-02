@@ -2,13 +2,10 @@
 @use '../alto' as *;
 
 .na-page {
-  max-width: 430px;
-  margin: 0 auto;
-  min-height: var(--alto);
+  @include pantalla-fija;
   background: #FDFBFA;
   display: flex;
   flex-direction: column;
-  position: relative;
 }
 
 // ── Header (solo botón volver, sin título) ───────────────
@@ -158,9 +155,7 @@
 // Figma "Success no viene": etiqueta en y=214, ilustración pegada debajo
 // (256×202) y el texto 43px más abajo, en Gochi 30px a dos líneas.
 .na-success {
-  max-width: 430px;
-  margin: 0 auto;
-  min-height: var(--alto);
+  @include pantalla-fija;
   background: #FDFBFA;
   display: flex;
   flex-direction: column;

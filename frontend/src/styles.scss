@@ -70,6 +70,9 @@
 html {
   font-size: 16px;
   overflow-x: hidden;
+  // Mismo papel que las páginas: lo que asome al estirar la pantalla en el móvil
+  // (o al entrar una página con su animación) no deja franjas de otro color
+  background: #FDFBFA;
 }
 
 // Prevent horizontal scroll on all devices
@@ -77,7 +80,7 @@ html {
 body {
   overflow-x: hidden;
   font-family: var(--font-sans);
-  background: var(--beige);
+  background: #FDFBFA;
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

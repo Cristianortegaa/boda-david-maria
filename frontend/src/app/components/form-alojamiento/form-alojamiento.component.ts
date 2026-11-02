@@ -2,11 +2,12 @@
 import { Component, inject, signal, computed, OnInit, effect } from '@angular/core';
 import { Router } from '@angular/router';
 import { InvitadoService } from '../../services/invitado.service';
+import { EncajarDirective } from '../encajar.directive';
 
 @Component({
   selector: 'app-form-alojamiento',
   standalone: true,
-  imports: [],
+  imports: [EncajarDirective],
   templateUrl: './form-alojamiento.component.html',
   styleUrl: './form-alojamiento.component.scss'
 })

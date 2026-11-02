@@ -5,9 +5,7 @@
 $hueco-medio: segun-alto(12px, 24px);
 
 .conf-page {
-  max-width: 430px;
-  margin: 0 auto;
-  min-height: var(--alto);
+  @include pantalla-fija;
   background: #FDFBFA;
   display: flex;
   flex-direction: column;
