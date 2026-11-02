@@ -25,6 +25,11 @@ export interface FormState {
   // Paso 4-5 — Alojamiento
   necesitaAlojamiento: boolean | null;
   tipoAlojamiento: string;
+
+  // Paso 4 de 4 — Cuéntanos más
+  comportamiento: string[];
+  regalos: string[];
+  mensaje: string;
 }
 
 const INITIAL_STATE: FormState = {
@@ -35,7 +40,10 @@ const INITIAL_STATE: FormState = {
   idaTransporte: null,
   vueltaTransporte: null,
   necesitaAlojamiento: null,
-  tipoAlojamiento: ''
+  tipoAlojamiento: '',
+  comportamiento: [],
+  regalos: [],
+  mensaje: ''
 };
 
 @Injectable({ providedIn: 'root' })
@@ -95,14 +103,24 @@ export class InvitadoService {
     const payload = {
       nombre:              s.nombre,
       alergias:            s.alergias || null,
-      necesitaBus:         s.necesitaBus ?? false,
+      necesitaBus:         s.idaTransporte === 'autobus' || s.vueltaTransporte === 'autobus',
       necesitaAlojamiento: s.necesitaAlojamiento ?? false,
-      tipoAlojamiento:     s.tipoAlojamiento || null,
+      tipoAlojamiento:     s.necesitaAlojamiento ? (s.tipoAlojamiento || null) : null,
+      idaTransporte:       s.idaTransporte,
+      vueltaTransporte:    s.vueltaTransporte,
+      comportamiento:      s.comportamiento.length ? s.comportamiento.join(', ') : null,
+      mensaje:             s.mensaje.trim() || null,
       acompanantes:        s.acompanantes
     };
-    return firstValueFrom(
+    const res = await firstValueFrom(
       this.http.post<{ id: number }>(`${this.API}/invitados`, payload)
     );
+
+    // Los regalos elegidos en el paso 4 cuentan como votos del minijuego
+    if (s.regalos.length) {
+      try { await this.votarRegalo(s.regalos, s.nombre); } catch { /* el registro ya está guardado */ }
+    }
+    return res;
   }
 
   // ── Registrar no asistencia ───────────────────────────────────────────────

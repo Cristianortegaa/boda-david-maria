@@ -1,50 +1,60 @@
 // frontend/src/app/components/home/home.component.ts
-import { Component, signal, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, signal, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
+
+type EstadoSobre = 'cerrado' | 'abriendo' | 'abierto';
+
+// El sobre solo se muestra al entrar en la web; si el invitado vuelve a la
+// home desde el formulario ya aparece abierto.
+let sobreYaAbierto = false;
+
+// Duración total de la animación de apertura (debe cuadrar con el SCSS)
+const DURACION_APERTURA_MS = 1500;
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements AfterViewInit {
+export class HomeComponent implements AfterViewInit, OnDestroy {
   @ViewChild('videoEl') videoEl!: ElementRef<HTMLVideoElement>;
 
-  menuOpen    = signal(false);
-  ibanCopiado = signal(false);
+  estado = signal<EstadoSobre>(sobreYaAbierto ? 'abierto' : 'cerrado');
+
+  private timer?: ReturnType<typeof setTimeout>;
 
   ngAfterViewInit() {
     const v = this.videoEl.nativeElement;
     v.muted = true;
     v.play().catch(() => {});
+
+    if (this.estado() === 'cerrado') {
+      window.scrollTo(0, 0);
+      document.body.style.overflow = 'hidden';
+    }
   }
 
-  async copyIban() {
-    await copiarAlPortapapeles('ES29 1583 0001 1190 8967 3376');
-    this.ibanCopiado.set(true);
-    setTimeout(() => this.ibanCopiado.set(false), 2000);
+  ngOnDestroy() {
+    clearTimeout(this.timer);
+    document.body.style.overflow = '';
   }
-}
 
-/** Copia texto al portapapeles con fallback para móviles */
-async function copiarAlPortapapeles(texto: string): Promise<void> {
-  try {
-    await navigator.clipboard.writeText(texto);
-    return;
-  } catch { /* continúa con el fallback */ }
+  abrirSobre() {
+    if (this.estado() !== 'cerrado') return;
+    this.estado.set('abriendo');
+    sobreYaAbierto = true;
 
-  // Fallback: textarea temporal + execCommand
-  const el = document.createElement('textarea');
-  el.value = texto;
-  el.setAttribute('readonly', '');
-  el.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;font-size:16px;';
-  document.body.appendChild(el);
-  el.focus();
-  el.select();
-  el.setSelectionRange(0, texto.length); // iOS Safari
-  try { document.execCommand('copy'); } catch { /* ignorar */ }
-  document.body.removeChild(el);
+    // El vídeo empieza desde el principio justo cuando se descubre
+    const v = this.videoEl.nativeElement;
+    v.currentTime = 0;
+    v.play().catch(() => {});
+
+    const reducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.timer = setTimeout(() => {
+      this.estado.set('abierto');
+      document.body.style.overflow = '';
+    }, reducido ? 300 : DURACION_APERTURA_MS);
+  }
 }

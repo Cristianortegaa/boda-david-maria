@@ -69,8 +69,20 @@ namespace BodaAPI.Migrations
                         .HasDefaultValue(true)
                         .HasColumnType("boolean");
 
+                    b.Property<string>("Comportamiento")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
                     b.Property<DateTime>("FechaRegistro")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("IdaTransporte")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<string>("Mensaje")
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
 
                     b.Property<bool>("NecesitaAlojamiento")
                         .HasColumnType("boolean");
@@ -86,6 +98,10 @@ namespace BodaAPI.Migrations
                     b.Property<string>("TipoAlojamiento")
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
+
+                    b.Property<string>("VueltaTransporte")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
 
                     b.HasKey("Id");
 

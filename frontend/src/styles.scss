@@ -126,6 +126,11 @@ input, select, textarea { font-family: inherit; }
     color: #fff;
     &:active { transform: scale(.95); }
   }
+  &--olive {
+    background: #6A6B4B;
+    color: #fff;
+    &:active { transform: scale(.95); }
+  }
   &--outline {
     background: #fff;
     border: 2px solid #99673E;

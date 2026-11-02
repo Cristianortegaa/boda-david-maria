@@ -22,8 +22,8 @@
       }
       <p class="conf-titulo">¡Ya está todo listo!</p>
       <p class="conf-subtitulo">
-        Conseguiremos que sea inolvidable.<br>
-        ¡Gracias por formar parte de esto tan bonito!
+        Nos hace mucha ilusión que nos acompañes en nuestro día.
+        Conseguiremos que sea inolvidable.
       </p>
 
       <!-- Tarjeta resumen -->
@@ -31,7 +31,8 @@
         <p class="conf-card-nombre">{{ state().nombre || 'Tu nombre' }}</p>
         <p class="conf-card-detalle">
           Acompañantes: {{ resumenAcompanantes() }}<br>
-          {{ resumenTransporte() }}<br>
+          Ida: {{ resumenIda() }}<br>
+          Vuelta: {{ resumenVuelta() }}<br>
           Alojamiento: {{ resumenAlojamiento() }}
         </p>
       </div>
@@ -48,8 +49,8 @@
     </div>
   </div>
 
-  <!-- ── Botón volver al inicio ─────────────────────────── -->
-  <button class="conf-btn" (click)="irAInicio()">Volver al inicio</button>
+  <!-- ── Botón salir ────────────────────────────────────── -->
+  <button class="conf-btn" (click)="irAInicio()">Salir ✨</button>
 
 </div>
 

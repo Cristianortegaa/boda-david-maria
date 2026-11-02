@@ -1,41 +1,70 @@
 // frontend/src/app/components/home/home.component.scss
 
 .home {
+  position: relative;
   max-width: 430px;
   margin: 0 auto;
   background: #FDFBFA;
   min-height: 100vh;
+  overflow-x: clip;
 }
 
-// ── Header ──────────────────────────────────────────
-.home-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px 24px;
-  height: 85px;
-  background: #FDFBFA;
-  position: sticky;
+// ── Solapa superior del sobre ────────────────────────
+// SVG 393×380: laterales en y=209, punta redondeada en y≈365.
+// Abierta: queda visible la punta (≈127px) sobre el vídeo, como en el diseño V2.
+// Cerrada: la punta baja hasta el 45% de la pantalla.
+$solapa-abierta: translateY(-238px);
+$solapa-cerrada: translateY(calc(45vh - 365px));
+$solapa-cerrada-svh: translateY(calc(45svh - 365px));
+$ease-sobre: cubic-bezier(0.65, 0, 0.35, 1);
+
+.solapa {
+  position: absolute;
   top: 0;
-  z-index: 10;
+  left: 0;
+  width: 100%;
+  height: 380px;
+  z-index: 30;
+  pointer-events: none;
+  transform: $solapa-abierta;
+
+  &--cerrada {
+    transform: $solapa-cerrada;
+    transform: $solapa-cerrada-svh;
+  }
+
+  &--abriendo {
+    animation: solapaSube 1.25s $ease-sobre 0.15s both;
+  }
 }
 
-.header-title {
-  flex: 1;
+.solapa-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.14));
+}
+
+.solapa-titulo {
+  position: absolute;
+  top: 266px;
+  left: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2px;
 }
 
-.header-pre {
+.solapa-pre {
   font-family: 'Inspiration', cursive;
   font-size: 14px;
   font-weight: 400;
   color: #000;
 }
 
-.header-names {
+.solapa-names {
   font-family: 'Gochi Hand', cursive;
   font-size: 20px;
   font-weight: 400;
@@ -43,198 +72,131 @@
   line-height: 24px;
 }
 
-.burger-btn {
+// "Abrir mi invitación" — píldora negra bajo el título
+.sobre-btn {
   position: absolute;
-  right: 24px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #6A6B4B;
+  top: 334px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: auto;
+  height: 45px;
+  padding: 0 28px;
   border: none;
-  border-radius: 50%;
-  width: 53px;
-  height: 53px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  cursor: pointer;
-  span {
-    display: block;
-    height: 0;
-    border-top: 2px solid #fff;
-    &:nth-child(1) { width: 18px; }
-    &:nth-child(2) { width: 12px; }
-    &:nth-child(3) { width: 18px; }
+  border-radius: 100px;
+  background: #000;
+  color: #fff;
+  font-family: 'Gochi Hand', cursive;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21px;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  animation: sobreBtnIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
+  transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease;
+
+  &:active { transform: translateX(-50%) scale(0.95); }
+
+  .solapa--abriendo & {
+    animation: none;
+    opacity: 0;
+    transform: translateX(-50%) scale(0.85);
   }
 }
 
-// ── Burger fullscreen ────────────────────────────────
-.burger-screen {
+// ── Resto del sobre (overlay fijo) ───────────────────
+.sobre {
   position: fixed;
-  inset: 0;
-  background: #fff;
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
-  padding-top: 24px;
-  max-width: 430px;
-  margin: 0 auto;
-}
-
-.burger-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 24px;
-  height: 53px;
-}
-
-.burger-spacer {
-  width: 40px;
-  height: 40px;
-}
-
-.burger-close-btn {
-  width: 53px;
-  height: 53px;
-  background: #E5E3E6;
-  border: none;
-  border-radius: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.burger-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  padding: 0 24px;
-  margin-top: 46px;
-}
-
-.burger-nav-item {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 32px;
-  height: 35px;
-
-  &--active { gap: 16px; }
-}
-
-.burger-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #6A6B4B;
-  flex-shrink: 0;
-}
-
-.burger-link {
-  font-family: 'Gochi Hand', cursive;
-  font-size: 30px;
-  font-weight: 400;
-  line-height: 35px;
-  color: #000;
-  text-decoration: none;
-
-  &--active { color: #6A6B4B; }
-
-  // links directos en nav-item (sin link-row) deben empujar la flecha al extremo
-  .burger-nav-item > & { flex: 1; }
-}
-
-.burger-link-row {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 12px;
-  flex: 1;
-}
-
-.burger-badge {
-  font-family: 'Gochi Hand', cursive;
-  font-size: 14px;
-  font-weight: 400;
-  color: #000;
-  background: #F3D8C5;
-  border-radius: 8px;
-  padding: 8px;
-  line-height: 1;
-  white-space: nowrap;
-}
-
-.burger-arrow {
-  flex-shrink: 0;
-}
-
-.burger-footer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 23px;
+  top: 0;
+  bottom: 0;
+  left: 50%;
   width: 100%;
-  padding: 0;
+  max-width: 430px;
+  transform: translateX(-50%);
+  z-index: 20;
+  overflow: hidden;
+
+  &--abriendo { pointer-events: none; }
+}
+
+.sobre-fondo {
   position: absolute;
-  bottom: 83px;
+  inset: 0;
+  background: #FDFBFA;
+  transition: opacity 0.6s ease 0.6s;
+
+  .sobre--abriendo & { opacity: 0; }
+}
+
+// Solapas laterales: triángulos con la punta en el centro del sobre
+.sobre-lado {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 56%;
+  transition: transform 0.8s cubic-bezier(0.5, 0, 0.75, 0) 0.2s, opacity 0.8s ease 0.2s;
+
+  &--izq {
+    left: 0;
+    clip-path: polygon(0 0, 100% 47%, 0 100%);
+    background: linear-gradient(to right, #FDFBFA 45%, #ECE8E4);
+    .sobre--abriendo & { transform: translateX(-105%); opacity: 0; }
+  }
+
+  &--der {
+    right: 0;
+    clip-path: polygon(100% 0, 0 47%, 100% 100%);
+    background: linear-gradient(to left, #FDFBFA 45%, #ECE8E4);
+    .sobre--abriendo & { transform: translateX(105%); opacity: 0; }
+  }
+}
+
+// Solapa inferior: punta hacia arriba, cae al abrir
+.sobre-abajo {
+  position: absolute;
+  top: 47%;
   left: 0;
   right: 0;
+  transition: transform 1.05s cubic-bezier(0.6, 0, 0.4, 1) 0.2s;
+
+  .sobre--abriendo & { transform: translateY(105%); }
 }
 
-.burger-footer-line {
-  width: 105px;
-  height: 0;
-  border-top: 1px solid #E1E1E1;
-  flex-shrink: 0;
-  flex-grow: 0;
+.sobre-abajo-svg {
+  display: block;
+  width: 100%;
+  height: 1200px;   // la parte recta sobra por abajo; el overlay la recorta
+  overflow: visible;
+  filter: drop-shadow(0 -6px 14px rgba(0, 0, 0, 0.10));
 }
 
-.burger-footer-title {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0;
-  flex: 1;
+// La punta baja un poco antes de subir (anticipación) y se queda arriba
+@keyframes solapaSube {
+  0%   { transform: $solapa-cerrada; transform: $solapa-cerrada-svh; }
+  18%  { transform: translateY(calc(45vh - 355px)); transform: translateY(calc(45svh - 355px)); }
+  100% { transform: $solapa-abierta; }
 }
 
-.burger-footer-pre {
-  font-family: 'Inspiration', cursive;
-  font-size: 14px;
-  color: #000;
-  text-align: center;
-  line-height: 18px;
+@keyframes sobreBtnIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(8px) scale(0.92); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
 }
 
-.burger-footer-names {
-  font-family: 'Gochi Hand', cursive;
-  font-size: 20px;
-  color: #000;
-  text-align: center;
-  line-height: 24px;
+@keyframes heroReveal {
+  from { transform: scale(1.08); }
+  to   { transform: scale(1); }
 }
 
-.burger-date {
-  position: absolute;
-  bottom: 22px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: 'Gochi Hand', cursive;
-  font-size: 30px;
-  font-weight: 400;
-  color: #979797;
-  text-align: center;
-  white-space: nowrap;
-  line-height: 35px;
+@media (prefers-reduced-motion: reduce) {
+  .solapa--abriendo { animation-duration: 0.3s; animation-delay: 0s; }
+  .sobre-fondo, .sobre-lado, .sobre-abajo { transition-duration: 0.3s; transition-delay: 0s; }
+  .home--revelando .couple-video { animation: none; }
 }
 
 // ── Hero video ───────────────────────────────────────
 .hero-video {
   width: 100%;
-  height: 287px;
+  height: 372px;
   overflow: hidden;
 }
 
@@ -243,6 +205,8 @@
   height: 100%;
   object-fit: cover;
   display: block;
+
+  .home--revelando & { animation: heroReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both; }
 }
 
 // ── Contenido principal ──────────────────────────────
@@ -250,7 +214,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 24px;
+  padding-top: 32px;
+  padding-bottom: 90px;
   gap: 50px;
 }
 
@@ -287,7 +252,7 @@
 .hero-cta {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
 }
 
 // ── Section divider ──────────────────────────────────
@@ -393,12 +358,49 @@
   width: 100%;
 }
 
-// ── Línea separadora ─────────────────────────────────
-.home-line {
+// ── Dress code ───────────────────────────────────────
+.dress-code {
   width: 100%;
-  height: 1px;
-  background: #000;
-  flex-shrink: 0;
+  background: #F3D8C5;
+  padding: 24px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.dress-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+
+  span {
+    font-family: 'Gochi Hand', cursive;
+    font-size: 20px;
+    font-weight: 400;
+    color: #000;
+    line-height: 24px;
+  }
+
+  svg { flex-shrink: 0; display: block; }
+}
+
+.dress-text {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  color: #000;
+  text-align: center;
+  max-width: 320px;
+}
+
+.dress-img {
+  display: block;
+  height: 222px;
+  width: auto;
+  margin-top: 12px;
 }
 
 // ── Créditos ─────────────────────────────────────────
@@ -477,82 +479,6 @@
   color: #000;
   text-align: center;
   line-height: 24px;
-}
-
-// ── Cuenta bancaria ──────────────────────────────────
-.bank-section {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 18px 10px;
-  gap: 24px;
-  background: #F3D8C5;
-}
-
-.bank-title {
-  font-family: 'Gochi Hand', cursive;
-  font-size: 16px;
-  font-weight: 400;
-  color: #000;
-  text-align: center;
-  line-height: 19px;
-}
-
-.bank-row {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 24px;
-}
-
-.bank-iban {
-  font-family: 'Gochi Hand', cursive;
-  font-size: 20px;
-  font-weight: 400;
-  color: #000;
-  line-height: 24px;
-}
-
-.bank-copy {
-  font-family: 'Gochi Hand', cursive;
-  font-size: 18px;
-  font-weight: 400;
-  color: #000;
-  text-decoration: underline;
-  background: none;
-  border: none;
-  cursor: pointer;
-  line-height: 21px;
-}
-
-// Toast fijo: nunca se corta en pantallas pequeñas
-.iban-toast {
-  position: fixed;
-  bottom: 28px;
-  left: 50%;
-  transform: translateX(-50%);
-  max-width: calc(100vw - 48px);
-  background: #fff;
-  border-radius: 16px;
-  padding: 13px 20px 13px 16px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: 'Gochi Hand', cursive;
-  font-size: 16px;
-  color: #3a3a2a;
-  white-space: nowrap;
-  pointer-events: none;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.10);
-  animation: ibanToastIn 0.38s cubic-bezier(0.34,1.56,0.64,1) both;
-  z-index: 200;
-}
-
-@keyframes ibanToastIn {
-  0%   { opacity: 0; transform: translateX(-50%) translateY(24px) scale(0.9); }
-  100% { opacity: 1; transform: translateX(-50%) translateY(0)    scale(1); }
 }
 
 // ── Animaciones ───────────────────────────────────────────

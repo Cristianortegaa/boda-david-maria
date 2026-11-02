@@ -32,6 +32,10 @@ public class InvitadosController(
             NecesitaBus       = dto.NecesitaBus,
             NecesitaAlojamiento = dto.NecesitaAlojamiento,
             TipoAlojamiento   = dto.TipoAlojamiento,
+            IdaTransporte     = dto.IdaTransporte,
+            VueltaTransporte  = dto.VueltaTransporte,
+            Comportamiento    = dto.Comportamiento?.Trim(),
+            Mensaje           = dto.Mensaje?.Trim(),
             Acompanantes      = dto.Acompanantes.Select(a => new Acompanante
             {
                 Nombre   = a.Nombre.Trim(),

@@ -7,10 +7,6 @@ export const routes: Routes = [
     loadComponent: () => import('./components/home/home.component').then(m => m.HomeComponent)
   },
   {
-    path: 'regalos',
-    loadComponent: () => import('./components/regalos/regalos.component').then(m => m.RegalosComponent)
-  },
-  {
     path: 'formulario',
     loadComponent: () => import('./components/form-wizard/form-wizard.component').then(m => m.FormWizardComponent)
   },
@@ -31,16 +27,12 @@ export const routes: Routes = [
     loadComponent: () => import('./components/form-alojamiento/form-alojamiento.component').then(m => m.FormAlojamientoComponent)
   },
   {
-    path: 'formulario-alojamiento-fuera',
-    loadComponent: () => import('./components/form-alojamiento-fuera/form-alojamiento-fuera.component').then(m => m.FormAlojamientoFueraComponent)
+    path: 'formulario-detalles',
+    loadComponent: () => import('./components/form-detalles/form-detalles.component').then(m => m.FormDetallesComponent)
   },
   {
     path: 'confirmacion',
     loadComponent: () => import('./components/confirmacion/confirmacion.component').then(m => m.ConfirmacionComponent)
-  },
-  {
-    path: 'desscode',
-    loadComponent: () => import('./components/desscode/desscode.component').then(m => m.DessCodeComponent)
   },
   {
     path: 'alojamiento-info',

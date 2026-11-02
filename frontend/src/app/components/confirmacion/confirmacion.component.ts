@@ -20,12 +20,8 @@ export class ConfirmacionComponent implements OnInit {
   error       = signal('');
   ibanCopiado = signal(false);
 
-  readonly resumenTransporte = computed(() => {
-    const s = this.svc.formState();
-    const ida    = s.idaTransporte    === 'coche' ? 'Coche' : 'Autobús';
-    const vuelta = s.vueltaTransporte === 'coche' ? 'Coche' : 'Autobús';
-    return `Ida: ${ida}  ·  Vuelta: ${vuelta}`;
-  });
+  readonly resumenIda    = computed(() => this.svc.formState().idaTransporte    === 'coche' ? 'Coche' : 'Autobús');
+  readonly resumenVuelta = computed(() => this.svc.formState().vueltaTransporte === 'coche' ? 'Coche' : 'Autobús');
 
   readonly resumenAcompanantes = computed(() => {
     const a = this.svc.formState().acompanantes;

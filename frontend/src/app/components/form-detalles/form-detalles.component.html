@@ -1,0 +1,88 @@
+<!-- frontend/src/app/components/form-detalles/form-detalles.component.html -->
+<div class="fd-page">
+
+  <!-- ── Header ─────────────────────────────────────────── -->
+  <header class="fd-header">
+    <div class="fd-header-titles">
+      <span class="fd-title">Cuéntanos más</span>
+      <span class="fd-paso">Paso 4 de 4</span>
+    </div>
+    <button class="fd-close-btn" (click)="cerrar()" aria-label="Cerrar">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M1 1L13 13M13 1L1 13" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- ── Ilustración ───────────────────────────────────── -->
+  <div class="fd-img-wrap">
+    <img src="/regalos.png" class="fd-img" alt="">
+  </div>
+
+  <!-- ── Contenido ──────────────────────────────────────── -->
+  <div class="fd-content">
+
+    <!-- ¿Cómo vas a portarte? -->
+    <div class="fd-field">
+      <span class="fd-label">¿Cómo vas a portarte?</span>
+      <div class="fd-list">
+        @for (op of opcionesComportamiento; track op) {
+          <button type="button" class="fd-item"
+                  [attr.aria-pressed]="comportamiento().includes(op)"
+                  (click)="toggleComportamiento(op)">
+            <span class="fd-checkbox" [class.fd-checkbox--checked]="comportamiento().includes(op)">
+              @if (comportamiento().includes(op)) {
+                <svg width="12" height="9" viewBox="0 0 12 9" fill="none">
+                  <path d="M1 4.5L4.5 8L11 1" stroke="#000" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              }
+            </span>
+            <span class="fd-item-name">{{ op }}</span>
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- ¿Qué nos vas a regalar? -->
+    <div class="fd-field">
+      <span class="fd-label">¿Qué nos vas a regalar?</span>
+      <div class="fd-list">
+        @for (op of opcionesRegalo; track op) {
+          <button type="button" class="fd-item"
+                  [attr.aria-pressed]="regalos().includes(op)"
+                  (click)="toggleRegalo(op)">
+            <span class="fd-checkbox" [class.fd-checkbox--checked]="regalos().includes(op)">
+              @if (regalos().includes(op)) {
+                <svg width="12" height="9" viewBox="0 0 12 9" fill="none">
+                  <path d="M1 4.5L4.5 8L11 1" stroke="#000" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              }
+            </span>
+            <span class="fd-item-name">{{ op }}</span>
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- ¿Algo que añadir? -->
+    <div class="fd-field">
+      <label class="fd-label" for="fd-mensaje">¿Algo que añadir?</label>
+      <textarea id="fd-mensaje"
+                class="fd-textarea"
+                placeholder="Escribe lo que te salga del corazón…"
+                maxlength="1000"
+                [value]="mensaje()"
+                (input)="mensaje.set($any($event.target).value)"></textarea>
+    </div>
+
+  </div>
+
+  <!-- ── Botones (al final del contenido, la página hace scroll) ── -->
+  <div class="fd-footer">
+    <button class="fd-btn fd-btn--outline" (click)="anterior()">Volver al paso anterior</button>
+    <button class="fd-btn fd-btn--black"   (click)="confirmar()">¡Confirmar!</button>
+  </div>
+
+</div>

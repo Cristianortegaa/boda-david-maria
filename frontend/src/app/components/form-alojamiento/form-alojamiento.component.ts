@@ -22,6 +22,7 @@ export class FormAlojamientoComponent implements OnInit {
     effect(() => {
       this.svc.actualizarDatos({
         necesitaAlojamiento: this.quiereGestion(),
+        tipoAlojamiento:     this.diasAlojamiento(),
       });
     });
   }
@@ -31,9 +32,12 @@ export class FormAlojamientoComponent implements OnInit {
     if (s.necesitaAlojamiento !== null) {
       this.gestionaAlojamiento.set(s.necesitaAlojamiento ? 'si' : 'no');
     }
+    if (s.tipoAlojamiento === 'viernes-sabado' || s.tipoAlojamiento === 'sabado') {
+      this.diasAlojamiento.set(s.tipoAlojamiento);
+    }
   }
 
   cerrar()    { this.router.navigate(['/']); }
   anterior()  { this.router.navigate(['/formulario-transporte']); }
-  confirmar() { this.router.navigate(['/confirmacion']); }
+  continuar() { this.router.navigate(['/formulario-detalles']); }
 }
