@@ -1,5 +1,5 @@
-// Producción — rellena esta URL después de desplegar el backend en Railway
+// Producción — API en Render (render.yaml); la de Railway se apagó al acabar la prueba
 export const environment = {
   production: true,
-  apiUrl: 'https://boda-david-maria-production.up.railway.app/api'
+  apiUrl: 'https://boda-david-maria-api.onrender.com/api'
 };

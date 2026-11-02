@@ -1,6 +1,7 @@
 // frontend/src/app/components/home/home.component.ts
-import { Component, signal, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, signal, inject, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { InvitadoService } from '../../services/invitado.service';
 
 type EstadoSobre = 'cerrado' | 'abriendo' | 'abierto';
 type TipoPieza = 'petalo' | 'flor' | 'hoja' | 'arroz' | 'destello';
@@ -47,6 +48,8 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   @ViewChild('videoEl')       videoEl!: ElementRef<HTMLVideoElement>;
   @ViewChild('celebracionEl') celebracionEl!: ElementRef<HTMLDivElement>;
 
+  private invitados = inject(InvitadoService);
+
   estado    = signal<EstadoSobre>(sobreYaAbierto ? 'abierto' : 'cerrado');
   // Se queda a true tras abrir para que las animaciones de entrada de la home
   // terminen aunque el sobre ya se haya retirado
@@ -55,6 +58,8 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   private timers: ReturnType<typeof setTimeout>[] = [];
 
   ngAfterViewInit() {
+    this.invitados.despertarServidor();
+
     const v = this.videoEl.nativeElement;
     v.muted = true;
     v.play().catch(() => {});

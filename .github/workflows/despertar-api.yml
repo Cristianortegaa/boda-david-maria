@@ -1,0 +1,18 @@
+# Mantiene despierta la API de la boda en Render (plan gratuito: se duerme tras
+# 15 min sin visitas y la primera petición tarda 30-60 s en arrancar).
+# Solo de 7:00 a 1:00 (hora peninsular en invierno) para gastar ~560 de las
+# 750 h gratis al mes del workspace.
+name: Despertar la API
+
+on:
+  schedule:
+    - cron: '*/10 6-23 * * *'   # UTC
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Llamar a la API
+        run: curl -fsS -m 120 -o /dev/null https://boda-david-maria-api.onrender.com/api/regalos/opciones || echo "La API no respondió"

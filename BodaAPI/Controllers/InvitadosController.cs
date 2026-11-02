@@ -83,10 +83,12 @@ public class InvitadosController(
         return Ok(new { invitado.Id });
     }
 
-    // GET api/invitados/{id}
+    // GET api/invitados/{id}?key=SECRET
     [HttpGet("{id:int}")]
-    public async Task<IActionResult> GetById(int id)
+    public async Task<IActionResult> GetById(int id, [FromQuery] string? key)
     {
+        if (!ClaveValida(key)) return Unauthorized(new { error = "Clave incorrecta." });
+
         var inv = await db.Invitados
             .Include(i => i.Acompanantes)
             .FirstOrDefaultAsync(i => i.Id == id);
@@ -96,11 +98,9 @@ public class InvitadosController(
 
     // DELETE api/invitados/{id}?key=SECRET
     [HttpDelete("{id:int}")]
-    public async Task<IActionResult> Eliminar(int id, [FromQuery] string key)
+    public async Task<IActionResult> Eliminar(int id, [FromQuery] string? key)
     {
-        var expectedKey = config["ExcelExport:AdminKey"];
-        if (string.IsNullOrWhiteSpace(key) || key != expectedKey)
-            return Unauthorized(new { error = "Clave incorrecta." });
+        if (!ClaveValida(key)) return Unauthorized(new { error = "Clave incorrecta." });
 
         var inv = await db.Invitados.FindAsync(id);
         if (inv is null) return NotFound();
@@ -111,10 +111,12 @@ public class InvitadosController(
         return Ok(new { eliminado = true });
     }
 
-    // GET api/invitados  (uso interno / admin)
+    // GET api/invitados?key=SECRET  (panel de admin: datos personales, siempre con clave)
     [HttpGet]
-    public async Task<IActionResult> GetAll()
+    public async Task<IActionResult> GetAll([FromQuery] string? key)
     {
+        if (!ClaveValida(key)) return Unauthorized(new { error = "Clave incorrecta." });
+
         var lista = await db.Invitados
             .Include(i => i.Acompanantes)
             .OrderBy(i => i.FechaRegistro)
@@ -124,11 +126,9 @@ public class InvitadosController(
 
     // GET api/invitados/export?key=SECRET  → descarga el Excel con todos los invitados
     [HttpGet("export")]
-    public async Task<IActionResult> ExportExcel([FromQuery] string key)
+    public async Task<IActionResult> ExportExcel([FromQuery] string? key)
     {
-        var expectedKey = config["ExcelExport:AdminKey"];
-        if (string.IsNullOrWhiteSpace(key) || key != expectedKey)
-            return Unauthorized(new { error = "Clave incorrecta." });
+        if (!ClaveValida(key)) return Unauthorized(new { error = "Clave incorrecta." });
 
         var lista = await db.Invitados
             .Include(i => i.Acompanantes)
@@ -140,5 +140,12 @@ public class InvitadosController(
         return File(bytes,
             "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
             filename);
+    }
+
+    // La clave del panel de admin vive solo en la configuración del servidor
+    private bool ClaveValida(string? key)
+    {
+        var expectedKey = config["ExcelExport:AdminKey"];
+        return !string.IsNullOrWhiteSpace(expectedKey) && key == expectedKey;
     }
 }
