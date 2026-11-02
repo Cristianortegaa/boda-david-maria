@@ -6,6 +6,7 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet],
-  template: `<router-outlet />`
+  // tinte-safari: tira fija al pie para que Safari pinte su barra de abajo blanca (ver styles.scss)
+  template: `<router-outlet /><div class="tinte-safari" aria-hidden="true"></div>`
 })
 export class App {}

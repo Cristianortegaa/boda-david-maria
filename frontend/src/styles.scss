@@ -98,6 +98,29 @@ input, textarea, p, span, label {
 
 a { color: inherit; text-decoration: none; }
 
+// ── Barra de abajo de Safari (iPhone) ─────────────────────────────────────────
+// Safari 26 ignora theme-color y pinta su barra con el color de fondo de lo que
+// esté fijo justo en el borde de abajo: el sobre y la lluvia de arroz la dejaban
+// color carne. Esta tira del papel de la web, por encima de todo y casi entera
+// fuera de la pantalla (asoman 4px, del mismo color que la barra), es lo que
+// encuentra siempre. Solo en móviles con Safari.
+.tinte-safari {
+  display: none;
+  position: fixed;
+  left: 0;
+  bottom: -8px;
+  width: 100%;
+  height: 12px;
+  background-color: #FDFBFA;
+  z-index: 150;
+}
+
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 767px) {
+    .tinte-safari { display: block; }
+  }
+}
+
 // Todos los botones: sin tap highlight azul + sin delay 300ms
 button {
   cursor: pointer;
