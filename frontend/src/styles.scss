@@ -53,6 +53,14 @@
   --font-sans:   'DM Sans', sans-serif;
   --font-serif:  'Playfair Display', serif;
   --font-script: 'Dancing Script', cursive;
+
+  // Alto de pantalla real. En el iPhone 100vh mide como si no hubiera barras del
+  // navegador, así que las páginas de una sola pantalla acababan haciendo scroll.
+  --alto: 100vh;
+}
+
+@supports (height: 100svh) {
+  :root { --alto: 100svh; }
 }
 
 // ── Reset + móvil ─────────────────────────────────────────────────────────────
@@ -73,7 +81,7 @@ body {
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-height: 100vh;
+  min-height: var(--alto);
   // Evita selección accidental al pulsar rápido
   -webkit-user-select: none;
   user-select: none;

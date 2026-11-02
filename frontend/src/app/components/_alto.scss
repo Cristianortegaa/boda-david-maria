@@ -1,0 +1,17 @@
+// frontend/src/app/components/_alto.scss
+// Medidas que se encogen con el alto de la pantalla, para que las páginas de una
+// sola pantalla quepan sin scroll en cualquier iPhone.
+//
+// A 852px de alto (el lienzo de Figma) o más valen lo de Figma; a 548px (lo que
+// deja Safari en un iPhone SE con sus barras) valen lo compacto, y entre medias
+// van a la par. Como todo baja a la vez, si una página cabe en los dos extremos
+// cabe en todas las alturas intermedias.
+@use 'sass:math';
+
+$alto-compacto: 548px;
+$alto-figma: 852px;
+
+@function segun-alto($compacto, $figma) {
+  $pendiente: math.div($figma - $compacto, $alto-figma - $alto-compacto);
+  @return clamp(#{$compacto}, calc(#{$compacto} + #{$pendiente} * (var(--alto) - #{$alto-compacto})), #{$figma});
+}

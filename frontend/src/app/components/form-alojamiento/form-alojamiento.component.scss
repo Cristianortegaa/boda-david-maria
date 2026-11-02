@@ -1,9 +1,13 @@
 // frontend/src/app/components/form-alojamiento/form-alojamiento.component.scss
+@use '../alto' as *;
+
+// Hueco de los botones con el borde (40px en Figma)
+$abajo: segun-alto(12px, 40px);
 
 .fa-page {
   max-width: 430px;
   margin: 0 auto;
-  min-height: 100vh;
+  min-height: var(--alto);
   background: #FDFBFA;
   display: flex;
   flex-direction: column;
@@ -68,15 +72,16 @@
 }
 
 // ── Contenido (top:118 → margin-top:40) ──────────────────
+// Los huecos encogen en pantallas bajas para que todo quepa sin scroll
 .fa-content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 0 24px;
-  gap: 32px;
-  margin-top: 40px;
+  gap: segun-alto(8px, 32px);
+  margin-top: segun-alto(8px, 40px);
   flex: 1;
-  padding-bottom: 130px;
+  padding-bottom: calc(#{$abajo} + 122px); // los dos botones de abajo + 8px de aire
 }
 
 // Campo
@@ -166,7 +171,7 @@
 // ── Botones (top:698, gap:8) ──────────────────────────────
 .fa-footer {
   position: absolute;
-  bottom: 40px;
+  bottom: $abajo;
   left: 24px;
   right: 24px;
   display: flex;

@@ -1,9 +1,13 @@
 // frontend/src/app/components/confirmacion/confirmacion.component.scss
+@use '../alto' as *;
+
+// Huecos del bloque central (24px en Figma)
+$hueco-medio: segun-alto(12px, 24px);
 
 .conf-page {
   max-width: 430px;
   margin: 0 auto;
-  min-height: 100vh;
+  min-height: var(--alto);
   background: #FDFBFA;
   display: flex;
   flex-direction: column;
@@ -13,15 +17,16 @@
 // ── Cuerpo (foto + textos) ────────────────────────────────
 // flex:1 para que empuje banco y botón al fondo
 // Figma Form 8: bloque desde y=48.5 (etiqueta + foto, 40px, textos y tarjeta),
-// franja del IBAN 24px después y "Salir" en y=761 (38px del borde inferior)
+// franja del IBAN 24px después y "Salir" en y=761 (38px del borde inferior).
+// En pantallas bajas encogen los huecos y la foto para que quepa sin scroll.
 .conf-body {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 40px;
+  gap: segun-alto(12px, 40px);
   width: 100%;
-  padding: 48.5px 0 24px;
+  padding: segun-alto(12px, 48.5px) 0 segun-alto(8px, 24px);
 }
 
 // ── Top: etiqueta boda + foto ─────────────────────────────
@@ -63,8 +68,8 @@
 
 // Foto: 256×202, espejada horizontalmente
 .conf-foto {
-  width: 256px;
-  height: 202px;
+  height: segun-alto(86px, 202px);
+  aspect-ratio: 256 / 202;
   object-fit: cover;
   transform: scaleX(-1); // Figma: matrix(-1,0,0,1,0,0)
 }
@@ -76,7 +81,7 @@
   flex-direction: column;
   align-items: center;
   padding: 0 24px;
-  gap: 24px;
+  gap: $hueco-medio;
   width: 100%;
   box-sizing: border-box;
 }
@@ -100,14 +105,14 @@
   line-height: 19px;
   text-align: center;
   color: #000;
-  margin: -16px 0 0;   // Figma: 8px entre título y subtítulo (el bloque separa 24)
+  margin: calc(8px - #{$hueco-medio}) 0 0;   // Figma: 8px entre título y subtítulo
 }
 
 // Tarjeta resumen — Figma: #F5F5F5, border-radius:24px, 299×158
 .conf-card {
   background: #F5F5F5;
   border-radius: 24px;
-  padding: 24px 0;
+  padding: $hueco-medio 0;
   width: min(299px, calc(100% - 48px));
   display: flex;
   flex-direction: column;
@@ -149,8 +154,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 18px 10px;
-  gap: 24px;
+  padding: segun-alto(10px, 18px) 10px;
+  gap: $hueco-medio;
   width: 100%;
   margin-bottom: 14px;   // hueco mínimo con "Salir" en pantallas bajas
   background: #F3D8C5;
@@ -247,7 +252,7 @@
   gap: 8px;
   width: min(345px, calc(100% - 48px));
   height: 53px;
-  margin: auto auto 38px;   // empuja al fondo: y=761 en una pantalla de 852
+  margin: auto auto segun-alto(16px, 38px);   // empuja al fondo: y=761 en una pantalla de 852
   background: #000;
   border-radius: 100px;
   border: none;
