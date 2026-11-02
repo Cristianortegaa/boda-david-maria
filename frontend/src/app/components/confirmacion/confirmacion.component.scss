@@ -12,15 +12,16 @@
 
 // ── Cuerpo (foto + textos) ────────────────────────────────
 // flex:1 para que empuje banco y botón al fondo
+// Figma Form 8: bloque desde y=48.5 (etiqueta + foto, 40px, textos y tarjeta),
+// franja del IBAN 24px después y "Salir" en y=761 (38px del borde inferior)
 .conf-body {
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 40px;
   width: 100%;
-  padding: 40px 0 24px;
+  padding: 48.5px 0 24px;
 }
 
 // ── Top: etiqueta boda + foto ─────────────────────────────
@@ -99,7 +100,7 @@
   line-height: 19px;
   text-align: center;
   color: #000;
-  margin: 0;
+  margin: -16px 0 0;   // Figma: 8px entre título y subtítulo (el bloque separa 24)
 }
 
 // Tarjeta resumen — Figma: #F5F5F5, border-radius:24px, 299×158
@@ -151,6 +152,7 @@
   padding: 18px 10px;
   gap: 24px;
   width: 100%;
+  margin-bottom: 14px;   // hueco mínimo con "Salir" en pantallas bajas
   background: #F3D8C5;
   box-sizing: border-box;
 }
@@ -245,7 +247,7 @@
   gap: 8px;
   width: min(345px, calc(100% - 48px));
   height: 53px;
-  margin: 24px auto 40px;
+  margin: auto auto 38px;   // empuja al fondo: y=761 en una pantalla de 852
   background: #000;
   border-radius: 100px;
   border: none;

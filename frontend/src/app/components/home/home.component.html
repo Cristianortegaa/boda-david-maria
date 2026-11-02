@@ -1,30 +1,25 @@
 <!-- frontend/src/app/components/home/home.component.html -->
 
-<div class="home" [class.home--revelando]="estado() === 'abriendo'">
+<div class="home" [class.home--revelando]="revelando()" [class.home--bloqueada]="estado() !== 'abierto'">
 
-  <!-- ── SOLAPA SUPERIOR DEL SOBRE ───────────────────────────
-       Con el sobre cerrado ocupa media pantalla; al abrirlo sube
-       y se queda arriba del vídeo con el título (diseño V2). -->
+  <!-- ── CABECERA EN V (diseño V2) ───────────────────────────
+       La punta de solapa con el título sobre el vídeo. Con el sobre
+       cerrado está oculta y baja a su sitio al final de la apertura. -->
   <div class="solapa"
-       [class.solapa--cerrada]="estado() === 'cerrado'"
-       [class.solapa--abriendo]="estado() === 'abriendo'">
-    <svg class="solapa-svg" viewBox="0 0 393 380" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0 0H393V209L230.4 350.5Q196.5 380 162.6 350.5L0 209Z" fill="#FDFBFA"/>
+       [class.solapa--oculta]="estado() === 'cerrado'"
+       [class.solapa--entrando]="estado() === 'abriendo'">
+    <svg class="solapa-svg" viewBox="0 0 393 146" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M50.7 0L163.27 112.57A47 47 0 0 0 229.73 112.57L342.3 0Z" fill="#FDFBFA"/>
     </svg>
     <div class="solapa-titulo">
       <span class="solapa-pre">Boda de</span>
       <span class="solapa-names">María y David</span>
     </div>
-    @if (estado() !== 'abierto') {
-      <button class="sobre-btn" (click)="abrirSobre()" [disabled]="estado() === 'abriendo'">
-        Abrir mi invitación
-      </button>
-    }
   </div>
 
   <!-- ── HERO VIDEO ──────────────────────────────────────── -->
   <div class="hero-video">
-    <video #videoEl class="couple-video" src="pareja.mp4" autoplay loop muted playsinline></video>
+    <video #videoEl class="couple-video" src="pareja_sinrayas.mp4" autoplay loop muted playsinline></video>
   </div>
 
   <!-- ── CONTENIDO PRINCIPAL ─────────────────────────────── -->
@@ -32,17 +27,17 @@
 
     <!-- Fecha + botones -->
     <div class="date-section">
-      <div class="hero-date-wrap">
+      <div class="hero-date-wrap revela" style="--i: 0">
         <span class="hero-date">1 de mayo · 2027</span>
       </div>
       <div class="hero-cta">
-        <a routerLink="/no-asiste" class="btn btn--outline btn--full">No puedo ir</a>
-        <a routerLink="/si-asiste" class="btn btn--olive btn--full">Confirmar asistencia</a>
+        <a routerLink="/no-asiste" class="btn btn--outline btn--full revela" style="--i: 1">No puedo ir</a>
+        <a routerLink="/si-asiste" class="btn btn--olive btn--full revela" style="--i: 2">Confirmar asistencia</a>
       </div>
     </div>
 
     <!-- Divider -->
-    <div class="section-divider">
+    <div class="section-divider revela" style="--i: 3">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M7 1.5v7" stroke="#000" stroke-width="2.2" stroke-linecap="round"/>
         <path d="M3 8.5l4 4 4-4" stroke="#000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -59,7 +54,7 @@
 
       <!-- 1: imagen izq, texto der -->
       <div class="prog-item">
-        <img src="prog-1.png" class="prog-img" alt="Iglesia">
+        <img src="prog-1.png" class="prog-img prog-img--142" alt="Iglesia">
         <div class="prog-info prog-r">
           <span class="prog-time">a las 12:00h</span>
           <span class="prog-loc">
@@ -84,7 +79,7 @@
           </span>
           <span class="prog-title">Sale el bus al Cigarral</span>
         </div>
-        <img src="prog-2.png" class="prog-img" alt="Bus">
+        <img src="prog-2.png" class="prog-img prog-img--137" alt="Bus">
       </div>
 
       <!-- 3: imagen izq, texto der -->
@@ -106,7 +101,7 @@
         <div class="prog-info prog-l">
           <span class="prog-title">¡Saca los pasos prohibidos!</span>
         </div>
-        <img src="prog-4.png" class="prog-img" alt="Baile">
+        <img src="prog-4.png" class="prog-img prog-img--137" alt="Baile">
       </div>
 
       <!-- 5: imagen izq, texto der -->
@@ -124,7 +119,7 @@
           <span class="prog-time">Hasta que salga el sol</span>
           <span class="prog-title">Seguimos los fuertes</span>
         </div>
-        <img src="prog-6.png" class="prog-img" alt="Fiesta">
+        <img src="prog-6.png" class="prog-img prog-img--137" alt="Fiesta">
       </div>
 
       <!-- CTAs finales -->
@@ -150,9 +145,7 @@
       </div>
       <p class="dress-text">
         Con lo que te pongas, seguro que vas increíble.
-        María se va a llevar los ojos de todos.
-      </p>
-      <p class="dress-text">
+        María se va a llevar los ojos de todos.<br><br>
         Para que te sirva de referencia, David irá con lo mejor de Primark:
       </p>
       <img src="vestido-hero.png" class="dress-img" alt="Pijama de Minion">
@@ -189,17 +182,60 @@
 
 </div>
 
-<!-- ── RESTO DEL SOBRE (fondo, solapas laterales e inferior) ──
-     Solo existe hasta que termina la animación de apertura. -->
+<!-- ── SOBRE ───────────────────────────────────────────────
+     Ocupa toda la pantalla hasta que termina la apertura. De atrás a delante:
+     papel, forro, luz, carta, solapas laterales, solapa inferior y tapa
+     (la solapa superior, que se dobla sobre su bisagra). -->
 @if (estado() !== 'abierto') {
-  <div class="sobre" [class.sobre--abriendo]="estado() === 'abriendo'" aria-hidden="true">
-    <div class="sobre-fondo"></div>
-    <div class="sobre-lado sobre-lado--izq"></div>
-    <div class="sobre-lado sobre-lado--der"></div>
-    <div class="sobre-abajo">
+  <div class="sobre" [class.sobre--abriendo]="estado() === 'abriendo'">
+    <div class="sobre-fondo" aria-hidden="true"></div>
+    <div class="sobre-forro" aria-hidden="true"></div>
+    <div class="sobre-luz" aria-hidden="true"></div>
+
+    <!-- La carta que sale del sobre y se convierte en la invitación -->
+    <div class="carta" aria-hidden="true">
+      <span class="carta-pre">Boda de</span>
+      <span class="carta-nombres">María y David</span>
+      <span class="carta-linea"></span>
+      <span class="carta-fecha">1 de mayo · 2027</span>
+      <span class="carta-corazon">♥</span>
+    </div>
+
+    <div class="sobre-lado sobre-lado--izq" aria-hidden="true"></div>
+    <div class="sobre-lado sobre-lado--der" aria-hidden="true"></div>
+    <div class="sobre-abajo" aria-hidden="true">
       <svg class="sobre-abajo-svg" viewBox="0 0 393 1200" preserveAspectRatio="none">
-        <path d="M0 1200H393V171L230.4 29.5Q196.5 0 162.6 29.5L0 171Z" fill="#FDFBFA"/>
+        <path d="M0 1200H393V196.5L229.73 33.23A47 47 0 0 0 163.27 33.23L0 196.5Z" fill="#FDFBFA"/>
       </svg>
     </div>
+
+    <!-- Tapa: cara exterior (papel + título) y cara interior (forro) -->
+    <div class="tapa" aria-hidden="true">
+      <svg class="tapa-cara" viewBox="0 0 393 177" preserveAspectRatio="none">
+        <path d="M0 0H393L229.73 163.27A47 47 0 0 1 163.27 163.27Z" fill="#FDFBFA"/>
+      </svg>
+      <div class="tapa-titulo">
+        <span class="solapa-pre">Boda de</span>
+        <span class="solapa-names">María y David</span>
+      </div>
+      <svg class="tapa-dentro" viewBox="0 0 393 177" preserveAspectRatio="none">
+        <defs>
+          <pattern id="forro-puntos" width="12" height="12" patternUnits="userSpaceOnUse">
+            <rect width="12" height="12" fill="#F3D8C5"/>
+            <circle cx="6" cy="6" r="1.3" fill="#E8B4A0"/>
+          </pattern>
+        </defs>
+        <path d="M0 0H393L229.73 163.27A47 47 0 0 1 163.27 163.27Z" fill="url(#forro-puntos)"/>
+      </svg>
+    </div>
+
+    <div class="sobre-bisagra" aria-hidden="true"></div>
+
+    <button class="sobre-btn" (click)="abrirSobre()" [disabled]="estado() === 'abriendo'">
+      Abrir mi invitación
+    </button>
   </div>
 }
+
+<!-- Pétalos, flores y arroz de la apertura (las piezas se crean y se borran desde el TS) -->
+<div class="celebracion" #celebracionEl aria-hidden="true"></div>
