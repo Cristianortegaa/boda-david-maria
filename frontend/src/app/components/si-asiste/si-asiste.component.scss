@@ -34,15 +34,17 @@
 }
 
 // ── Contenido centrado verticalmente ─────────────────────
-// Figma: Frame 1000008276 (330px alto) centrado → top ≈ 208px
+// Figma: Frame 1000008276 con top 208px en una pantalla de 852 (77px de
+// cabecera + 131). En pantallas más bajas sube para no chocar con el botón.
 .sa-center {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 12px;
-  padding-bottom: 53px; // espacio para el botón fijo
+  padding-top: clamp(16px, calc(100vh - 721px), 131px);
+  padding-bottom: 113px; // espacio para el botón fijo
 }
 
 // Imagen 256×202
@@ -85,17 +87,19 @@
   width: 100%;
 }
 
-// Descripción — Gochi Hand 16px, rojo #A21515
+// Descripción — Gochi Hand 16px, negra con la primera frase en rojo #A21515
 .sa-desc {
   font-family: 'Gochi Hand', cursive;
   font-size: 16px;
   font-weight: 400;
   line-height: 19px;
   text-align: center;
-  color: #A21515;
+  color: #000;
   margin: 0;
   width: 100%;
 }
+
+.sa-desc-destacado { color: #A21515; }
 
 // ── Botón fijo abajo (top:759 en Figma → bottom:40px) ────
 .sa-footer {

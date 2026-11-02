@@ -87,7 +87,9 @@
   font-family: 'Gochi Hand', cursive;
   font-size: 18px;
   font-weight: 400;
-  line-height: 21px;
+  line-height: 24px;     // en Figma las etiquetas de este paso miden 24px…
+
+  .fw-field--kids & { line-height: 21px; }   // …salvo la de los niños (bloque de 100px)
   color: #000;
 }
 

@@ -1,5 +1,7 @@
 // frontend/src/app/components/form-detalles/form-detalles.component.scss
 // Figma V2 "Regalos" (Cuéntanos más · Paso 4 de 4), 393×1256 — la página hace scroll
+// Ilustración 245×194 en y=82; contenido desde y=291 con 24px entre bloques;
+// botones 24px después y 57px de margen inferior.
 
 .fd-page {
   max-width: 430px;
@@ -64,12 +66,12 @@
 .fd-img-wrap {
   display: flex;
   justify-content: center;
-  margin-top: 8px;
+  margin-top: 4px;       // 24 + 54 de cabecera + 4 = 82
 }
 
 .fd-img {
-  width: 200px;
-  height: auto;
+  width: 245px;
+  height: 194px;
   display: block;
 }
 
@@ -79,7 +81,7 @@
   flex-direction: column;
   padding: 0 24px;
   gap: 24px;
-  margin-top: 16px;
+  margin-top: 15px;      // 82 + 194 + 15 = 291
 }
 
 .fd-field {
@@ -89,11 +91,12 @@
   width: 100%;
 }
 
+// Etiquetas de este paso: Gochi Hand 20px en caja de 24px
 .fd-label {
   font-family: 'Gochi Hand', cursive;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 400;
-  line-height: 21px;
+  line-height: 24px;
   color: #000;
 }
 
@@ -110,7 +113,7 @@
   flex-direction: row;
   align-items: center;
   gap: 10px;
-  min-height: 48px;
+  height: 48px;          // Figma: filas de 48px con los bordes compartidos
   width: 100%;
   padding: 12px 16px;
   margin-top: -1px;
@@ -155,10 +158,13 @@
   color: #000;
 }
 
+// "¿Algo que añadir?": etiqueta de 24px, 8px y caja de 154px (bloque de 186)
+.fd-field--texto { gap: 8px; }
+
 .fd-textarea {
   box-sizing: border-box;
   width: 100%;
-  height: 120px;
+  height: 154px;
   border: 1px solid #6A6B4B;
   border-radius: 8px;
   padding: 12px 16px;
@@ -180,7 +186,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 32px 24px 40px;
+  padding: 24px 24px 57px;
 }
 
 .fd-btn {
