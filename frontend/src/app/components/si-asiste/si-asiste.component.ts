@@ -1,11 +1,12 @@
 // frontend/src/app/components/si-asiste/si-asiste.component.ts
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { EncajarDirective } from '../encajar.directive';
 
 @Component({
   selector: 'app-si-asiste',
   standalone: true,
-  imports: [],
+  imports: [EncajarDirective],
   templateUrl: './si-asiste.component.html',
   styleUrl: './si-asiste.component.scss'
 })

@@ -6,7 +6,7 @@
 .fd-page {
   max-width: 430px;
   margin: 0 auto;
-  min-height: 100vh;
+  min-height: var(--alto);
   background: #FDFBFA;
   display: flex;
   flex-direction: column;

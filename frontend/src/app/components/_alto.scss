@@ -1,0 +1,39 @@
+// frontend/src/app/components/_alto.scss
+// Utilidades para las páginas de una sola pantalla (todas menos la home y
+// "Cuéntanos más"), para que quepan sin scroll en cualquier móvil.
+@use 'sass:math';
+
+// La página ocupa justo lo que se ve, con las barras del navegador o sin ellas,
+// y el documento no tiene nada que desplazar ni huecos de fondo debajo. Si en un
+// móvil diminuto no cupiera, se desplaza por dentro en vez de cortarse.
+@mixin pantalla-fija {
+  position: fixed;
+  inset: 0;
+  max-width: 430px;
+  margin: 0 auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;   // sin barra que le robe ancho si alguna vez hiciera falta desplazar
+}
+
+// Medidas que se encogen con el alto de la pantalla. A 852px de alto (el lienzo
+// de Figma) o más valen lo de Figma; a 548px (un iPhone SE con las barras de
+// Safari) lo compacto, y a 460px (los móviles más pequeños) el mínimo, que por
+// defecto es un 70% de lo compacto. Entre medias van a la par, así que si una
+// página cabe en esos altos cabe en todos los intermedios.
+$alto-minimo: 460px;
+$alto-compacto: 548px;
+$alto-figma: 852px;
+
+@function segun-alto($compacto, $figma, $minimo: $compacto * 0.7) {
+  $pendiente: math.div($figma - $compacto, $alto-figma - $alto-compacto);
+  $pendiente-baja: math.div($compacto - $minimo, $alto-compacto - $alto-minimo);
+  $normal: calc(#{$compacto} + #{$pendiente} * (var(--alto) - #{$alto-compacto}));
+  $pequeno: calc(#{$minimo} + #{$pendiente-baja} * (var(--alto) - #{$alto-minimo}));
+  // Los dos tramos se cruzan en el alto compacto: por encima manda $normal y por debajo $pequeno
+  @if $pendiente-baja > $pendiente {
+    @return clamp(#{$minimo}, min(#{$normal}, #{$pequeno}), #{$figma});
+  }
+  @return clamp(#{$minimo}, max(#{$normal}, #{$pequeno}), #{$figma});
+}

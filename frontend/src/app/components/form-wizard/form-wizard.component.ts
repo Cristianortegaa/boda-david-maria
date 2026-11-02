@@ -2,11 +2,12 @@
 import { Component, inject, signal, OnInit, effect } from '@angular/core';
 import { Router } from '@angular/router';
 import { InvitadoService, AcompananteForm } from '../../services/invitado.service';
+import { EncajarDirective } from '../encajar.directive';
 
 @Component({
   selector: 'app-form-wizard',
   standalone: true,
-  imports: [],
+  imports: [EncajarDirective],
   templateUrl: './form-wizard.component.html',
   styleUrl: './form-wizard.component.scss'
 })

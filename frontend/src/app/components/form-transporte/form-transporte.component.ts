@@ -2,11 +2,12 @@
 import { Component, inject, signal, OnInit, effect } from '@angular/core';
 import { Router } from '@angular/router';
 import { InvitadoService } from '../../services/invitado.service';
+import { EncajarDirective } from '../encajar.directive';
 
 @Component({
   selector: 'app-form-transporte',
   standalone: true,
-  imports: [],
+  imports: [EncajarDirective],
   templateUrl: './form-transporte.component.html',
   styleUrl: './form-transporte.component.scss'
 })

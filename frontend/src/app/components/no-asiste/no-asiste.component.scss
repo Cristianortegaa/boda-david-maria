@@ -1,13 +1,11 @@
 // frontend/src/app/components/no-asiste/no-asiste.component.scss
+@use '../alto' as *;
 
 .na-page {
-  max-width: 430px;
-  margin: 0 auto;
-  min-height: 100vh;
+  @include pantalla-fija;
   background: #FDFBFA;
   display: flex;
   flex-direction: column;
-  position: relative;
 }
 
 // ── Header (solo botón volver, sin título) ───────────────
@@ -47,10 +45,10 @@
   padding-bottom: 95px;  // botón fijo de abajo + ajuste a la posición de Figma
 }
 
-// Imagen 256×202
+// Imagen 256×202 (más pequeña en pantallas bajas, para que quepa sin scroll)
 .na-img-wrap {
-  width: 256px;
-  height: 202px;
+  height: segun-alto(150px, 202px);
+  aspect-ratio: 256 / 202;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -58,8 +56,8 @@
 }
 
 .na-img {
-  width: 256px;
-  height: 202px;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   display: block;
 }
@@ -157,14 +155,12 @@
 // Figma "Success no viene": etiqueta en y=214, ilustración pegada debajo
 // (256×202) y el texto 43px más abajo, en Gochi 30px a dos líneas.
 .na-success {
-  max-width: 430px;
-  margin: 0 auto;
-  min-height: 100vh;
+  @include pantalla-fija;
   background: #FDFBFA;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: clamp(48px, calc(100vh - 638px), 214px) 24px 48px;
+  padding: clamp(48px, calc(var(--alto) - 638px), 214px) 24px 48px;
   box-sizing: border-box;
   animation: fadeSlideUp 0.5s cubic-bezier(0.16,1,0.3,1) both;
 }

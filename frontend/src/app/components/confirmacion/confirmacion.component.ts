@@ -2,11 +2,12 @@
 import { Component, inject, computed, signal, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { InvitadoService } from '../../services/invitado.service';
+import { EncajarDirective } from '../encajar.directive';
 
 @Component({
   selector: 'app-confirmacion',
   standalone: true,
-  imports: [],
+  imports: [EncajarDirective],
   templateUrl: './confirmacion.component.html',
   styleUrl: './confirmacion.component.scss'
 })
