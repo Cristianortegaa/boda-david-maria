@@ -58,7 +58,7 @@ export class FormWizardComponent implements OnInit {
     if (n1518.length) this.ninos1518.set(n1518.length);
   }
 
-  irAtras() { this.router.navigate(['/si-asiste']); }
+  cerrar() { this.router.navigate(['/']); }
 
   cambiar314(d: number)  { this.ninos314.update(v => Math.max(0, v + d)); }
   cambiar1518(d: number) { this.ninos1518.update(v => Math.max(0, v + d)); }

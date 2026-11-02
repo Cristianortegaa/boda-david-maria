@@ -105,10 +105,20 @@
               </div>
             }
             <div class="guest-tags">
-              @if (inv.necesitaBus) { <span class="tag">🚌 Bus</span> }
-              @if (inv.necesitaAlojamiento) { <span class="tag">🏨 Alojamiento</span> }
+              @if (inv.idaTransporte === 'autobus') { <span class="tag">🚌 Bus ida</span> }
+              @if (inv.vueltaTransporte === 'autobus') { <span class="tag">🚌 Bus vuelta</span> }
+              @if (!inv.idaTransporte && inv.necesitaBus) { <span class="tag">🚌 Bus</span> }
+              @if (inv.necesitaAlojamiento) {
+                <span class="tag">🏨 Alojamiento{{ inv.tipoAlojamiento === 'sabado' ? ' (sábado)' : inv.tipoAlojamiento === 'viernes-sabado' ? ' (viernes y sábado)' : '' }}</span>
+              }
               @if (inv.alergias) { <span class="tag tag--warn">⚠️ {{ inv.alergias }}</span> }
             </div>
+            @if (inv.comportamiento) {
+              <div class="guest-acomp">🎭 {{ inv.comportamiento }}</div>
+            }
+            @if (inv.mensaje) {
+              <div class="guest-acomp">💌 “{{ inv.mensaje }}”</div>
+            }
           </div>
         }
       }

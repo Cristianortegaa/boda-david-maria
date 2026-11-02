@@ -13,14 +13,42 @@
 // ── Header ────────────────────────────────────────────────
 .fw-header {
   display: flex;
+  flex-direction: row;
   align-items: center;
   padding: 0 24px;
-  height: 53px;
+  gap: 16px;
+  height: 54px;
   margin-top: 24px;
   flex-shrink: 0;
 }
 
-.fw-back-btn {
+.fw-header-titles {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+// "Datos personales" — Gochi Hand 30px
+.fw-title {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 35px;
+  color: #000;
+}
+
+// "Paso 1 de 4" — Gochi Hand 16px
+.fw-paso {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  color: #000;
+}
+
+.fw-close-btn {
   width: 53px;
   height: 53px;
   background: #E5E3E6;
@@ -33,15 +61,14 @@
   flex-shrink: 0;
 }
 
-// ── Contenido principal (top:118 → margin-top:41px tras header) ──
-// header: margin-top:24 + height:53 = 77px; 118-77=41px
+// ── Contenido principal (top:118 → margin-top:40px tras header) ──
 .fw-content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 0 24px;
   gap: 32px;
-  margin-top: 41px;
+  margin-top: 40px;
   flex: 1;
   padding-bottom: 100px; // espacio para el botón fijo
 }

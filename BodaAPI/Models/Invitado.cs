@@ -18,7 +18,19 @@ public class Invitado
     public bool NecesitaAlojamiento { get; set; }
 
     [MaxLength(100)]
-    public string? TipoAlojamiento { get; set; }  // "hotel", "casa_rural", etc.
+    public string? TipoAlojamiento { get; set; }  // "viernes-sabado" | "sabado"
+
+    [MaxLength(20)]
+    public string? IdaTransporte { get; set; }     // "autobus" | "coche"
+
+    [MaxLength(20)]
+    public string? VueltaTransporte { get; set; }  // "autobus" | "coche"
+
+    [MaxLength(500)]
+    public string? Comportamiento { get; set; }    // "¿Cómo vas a portarte?" (opciones separadas por coma)
+
+    [MaxLength(1000)]
+    public string? Mensaje { get; set; }           // "¿Algo que añadir?"
 
     public bool Asiste { get; set; } = true;
 

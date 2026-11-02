@@ -11,6 +11,11 @@ interface InvitadoAdmin {
   alergias?: string;
   necesitaBus: boolean;
   necesitaAlojamiento: boolean;
+  tipoAlojamiento?: string;
+  idaTransporte?: string;
+  vueltaTransporte?: string;
+  comportamiento?: string;
+  mensaje?: string;
   acompanantes: { nombre: string; tipo: string }[];
 }
 

@@ -19,6 +19,18 @@ public class InvitadoRegistroDto
     [MaxLength(100)]
     public string? TipoAlojamiento { get; set; }
 
+    [MaxLength(20)]
+    public string? IdaTransporte { get; set; }
+
+    [MaxLength(20)]
+    public string? VueltaTransporte { get; set; }
+
+    [MaxLength(500)]
+    public string? Comportamiento { get; set; }
+
+    [MaxLength(1000)]
+    public string? Mensaje { get; set; }
+
     public List<AcompananteDto> Acompanantes { get; set; } = [];
 }
 

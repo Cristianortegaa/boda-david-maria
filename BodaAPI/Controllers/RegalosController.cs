@@ -13,7 +13,7 @@ public class RegalosController(ApplicationDbContext db) : ControllerBase
 {
     private static readonly List<string> OpcionesDisponibles =
     [
-        "Viaje de novios",
+        "Viaje de novios a Albacete",
         "La granja de PinyPon",
         "Tablero de Parchís y Oca",
         "Bote de proteínas",

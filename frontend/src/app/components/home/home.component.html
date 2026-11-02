@@ -1,84 +1,33 @@
 <!-- frontend/src/app/components/home/home.component.html -->
 
-<!-- ── BURGER MENU FULLSCREEN ──────────────────────── -->
-@if (menuOpen()) {
-<div class="burger-screen">
+<div class="home" [class.home--revelando]="estado() === 'abriendo'">
 
-  <!-- Header -->
-  <div class="burger-header">
-    <div class="burger-spacer"></div>
-    <button class="burger-close-btn" (click)="menuOpen.set(false)" aria-label="Cerrar">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M6 6l12 12M18 6L6 18" stroke="#000" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-    </button>
+  <!-- ── SOLAPA SUPERIOR DEL SOBRE ───────────────────────────
+       Con el sobre cerrado ocupa media pantalla; al abrirlo sube
+       y se queda arriba del vídeo con el título (diseño V2). -->
+  <div class="solapa"
+       [class.solapa--cerrada]="estado() === 'cerrado'"
+       [class.solapa--abriendo]="estado() === 'abriendo'">
+    <svg class="solapa-svg" viewBox="0 0 393 380" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 0H393V209L230.4 350.5Q196.5 380 162.6 350.5L0 209Z" fill="#FDFBFA"/>
+    </svg>
+    <div class="solapa-titulo">
+      <span class="solapa-pre">Boda de</span>
+      <span class="solapa-names">María y David</span>
+    </div>
+    @if (estado() !== 'abierto') {
+      <button class="sobre-btn" (click)="abrirSobre()" [disabled]="estado() === 'abriendo'">
+        Abrir mi invitación
+      </button>
+    }
   </div>
 
-  <!-- Nav links -->
-  <nav class="burger-nav">
-
-    <!-- Activo: Cómo será nuestro día -->
-    <div class="burger-nav-item burger-nav-item--active">
-      <span class="burger-dot"></span>
-      <a routerLink="/" (click)="menuOpen.set(false)" class="burger-link burger-link--active">Cómo será nuestro día</a>
-    </div>
-
-    <!-- Lista de regalos + badge + flecha -->
-    <div class="burger-nav-item">
-      <div class="burger-link-row">
-        <a routerLink="/regalos" (click)="menuOpen.set(false)" class="burger-link">Lista de regalos</a>
-        <span class="burger-badge">Mini juego</span>
-      </div>
-      <svg class="burger-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M4 8h8M9 4l4 4-4 4" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-
-    <!-- Cómo ir vestido + flecha -->
-    <div class="burger-nav-item">
-      <a routerLink="/desscode" (click)="menuOpen.set(false)" class="burger-link">Cómo ir vestido</a>
-      <svg class="burger-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M4 8h8M9 4l4 4-4 4" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-
-  </nav>
-
-  <!-- Footer con líneas y título -->
-  <div class="burger-footer">
-    <div class="burger-footer-line"></div>
-    <div class="burger-footer-title">
-      <span class="burger-footer-pre">Boda de</span>
-      <span class="burger-footer-names">María y David</span>
-    </div>
-    <div class="burger-footer-line"></div>
-  </div>
-
-  <!-- Fecha -->
-  <div class="burger-date">1 de mayo · 2027</div>
-
-</div>
-}
-
-<div class="home">
-
-  <!-- ── HEADER ───────────────────────────────────── -->
-  <header class="home-header">
-    <div class="header-title">
-      <span class="header-pre">Boda de</span>
-      <span class="header-names">María y David</span>
-    </div>
-    <button class="burger-btn" (click)="menuOpen.set(true)" aria-label="Menú">
-      <span></span><span></span><span></span>
-    </button>
-  </header>
-
-  <!-- ── HERO VIDEO ────────────────────────────────── -->
+  <!-- ── HERO VIDEO ──────────────────────────────────────── -->
   <div class="hero-video">
     <video #videoEl class="couple-video" src="pareja.mp4" autoplay loop muted playsinline></video>
   </div>
 
-  <!-- ── CONTENIDO PRINCIPAL ──────────────────────── -->
+  <!-- ── CONTENIDO PRINCIPAL ─────────────────────────────── -->
   <div class="home-content">
 
     <!-- Fecha + botones -->
@@ -87,8 +36,8 @@
         <span class="hero-date">1 de mayo · 2027</span>
       </div>
       <div class="hero-cta">
-        <a routerLink="/si-asiste" class="btn btn--green btn--full">Confirmar asistencia</a>
         <a routerLink="/no-asiste" class="btn btn--outline btn--full">No puedo ir</a>
+        <a routerLink="/si-asiste" class="btn btn--olive btn--full">Confirmar asistencia</a>
       </div>
     </div>
 
@@ -105,35 +54,35 @@
       </svg>
     </div>
 
-    <!-- ── PROGRAMA ──────────────────────────────────── -->
+    <!-- ── PROGRAMA ────────────────────────────────────── -->
     <section class="programa">
 
       <!-- 1: imagen izq, texto der -->
       <div class="prog-item">
         <img src="prog-1.png" class="prog-img" alt="Iglesia">
         <div class="prog-info prog-r">
-          <span class="prog-time">a las 12:00</span>
-          <span class="prog-title">Iglesia de Almorox</span>
+          <span class="prog-time">a las 12:00h</span>
           <span class="prog-loc">
             C. Real, 15 Almorox
             <svg width="12" height="12" viewBox="0 0 10 12" fill="none">
               <path d="M5 0C2.24 0 0 2.24 0 5c0 3.75 5 7 5 7s5-3.25 5-7c0-2.76-2.24-5-5-5Zm0 6.5A1.5 1.5 0 1 1 5 3.5a1.5 1.5 0 0 1 0 3Z" fill="#000"/>
             </svg>
           </span>
+          <span class="prog-title">Iglesia San Cristobal</span>
         </div>
       </div>
 
       <!-- 2: texto izq, imagen der -->
       <div class="prog-item">
         <div class="prog-info prog-l">
-          <span class="prog-time">a las 14:00</span>
-          <span class="prog-title">Sale el bus al Cigarral</span>
+          <span class="prog-time">a las 14:00h</span>
           <span class="prog-loc">
             <svg width="12" height="12" viewBox="0 0 10 12" fill="none">
               <path d="M5 0C2.24 0 0 2.24 0 5c0 3.75 5 7 5 7s5-3.25 5-7c0-2.76-2.24-5-5-5Zm0 6.5A1.5 1.5 0 1 1 5 3.5a1.5 1.5 0 0 1 0 3Z" fill="#000"/>
             </svg>
-            Cigarral del Ángel
+            C. Real, 15 Almorox
           </span>
+          <span class="prog-title">Sale el bus al Cigarral</span>
         </div>
         <img src="prog-2.png" class="prog-img" alt="Bus">
       </div>
@@ -142,21 +91,19 @@
       <div class="prog-item">
         <img src="prog-3.png" class="prog-img prog-img--tall" alt="Banquete">
         <div class="prog-info prog-r">
-          <span class="prog-time">a las 15:00</span>
-          <span class="prog-title">Empezamos con el ñam ñam</span>
           <span class="prog-loc">
-            Cigarral del Ángel
             <svg width="12" height="12" viewBox="0 0 10 12" fill="none">
               <path d="M5 0C2.24 0 0 2.24 0 5c0 3.75 5 7 5 7s5-3.25 5-7c0-2.76-2.24-5-5-5Zm0 6.5A1.5 1.5 0 1 1 5 3.5a1.5 1.5 0 0 1 0 3Z" fill="#000"/>
             </svg>
+            Cigarral del Ángel, Toledo
           </span>
+          <span class="prog-title">Empezamos con el ñam ñam</span>
         </div>
       </div>
 
       <!-- 4: texto izq, imagen der -->
       <div class="prog-item">
         <div class="prog-info prog-l">
-          <span class="prog-time">a las 19:00</span>
           <span class="prog-title">¡Saca los pasos prohibidos!</span>
         </div>
         <img src="prog-4.png" class="prog-img" alt="Baile">
@@ -166,15 +113,15 @@
       <div class="prog-item">
         <img src="prog-5.png" class="prog-img" alt="Bus vuelta">
         <div class="prog-info prog-r">
-          <span class="prog-time">a las 22:00</span>
-          <span class="prog-title">Bus de vuelta al pueblo...</span>
+          <span class="prog-time">a las 23:00h</span>
+          <span class="prog-title">Bus de vuelta al pueblo…</span>
         </div>
       </div>
 
       <!-- 6: texto izq, imagen der -->
       <div class="prog-item">
         <div class="prog-info prog-l">
-          <span class="prog-time">¡Hasta que salga el sol!</span>
+          <span class="prog-time">Hasta que salga el sol</span>
           <span class="prog-title">Seguimos los fuertes</span>
         </div>
         <img src="prog-6.png" class="prog-img" alt="Fiesta">
@@ -182,16 +129,36 @@
 
       <!-- CTAs finales -->
       <div class="prog-cta">
-        <a routerLink="/si-asiste" class="btn btn--green btn--full">Confirmar asistencia</a>
+        <a routerLink="/si-asiste" class="btn btn--olive btn--full">Confirmar asistencia</a>
         <a routerLink="/no-asiste" class="btn btn--outline btn--full">No puedo ir</a>
       </div>
 
     </section>
 
-    <!-- Línea separadora -->
-    <div class="home-line"></div>
+    <!-- ── DRESS CODE ──────────────────────────────────── -->
+    <section class="dress-code">
+      <div class="dress-title">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 1.5v7" stroke="#000" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M3 8.5l4 4 4-4" stroke="#000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Dress code</span>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 1.5v7" stroke="#000" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M3 8.5l4 4 4-4" stroke="#000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <p class="dress-text">
+        Con lo que te pongas, seguro que vas increíble.
+        María se va a llevar los ojos de todos.
+      </p>
+      <p class="dress-text">
+        Para que te sirva de referencia, David irá con lo mejor de Primark:
+      </p>
+      <img src="vestido-hero.png" class="dress-img" alt="Pijama de Minion">
+    </section>
 
-    <!-- ── CRÉDITOS ──────────────────────────────────── -->
+    <!-- ── CRÉDITOS ────────────────────────────────────── -->
     <div class="credits">
       <div class="credits-row">
         <div class="credits-person">
@@ -218,26 +185,21 @@
       <span class="credits-footer">Os esperamos!!</span>
     </div>
 
-    <!-- ── CUENTA BANCARIA ───────────────────────────── -->
-    <div class="bank-section">
-      <p class="bank-title">Si quieres ayudarnos en esta aventura:</p>
-      <div class="bank-row">
-        <span class="bank-iban">ES29 1583 0001 1190 8967 3376</span>
-        <button class="bank-copy" (click)="copyIban()">Copiar</button>
-      </div>
-    </div>
-
   </div><!-- /home-content -->
 
 </div>
 
-<!-- Toast copiado (fixed, nunca se corta en móvil) -->
-@if (ibanCopiado()) {
-  <div class="iban-toast">
-    <svg width="16" height="13" viewBox="0 0 16 13" fill="none">
-      <path d="M1.5 6.5L6 11L14.5 1.5" stroke="#6A6B4B" stroke-width="2.5"
-            stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    copiado en el portapapeles
+<!-- ── RESTO DEL SOBRE (fondo, solapas laterales e inferior) ──
+     Solo existe hasta que termina la animación de apertura. -->
+@if (estado() !== 'abierto') {
+  <div class="sobre" [class.sobre--abriendo]="estado() === 'abriendo'" aria-hidden="true">
+    <div class="sobre-fondo"></div>
+    <div class="sobre-lado sobre-lado--izq"></div>
+    <div class="sobre-lado sobre-lado--der"></div>
+    <div class="sobre-abajo">
+      <svg class="sobre-abajo-svg" viewBox="0 0 393 1200" preserveAspectRatio="none">
+        <path d="M0 1200H393V171L230.4 29.5Q196.5 0 162.6 29.5L0 171Z" fill="#FDFBFA"/>
+      </svg>
+    </div>
   </div>
 }

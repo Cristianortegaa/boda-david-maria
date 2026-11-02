@@ -19,7 +19,8 @@ public class ExcelExportService(ILogger<ExcelExportService> logger) : IExcelExpo
         // Cabeceras
         string[] headers = ["#", "Nombre", "Acompañantes", "Total personas",
                              "Alergias", "Necesita bus", "Necesita alojamiento",
-                             "Tipo alojamiento", "Fecha registro"];
+                             "Tipo alojamiento", "Ida", "Vuelta",
+                             "Cómo se va a portar", "Mensaje", "Fecha registro"];
         for (int i = 0; i < headers.Length; i++)
         {
             var cell = ws.Cell(1, i + 1);
@@ -48,12 +49,16 @@ public class ExcelExportService(ILogger<ExcelExportService> logger) : IExcelExpo
             ws.Cell(row, 6).Value = inv.NecesitaBus ? "Sí" : "No";
             ws.Cell(row, 7).Value = inv.NecesitaAlojamiento ? "Sí" : "No";
             ws.Cell(row, 8).Value = inv.TipoAlojamiento ?? "—";
-            ws.Cell(row, 9).Value = inv.FechaRegistro.ToLocalTime().ToString("dd/MM/yyyy HH:mm");
+            ws.Cell(row, 9).Value  = inv.IdaTransporte ?? "—";
+            ws.Cell(row, 10).Value = inv.VueltaTransporte ?? "—";
+            ws.Cell(row, 11).Value = inv.Comportamiento ?? "—";
+            ws.Cell(row, 12).Value = inv.Mensaje ?? "—";
+            ws.Cell(row, 13).Value = inv.FechaRegistro.ToLocalTime().ToString("dd/MM/yyyy HH:mm");
 
             // Fila alternada
             if (row % 2 == 0)
             {
-                ws.Row(row).Cells(1, 9)
+                ws.Row(row).Cells(1, 13)
                     .Style.Fill.BackgroundColor = XLColor.FromHtml("#F5F5F5");
             }
 
