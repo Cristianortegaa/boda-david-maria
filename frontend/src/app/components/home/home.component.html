@@ -180,53 +180,65 @@
 </div>
 
 <!-- ── SOBRE ───────────────────────────────────────────────
-     Ocupa toda la pantalla hasta que termina la apertura. De atrás a delante:
-     papel, forro, luz, carta, solapas laterales, solapa inferior y tapa
-     (la solapa superior, que se dobla sobre su bisagra). -->
+     Ocupa toda la pantalla hasta que termina la apertura. Cuatro solapas en X
+     con relieve de flores y el lacre en la punta de la izquierda. Al abrirse,
+     las dos laterales se abren como puertas y luego la de arriba y la de abajo,
+     y queda la tarjeta de dentro, que da paso a la invitación. -->
 @if (estado() !== 'abierto') {
   <div class="sobre" [class.sobre--abriendo]="estado() === 'abriendo'">
-    <div class="sobre-fondo" aria-hidden="true"></div>
-    <div class="sobre-forro" aria-hidden="true"></div>
-    <div class="sobre-luz" aria-hidden="true"></div>
 
-    <!-- La carta que sale del sobre y se convierte en la invitación -->
-    <div class="carta" aria-hidden="true">
-      <span class="carta-pre">Boda de</span>
-      <span class="carta-nombres">María y David</span>
-      <span class="carta-linea"></span>
-      <span class="carta-fecha">1 de mayo · 2027</span>
-      <span class="carta-corazon">♥</span>
-    </div>
-
-    <div class="sobre-lado sobre-lado--izq" aria-hidden="true"></div>
-    <div class="sobre-lado sobre-lado--der" aria-hidden="true"></div>
-    <div class="sobre-abajo" aria-hidden="true">
-      <svg class="sobre-abajo-svg" viewBox="0 0 393 1200" preserveAspectRatio="none">
-        <path d="M0 1200H393V196.5L229.73 33.23A47 47 0 0 0 163.27 33.23L0 196.5Z" fill="#FDFBFA"/>
-      </svg>
-    </div>
-
-    <!-- Tapa: cara exterior (papel + título) y cara interior (forro) -->
-    <div class="tapa" aria-hidden="true">
-      <svg class="tapa-cara" viewBox="0 0 393 177" preserveAspectRatio="none">
-        <path d="M0 0H393L229.73 163.27A47 47 0 0 1 163.27 163.27Z" fill="#FDFBFA"/>
-      </svg>
-      <div class="tapa-titulo">
-        <span class="solapa-pre">Boda de</span>
-        <span class="solapa-names">María y David</span>
+    <!-- Tarjeta de dentro -->
+    <div class="tarjeta" aria-hidden="true">
+      <div class="tarjeta-texto">
+        <span class="tarjeta-pre">Boda de</span>
+        <span class="tarjeta-nombres">María y David</span>
+        <span class="tarjeta-linea"></span>
+        <span class="tarjeta-fecha">1 de mayo · 2027</span>
       </div>
-      <svg class="tapa-dentro" viewBox="0 0 393 177" preserveAspectRatio="none">
-        <defs>
-          <pattern id="forro-puntos" width="12" height="12" patternUnits="userSpaceOnUse">
-            <rect width="12" height="12" fill="#F3D8C5"/>
-            <circle cx="6" cy="6" r="1.3" fill="#E8B4A0"/>
-          </pattern>
-        </defs>
-        <path d="M0 0H393L229.73 163.27A47 47 0 0 1 163.27 163.27Z" fill="url(#forro-puntos)"/>
-      </svg>
     </div>
 
-    <div class="sobre-bisagra" aria-hidden="true"></div>
+    <div class="pico pico--arriba" aria-hidden="true">
+      <div class="cara cara--fuera"><div class="lamina"></div>
+        <div class="sobre-titulo">
+          <span class="solapa-pre">Boda de</span>
+          <span class="solapa-names">María y David</span>
+        </div>
+      </div>
+      <div class="cara cara--dentro"><div class="lamina"></div></div>
+    </div>
+    <div class="pico pico--abajo" aria-hidden="true">
+      <div class="cara cara--fuera"><div class="lamina"></div></div>
+      <div class="cara cara--dentro"><div class="lamina"></div></div>
+    </div>
+    <div class="puerta puerta--der" aria-hidden="true">
+      <div class="cara cara--fuera"><div class="lamina"></div></div>
+      <div class="cara cara--dentro"><div class="lamina"></div></div>
+    </div>
+    <div class="puerta puerta--izq">
+      <div class="cara cara--fuera"><div class="lamina"></div></div>
+      <div class="cara cara--dentro"><div class="lamina"></div></div>
+      <!-- El lacre va pegado a la punta de la solapa izquierda y se abre con ella -->
+      <button class="sello" tabindex="-1" aria-hidden="true" (click)="abrirSobre()" [disabled]="estado() === 'abriendo'">
+        <svg class="sello-svg" viewBox="0 0 100 100" aria-hidden="true">
+            <defs>
+              <radialGradient id="lacre" cx="38%" cy="32%" r="75%">
+                <stop offset="0" stop-color="#C84E4A"/>
+                <stop offset=".55" stop-color="#9C2C2B"/>
+                <stop offset="1" stop-color="#6B1817"/>
+              </radialGradient>
+              <radialGradient id="lacre-dentro" cx="62%" cy="66%" r="70%">
+                <stop offset="0" stop-color="#B23B39"/>
+                <stop offset="1" stop-color="#86211F"/>
+              </radialGradient>
+            </defs>
+            <path d="M95.9 50.0L97.6 53.3L97.6 56.7L95.6 59.7L92.6 62.2L90.2 64.6L89.3 67.5L89.4 71.0L89.2 74.5L87.5 77.2L84.4 78.9L80.9 79.8L78.2 81.3L76.5 83.9L75.3 87.5L73.6 90.9L70.9 92.8L67.4 93.0L63.8 92.3L60.5 92.3L57.7 93.7L54.8 95.9L51.7 97.4L48.4 97.1L45.3 95.0L42.5 92.4L39.8 90.7L36.8 90.7L33.2 91.5L29.7 91.6L26.8 90.1L24.9 87.3L23.3 84.1L21.3 81.9L18.1 80.8L14.4 79.9L11.1 78.2L9.5 75.3L9.4 71.6L9.9 67.9L9.5 64.7L7.7 62.1L5.3 59.5L3.7 56.5L4.0 53.2L5.9 50.0L7.8 47.0L8.5 44.2L7.5 41.0L6.1 37.4L5.7 33.9L7.1 30.9L10.0 28.7L12.8 26.8L14.7 24.3L15.4 21.0L16.2 17.3L17.9 14.4L21.1 13.0L25.0 12.9L28.6 12.9L31.4 11.9L33.7 9.5L35.9 6.7L38.8 5.0L42.1 5.0L45.4 6.4L48.5 7.5L51.5 7.2L54.7 5.5L58.2 3.7L61.6 3.4L64.6 5.1L67.0 8.0L69.2 10.7L71.8 12.2L75.2 12.6L78.7 13.2L81.5 15.0L82.9 18.2L83.3 22.1L83.9 25.3L85.8 27.6L88.9 29.3L92.1 31.3L94.1 34.0L94.2 37.3L93.3 40.8L92.9 44.0L93.8 46.9Z" fill="url(#lacre)"/>
+            <circle cx="50" cy="50" r="32" fill="url(#lacre-dentro)" stroke="#5E1413" stroke-opacity=".45" stroke-width="1.4"/>
+            <circle cx="50" cy="50" r="27.5" fill="none" stroke="#F4C7BC" stroke-opacity=".4" stroke-width=".8"/>
+            <text x="50.8" y="56.8" text-anchor="middle" class="sello-letras sello-letras--sombra">M&amp;D</text>
+            <text x="50" y="56" text-anchor="middle" class="sello-letras">M&amp;D</text>
+          </svg>
+      </button>
+    </div>
 
     <button class="sobre-btn" (click)="abrirSobre()" [disabled]="estado() === 'abriendo'">
       Abrir mi invitación
