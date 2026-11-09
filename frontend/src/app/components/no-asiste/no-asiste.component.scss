@@ -81,9 +81,9 @@
   width: 100%;
 }
 
-// "Nooooo....." — Gochi Hand 30px
+// "Nooooo....." — Poppins 30px
 .na-title {
-  font-family: 'Gochi Hand', cursive;
+  font-family: var(--font);
   font-size: 30px;
   font-weight: 400;
   line-height: 35px;
@@ -93,9 +93,9 @@
   width: 100%;
 }
 
-// Texto explicativo — Gochi Hand 16px
+// Texto explicativo — Poppins 16px
 .na-desc {
-  font-family: 'Gochi Hand', cursive;
+  font-family: var(--font);
   font-size: 16px;
   font-weight: 400;
   line-height: 19px;
@@ -113,7 +113,7 @@
   border: 1px solid #6A6B4B;
   border-radius: 8px;
   padding: 12px 16px;
-  font-family: 'Gochi Hand', cursive;
+  font-family: var(--font);
   font-size: 18px;
   font-weight: 400;
   line-height: 21px;
@@ -140,7 +140,7 @@
   color: #fff;
   border: none;
   border-radius: 100px;
-  font-family: 'Gochi Hand', cursive;
+  font-family: var(--font);
   font-size: 18px;
   font-weight: 400;
   line-height: 21px;
@@ -153,7 +153,7 @@
 
 // ── Pantalla de éxito (dead end) ──────────────────────────
 // Figma "Success no viene": etiqueta en y=214, ilustración pegada debajo
-// (256×202) y el texto 43px más abajo, en Gochi 30px a dos líneas.
+// (256×202) y el texto 43px más abajo, en Poppins 30px a dos líneas.
 .na-success {
   @include pantalla-fija;
   background: #FDFBFA;
@@ -171,17 +171,17 @@
   align-items: center;
 }
 
-// "Boda de" — Inspiration 14px (como en la cabecera)
+// "Boda de" — Poppins 14px (como en la cabecera)
 .na-success-boda-de {
-  font-family: 'Inspiration', cursive;
+  font-family: var(--font);
   font-size: 14px;
   line-height: 13px;     // la etiqueta mide 37px en Figma
   color: #000;
 }
 
-// "María y David" — Gochi Hand 20px
+// "María y David" — Poppins 20px
 .na-success-nombres {
-  font-family: 'Gochi Hand', cursive;
+  font-family: var(--font);
   font-size: 20px;
   font-weight: 400;
   line-height: 24px;
@@ -201,11 +201,11 @@
   animation: bounceIn 0.55s cubic-bezier(0.34,1.56,0.64,1) 0.15s both;
 }
 
-// "¡Nos vemos en otra ocasión, lo sentimos!" — Gochi Hand 30px
+// "¡Nos vemos en otra ocasión, lo sentimos!" — Poppins 30px
 .na-success-text {
   margin: 43px 0 0;
   width: 100%;
-  font-family: 'Gochi Hand', cursive;
+  font-family: var(--font);
   font-size: 30px;
   font-weight: 400;
   line-height: 32px;

@@ -42,21 +42,21 @@ $hueco-medio: segun-alto(12px, 24px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 116px;
+  white-space: nowrap;   // en Poppins "María y David" no cabe en los 116px de Figma
 }
 
-// "Boda de" — Inspiration 14px
+// "Boda de" — Poppins 14px
 .conf-boda-de {
-  font-family: 'Inspiration', cursive;
+  font-family: var(--font);
   font-size: 14px;
   line-height: 18px;
   text-align: center;
   color: #000;
 }
 
-// "María y David" — Gochi Hand 20px
+// "María y David" — Poppins 20px
 .conf-boda-nombres {
-  font-family: 'Gochi Hand', cursive;
+  font-family: var(--font);
   font-size: 20px;
   font-weight: 400;
   line-height: 24px;
@@ -84,9 +84,9 @@ $hueco-medio: segun-alto(12px, 24px);
   box-sizing: border-box;
 }
 
-// "¡Ya está todo listo!" — Gochi Hand 30px
+// "¡Ya está todo listo!" — Poppins 30px
 .conf-titulo {
-  font-family: 'Gochi Hand', cursive;
+  font-family: var(--font);
   font-size: 30px;
   font-weight: 400;
   line-height: 35px;
@@ -95,9 +95,9 @@ $hueco-medio: segun-alto(12px, 24px);
   margin: 0;
 }
 
-// Subtítulo — Gochi Hand 16px
+// Subtítulo — Poppins 16px
 .conf-subtitulo {
-  font-family: 'Gochi Hand', cursive;
+  font-family: var(--font);
   font-size: 16px;
   font-weight: 400;
   line-height: 19px;
@@ -118,9 +118,9 @@ $hueco-medio: segun-alto(12px, 24px);
   gap: 10px;
 }
 
-// Nombre — Gochi Hand 20px
+// Nombre — Poppins 20px
 .conf-card-nombre {
-  font-family: 'Gochi Hand', cursive;
+  font-family: var(--font);
   font-size: 20px;
   font-weight: 400;
   line-height: 24px;
@@ -132,9 +132,9 @@ $hueco-medio: segun-alto(12px, 24px);
   box-sizing: border-box;
 }
 
-// Detalle — Gochi Hand 16px
+// Detalle — Poppins 16px
 .conf-card-detalle {
-  font-family: 'Gochi Hand', cursive;
+  font-family: var(--font);
   font-size: 16px;
   font-weight: 400;
   line-height: 19px;
@@ -160,9 +160,9 @@ $hueco-medio: segun-alto(12px, 24px);
   box-sizing: border-box;
 }
 
-// "Si quieres ayudarnos..." — Gochi Hand 16px
+// "Si quieres ayudarnos..." — Poppins 16px
 .conf-bank-label {
-  font-family: 'Gochi Hand', cursive;
+  font-family: var(--font);
   font-size: 16px;
   font-weight: 400;
   line-height: 19px;
@@ -179,9 +179,9 @@ $hueco-medio: segun-alto(12px, 24px);
   gap: 24px;
 }
 
-// IBAN — Gochi Hand, fluid para no overflow en pantallas pequeñas
+// IBAN — Poppins, fluid para no overflow en pantallas pequeñas
 .conf-bank-iban {
-  font-family: 'Gochi Hand', cursive;
+  font-family: var(--font);
   font-size: clamp(13px, 4.5vw, 20px);
   word-break: break-all;
   text-align: center;
@@ -190,9 +190,9 @@ $hueco-medio: segun-alto(12px, 24px);
   color: #000;
 }
 
-// "Copiar" — Gochi Hand 18px, underline
+// "Copiar" — Poppins 18px, underline
 .conf-bank-copy {
-  font-family: 'Gochi Hand', cursive;
+  font-family: var(--font);
   font-size: 18px;
   font-weight: 400;
   line-height: 21px;
@@ -216,7 +216,7 @@ $hueco-medio: segun-alto(12px, 24px);
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: 'Gochi Hand', cursive;
+  font-family: var(--font);
   font-size: 16px;
   color: #3a3a2a;
   white-space: nowrap;
@@ -254,7 +254,7 @@ $hueco-medio: segun-alto(12px, 24px);
   background: #000;
   border-radius: 100px;
   border: none;
-  font-family: 'Gochi Hand', cursive;
+  font-family: var(--font);
   font-size: 18px;
   font-weight: 400;
   line-height: 21px;

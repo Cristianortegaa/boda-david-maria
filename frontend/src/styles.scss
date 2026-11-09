@@ -50,9 +50,11 @@
   --white:       #ffffff;
   --card-bg:     #faf8f4;
   --border:      #d6cfc5;
-  --font-sans:   'DM Sans', sans-serif;
-  --font-serif:  'Playfair Display', serif;
-  --font-script: 'Dancing Script', cursive;
+  // Toda la web va en Poppins
+  --font:        'Poppins', sans-serif;
+  --font-sans:   var(--font);
+  --font-serif:  var(--font);
+  --font-script: var(--font);
 
   // Alto de pantalla real. En el iPhone 100vh mide como si no hubiera barras del
   // navegador, así que las páginas de una sola pantalla acababan haciendo scroll.
@@ -79,7 +81,7 @@ html {
 
 body {
   overflow-x: hidden;
-  font-family: var(--font-sans);
+  font-family: var(--font);
   background: #FDFBFA;
   color: var(--text);
   -webkit-font-smoothing: antialiased;
@@ -140,7 +142,7 @@ input, select, textarea { font-family: inherit; }
   height: 53px;
   padding: 0 20px;
   border-radius: 100px;
-  font-family: 'Gochi Hand', cursive;
+  font-family: var(--font);
   font-size: 18px;
   font-weight: 400;
   border: none;
