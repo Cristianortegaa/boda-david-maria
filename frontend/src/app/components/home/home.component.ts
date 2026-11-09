@@ -11,9 +11,9 @@ type TipoPieza = 'petalo' | 'flor' | 'hoja' | 'arroz' | 'destello';
 let sobreYaAbierto = false;
 
 // ── Cronología de la apertura (ms desde el toque; debe cuadrar con el SCSS) ──
-const DURACION_APERTURA_MS = 5400;   // se retira el sobre y se desbloquea el scroll
-const T_PETALOS_SOBRE      = 2350;   // estallan pétalos por la abertura cuando sale la carta
-const T_ARROZ              = [4900, 5400, 5950];   // tandas de arroz, ya con la invitación detrás
+const DURACION_APERTURA_MS = 5000;   // se retira el sobre y se desbloquea el scroll
+const T_PETALOS_SOBRE      = 2500;   // estallan pétalos desde el centro con el sobre ya abierto
+const T_ARROZ              = [4700, 5200, 5750];   // tandas de arroz, ya con la invitación detrás
 const LIMPIEZA_MS          = 13000;  // respaldo: borra lo que quede
 
 const COLORES_PETALO = ['#F3D8C5', '#E8B4A0', '#F7E7DC', '#FFFFFF', '#EBA9A1', '#F9D9CF', '#C62F3B', '#F3D8C5'];
@@ -107,7 +107,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
   // ── Escenas ────────────────────────────────────────────────────────────────
 
-  /** Al abrirse, salen pétalos, flores, hojas y destellos de dentro del sobre. */
+  /** Con las solapas abiertas, salen pétalos, flores, hojas y destellos desde el centro. */
   private petalosDelSobre() {
     const { width: W, height: H } = this.lienzo();
     const piezas: [TipoPieza, number][] = [['petalo', 34], ['flor', 10], ['hoja', 6], ['destello', 10]];
@@ -116,7 +116,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
         const angulo = -Math.PI / 2 + azar(-1.35, 1.35);
         const fuerza = tipo === 'destello' ? azar(260, 520) : azar(380, 760);
         this.volar(tipo, {
-          x0: W / 2 + azar(-60, 60), y0: H * 0.49 - 120,   // por la abertura, junto a la carta
+          x0: W / 2 + azar(-60, 60), y0: H * 0.49 + azar(-40, 40),   // donde estaba el lacre
           vx: Math.cos(angulo) * fuerza, vy: Math.sin(angulo) * fuerza,
           k: tipo === 'destello' ? 3 : 2.4,
           g: tipo === 'destello' ? 150 : 520,
