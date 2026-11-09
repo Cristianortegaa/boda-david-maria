@@ -54,10 +54,10 @@ $hueco-medio: segun-alto(12px, 24px);
   color: #000;
 }
 
-// "María y David" — Poppins 20px
+// "María y David" — Poppins 18px
 .conf-boda-nombres {
   font-family: var(--font);
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 24px;
   text-align: center;
@@ -84,10 +84,10 @@ $hueco-medio: segun-alto(12px, 24px);
   box-sizing: border-box;
 }
 
-// "¡Ya está todo listo!" — Poppins 30px
+// "¡Ya está todo listo!" — Poppins 26px
 .conf-titulo {
   font-family: var(--font);
-  font-size: 30px;
+  font-size: 26px;
   font-weight: 400;
   line-height: 35px;
   text-align: center;
@@ -95,10 +95,10 @@ $hueco-medio: segun-alto(12px, 24px);
   margin: 0;
 }
 
-// Subtítulo — Poppins 16px
+// Subtítulo — Poppins 15px
 .conf-subtitulo {
   font-family: var(--font);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 19px;
   text-align: center;
@@ -118,10 +118,10 @@ $hueco-medio: segun-alto(12px, 24px);
   gap: 10px;
 }
 
-// Nombre — Poppins 20px
+// Nombre — Poppins 18px
 .conf-card-nombre {
   font-family: var(--font);
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 24px;
   text-align: center;
@@ -132,10 +132,10 @@ $hueco-medio: segun-alto(12px, 24px);
   box-sizing: border-box;
 }
 
-// Detalle — Poppins 16px
+// Detalle — Poppins 15px
 .conf-card-detalle {
   font-family: var(--font);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 19px;
   text-align: center;
@@ -160,10 +160,10 @@ $hueco-medio: segun-alto(12px, 24px);
   box-sizing: border-box;
 }
 
-// "Si quieres ayudarnos..." — Poppins 16px
+// "Si quieres ayudarnos..." — Poppins 15px
 .conf-bank-label {
   font-family: var(--font);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 19px;
   text-align: center;
@@ -190,10 +190,10 @@ $hueco-medio: segun-alto(12px, 24px);
   color: #000;
 }
 
-// "Copiar" — Poppins 18px, underline
+// "Copiar" — Poppins 16px, underline
 .conf-bank-copy {
   font-family: var(--font);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 21px;
   text-decoration: underline;
@@ -217,7 +217,7 @@ $hueco-medio: segun-alto(12px, 24px);
   align-items: center;
   gap: 10px;
   font-family: var(--font);
-  font-size: 16px;
+  font-size: 15px;
   color: #3a3a2a;
   white-space: nowrap;
   pointer-events: none;
@@ -255,7 +255,7 @@ $hueco-medio: segun-alto(12px, 24px);
   border-radius: 100px;
   border: none;
   font-family: var(--font);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 21px;
   color: #FFFFFF;
