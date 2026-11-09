@@ -3,7 +3,7 @@
 .admin-page {
   min-height: 100vh;
   background: #f8f8f5;
-  font-family: 'Georgia', serif;
+  font-family: var(--font);
 }
 
 // ── LOGIN ──────────────────────────────────────────────────────────────────
@@ -274,5 +274,5 @@
   border-radius: 12px;
   font-size: 16px;
   text-decoration: none;
-  font-family: 'Georgia', serif;
+  font-family: var(--font);
 }
