@@ -31,19 +31,19 @@ $abajo: segun-alto(20px, 40px);
   flex: 1;
 }
 
-// "Datos personales" — Poppins 30px
+// "Datos personales" — Poppins 26px
 .fw-title {
   font-family: var(--font);
-  font-size: 30px;
+  font-size: 26px;
   font-weight: 400;
   line-height: 35px;
   color: #000;
 }
 
-// "Paso 1 de 4" — Poppins 16px
+// "Paso 1 de 4" — Poppins 15px
 .fw-paso {
   font-family: var(--font);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 19px;
   color: #000;
@@ -84,10 +84,10 @@ $abajo: segun-alto(20px, 40px);
   width: 100%;
 }
 
-// Label — Poppins 18px, negro
+// Label — Poppins 16px, negro
 .fw-label {
   font-family: var(--font);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 24px;     // en Figma las etiquetas de este paso miden 24px…
 
@@ -104,7 +104,7 @@ $abajo: segun-alto(20px, 40px);
   border-radius: 8px;
   padding: 12px 16px;
   font-family: var(--font);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 21px;
   color: #000;
@@ -142,10 +142,10 @@ $abajo: segun-alto(20px, 40px);
   gap: 16px;
 }
 
-// Número central — Poppins 25px
+// Número central — Poppins 22px
 .fw-spin-num {
   font-family: var(--font);
-  font-size: 25px;
+  font-size: 22px;
   font-weight: 400;
   line-height: 29px;
   color: #000;
@@ -180,10 +180,10 @@ $abajo: segun-alto(20px, 40px);
   }
 }
 
-// Etiqueta "3 - 14 años" / "15 - 18 años" — Poppins 18px, gris
+// Etiqueta "3 - 14 años" / "15 - 18 años" — Poppins 16px, gris
 .fw-spin-label {
   font-family: var(--font);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 21px;
   color: #989898;
@@ -199,7 +199,7 @@ $abajo: segun-alto(20px, 40px);
   border-radius: 8px;
   padding: 12px 16px;
   font-family: var(--font);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 21px;
   color: #000;
@@ -229,7 +229,7 @@ $abajo: segun-alto(20px, 40px);
   border: none;
   border-radius: 100px;
   font-family: var(--font);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 21px;
   padding: 16px 40px;
